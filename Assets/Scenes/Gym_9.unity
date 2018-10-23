@@ -287,6 +287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shadow: {fileID: 1644204507318930, guid: a20c8791fc02ee041943f41d59c2cee1, type: 2}
+  initialDelay: 2
 --- !u!65 &968183730
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -612,6 +613,11 @@ Prefab:
     - target: {fileID: 4943848548365518, guid: a6e0f285588f285438e0ee2b4fd0a175, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114093735908326258, guid: a6e0f285588f285438e0ee2b4fd0a175,
+        type: 2}
+      propertyPath: timeBetweenRecording
+      value: 0.02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6e0f285588f285438e0ee2b4fd0a175, type: 2}

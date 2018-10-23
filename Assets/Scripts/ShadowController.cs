@@ -11,8 +11,15 @@ public class ShadowController : MonoBehaviour {
     private Animator animator;
     private OrientationManager orientationManager;
 
-    public GameObject ObjToFollow { get => objToFollow; set => objToFollow = value; }
+    private float currentTime = 0f;
+    public float speedRatio = 1;
+    private float timeBetweenReading = -1f;
 
+    public void setObjToFollow(GameObject value)
+    {
+        objToFollow = value;
+        timeBetweenReading = objToFollow.GetComponent<StateRecorder>().TimeBetweenRecording;
+    }
 
     // Use this for initialization
     void Start () {
@@ -21,10 +28,16 @@ public class ShadowController : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
         if (isFollowing)
         {
-            SetState(ObjToFollow.GetComponent<StateRecorder>().DequeueMomentState());
+            currentTime += Time.deltaTime;
+
+            if (currentTime >= timeBetweenReading / speedRatio)
+            {
+                SetState(objToFollow.GetComponent<StateRecorder>().DequeueMomentState());
+                currentTime -= timeBetweenReading / speedRatio;
+            }
         }
 	}
 

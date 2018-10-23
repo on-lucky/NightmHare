@@ -12,6 +12,12 @@ public class StateRecorder : MonoBehaviour
     private OrientationManager orientationManager;
 
     public Queue<MomentCapture> MomentCaptures { get => momentCaptures; set => momentCaptures = value; }
+    public float TimeBetweenRecording { get => timeBetweenRecording; set => TimeBetweenRecording = value; }
+
+    [SerializeField]
+    private float timeBetweenRecording = 0.02f;
+
+    private float currentTime = 0f;
 
 
     // Use this for initialization
@@ -23,12 +29,19 @@ public class StateRecorder : MonoBehaviour
         MomentCaptures = new Queue<MomentCapture>();
     }
 
-    private void FixedUpdate()
+    void Update()
     {
         if (isRecording)
         {
-            Record();
+            currentTime += Time.deltaTime;
+            if (currentTime >= timeBetweenRecording)
+            {
+                Record();
+                currentTime -= timeBetweenRecording;
+            }
         }
+
+       
     }
 
     private void Record()
