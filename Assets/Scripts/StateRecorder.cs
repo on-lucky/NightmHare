@@ -21,7 +21,6 @@ public class StateRecorder : MonoBehaviour
         orientationManager = GetComponentInChildren<OrientationManager>();
 
         MomentCaptures = new Queue<MomentCapture>();
-        StartRecording();
     }
 
     private void FixedUpdate()
