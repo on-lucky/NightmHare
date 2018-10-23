@@ -6,23 +6,45 @@ public class ShadowGate : MonoBehaviour {
 
     public GameObject shadow;
 
+    private bool gateUsed = false;
+
     [SerializeField]
     private float initialDelay = 2f;
+
+    [SerializeField]
+    private GameObject passageEffect;
 
     void OnTriggerExit(Collider other)
     {
         GameObject hare = other.gameObject;
 
         if (hare.tag == "Player") {
-            hare.GetComponent<StateRecorder>().StartRecording();
+            ShowPassageEffect(hare);
 
-            GameObject shadowObject = Instantiate(shadow, this.transform);
+            if (!gateUsed) {
+                hare.GetComponent<StateRecorder>().StartRecording();
 
-            shadowObject.GetComponent<ShadowController>().setObjToFollow(hare);
-            shadowObject.GetComponent<ShadowController>().StartFollowing(initialDelay);
+                GameObject shadowObject = Instantiate(shadow, this.transform);
 
-            GetComponent<BoxCollider>().enabled = false;
+                shadowObject.GetComponent<ShadowController>().setObjToFollow(hare);
+                shadowObject.GetComponent<ShadowController>().StartFollowing(initialDelay);
+                gateUsed = true;
+            }
         }
        
+    }
+
+    private void ShowPassageEffect(GameObject hare)
+    {
+        float direction = -1;
+        if(hare.transform.position.x > transform.position.x)
+        {
+            direction = 1;
+        }
+
+        if (passageEffect)
+        {
+            Instantiate(passageEffect, hare.transform.position, hare.transform.rotation);
+        }
     }
 }

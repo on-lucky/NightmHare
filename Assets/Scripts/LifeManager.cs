@@ -9,12 +9,20 @@ public class LifeManager : MonoBehaviour {
     private string sceneName = "";
     [SerializeField]
     private ParticleSystem deathParticles;
+    [SerializeField]
+    private ParticleSystem hareParticles;
+    [SerializeField]
+    private GameObject armature;
+
+    private SkinnedMeshRenderer renderer;
 
     private Rigidbody rb;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        renderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        Spawn();
     }
 
     void OnTriggerEnter(Collider other)
@@ -52,5 +60,20 @@ public class LifeManager : MonoBehaviour {
     {
         yield return new WaitForSeconds(timeToWait);
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+    }
+
+    private void Spawn(){
+        GetComponent<PlayerController>().enabled = false;
+        renderer.enabled = false;
+        StartCoroutine(waitAndEnable(1f));
+    }
+
+    IEnumerator waitAndEnable(float timeToWait)
+    {
+        yield return new WaitForSeconds(timeToWait);
+        renderer.enabled = true;
+        armature.SetActive(true);
+        GetComponent<PlayerController>().enabled = true;
+        hareParticles.Play();
     }
 }

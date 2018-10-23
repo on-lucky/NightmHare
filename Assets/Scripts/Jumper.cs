@@ -59,8 +59,14 @@ public class Jumper : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        animator.SetBool("Jumping", false);
-        onGround = true;
+
+        GameObject terrain = other.gameObject;
+
+        if (terrain.tag == "Terrain")
+        {
+            animator.SetBool("Jumping", false);
+            onGround = true;
+        }
     }
 
     void OnTriggerExit(Collider other)
