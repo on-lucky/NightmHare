@@ -5,7 +5,10 @@ using UnityEngine;
 public class ShadowGate : MonoBehaviour {
 
     public GameObject shadow;
-	
+
+    [SerializeField]
+    private float initialDelay = 2f;
+
     void OnTriggerExit(Collider other)
     {
         GameObject hare = other.gameObject;
@@ -16,7 +19,7 @@ public class ShadowGate : MonoBehaviour {
             GameObject shadowObject = Instantiate(shadow, this.transform);
 
             shadowObject.GetComponent<ShadowController>().ObjToFollow = hare;
-            shadowObject.GetComponent<ShadowController>().StartFollowing(2f);
+            shadowObject.GetComponent<ShadowController>().StartFollowing(initialDelay);
 
             GetComponent<BoxCollider>().enabled = false;
         }

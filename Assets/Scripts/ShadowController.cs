@@ -42,6 +42,11 @@ public class ShadowController : MonoBehaviour {
         StartCoroutine(waitAndFollow(timeToWait));
     }
 
+    public void StopFollowing()
+    {
+        isFollowing = false;
+    }
+
     IEnumerator waitAndFollow(float timeToWait)
     {
         yield return new WaitForSeconds(timeToWait);
