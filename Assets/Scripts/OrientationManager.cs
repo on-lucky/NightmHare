@@ -7,7 +7,9 @@ public class OrientationManager : MonoBehaviour {
     private bool isLookingRight = true;
     public Camera PlayerCam;
 
-	public bool LookTo(bool shouldLookRight)
+    public bool IsLookingRight { get => this.isLookingRight; set => this.isLookingRight = value; }
+
+    public bool LookTo(bool shouldLookRight)
     {
         bool hasTurned = false;
         if (isLookingRight && !shouldLookRight)

@@ -4,28 +4,24 @@ using UnityEngine;
 
 public class StateRecorder : MonoBehaviour
 {
-
-    /*private bool isRewinding;
     private bool isRecording;
 
-    private MomentCapture[] momentCaptures;
-    private int index = -1;
-    private int currentMaxIndex = -1;
-    private const int MAX_INDEX = 500;
+    private Queue<MomentCapture> momentCaptures;
 
-    private Rigidbody rb;
     private Animator animator;
     private OrientationManager orientationManager;
+
+    public Queue<MomentCapture> MomentCaptures { get => momentCaptures; set => momentCaptures = value; }
+
 
     // Use this for initialization
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
         orientationManager = GetComponentInChildren<OrientationManager>();
 
-        momentCaptures = new MomentCapture[MAX_INDEX];
-        TimeController.instance.AddRewindableElement(this);
+        MomentCaptures = new Queue<MomentCapture>();
+        StartRecording();
     }
 
     private void FixedUpdate()
@@ -38,23 +34,8 @@ public class StateRecorder : MonoBehaviour
 
     private void Record()
     {
-        momentCaptures[++index] = new MomentCapture(transform.position, animator.GetCurrentAnimatorStateInfo(0), animator.GetFloat("Speed"), orientationManager.isRight);
-        currentMaxIndex = index;
-    }
-
-    public void RewindTo(float ratio)
-    {
-        index = (int)Mathf.Round(ratio * (float)currentMaxIndex);
-        transform.position = momentCaptures[index].position;
-
-        SetStickmanState(momentCaptures[index]);
-    }
-
-    private void SetStickmanState(MomentCapture moment)
-    {
-        orientationManager.LookTo(moment.lookingRight);
-        animator.SetFloat("Speed", moment.speed);
-        animator.Play(moment.animationState.fullPathHash, 0, moment.animationState.normalizedTime);
+        MomentCapture capture = new MomentCapture(transform.position, animator.GetCurrentAnimatorStateInfo(0), animator.GetFloat("Speed"), animator.GetBool("Jumping"), orientationManager.IsLookingRight);
+        MomentCaptures.Enqueue(capture);
     }
 
     public void StartRecording()
@@ -65,5 +46,15 @@ public class StateRecorder : MonoBehaviour
     public void StopRecording()
     {
         isRecording = false;
-    }*/
+    }
+
+    public void ResetMomentStates()
+    {
+        momentCaptures.Clear();
+    }
+
+    public MomentCapture DequeueMomentState()
+    {
+        return momentCaptures.Dequeue();
+    }
 }
