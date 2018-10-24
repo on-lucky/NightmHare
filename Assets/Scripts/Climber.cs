@@ -85,7 +85,6 @@ public class Climber : MonoBehaviour {
     {
         transform.Translate(new Vector3(0, currentUpwardSpeed, 0));
         currentUpwardSpeed -= decelerationRate;
-        //Debug.
         if(currentUpwardSpeed <= 0)
         {
             GetComponent<PlayerController>().IsClimbing = false;
