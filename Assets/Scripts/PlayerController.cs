@@ -11,45 +11,83 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private float airAcceleration = 0.04f;
 
+    private bool isClimbing = false;
+
     private float currentSpeed = 0f;
     private Animator animator;
     private OrientationManager orientationM;
     private Jumper jumper;
+    private Climber climber;
 
-	// Use this for initialization
-	void Start () {
+    public bool IsClimbing { get => isClimbing; set => isClimbing = value; }
+
+    // Use this for initialization
+    void Start() {
         animator = GetComponent<Animator>();
         orientationM = GetComponent<OrientationManager>();
         jumper = GetComponent<Jumper>();
+        climber = GetComponent<Climber>();
     }
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+
+    // Update is called once per frame
+    void FixedUpdate() {
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            Run(true);
+            LookFoward(true);
+            if (IsClimbing && orientationM.IsLookingRight)
+            {
+                currentSpeed = 0f;
+                climber.Climb();
+            }
+            else if (!climber.WallToFront)
+            {
+                Run(true);
+            }
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            Run(false);
+            LookFoward(false);
+            if (IsClimbing && !orientationM.IsLookingRight)
+            {
+                currentSpeed = 0f;
+                climber.Climb();
+            }
+            else if (!climber.WallToFront)
+            {
+                Run(false);
+            }
+        }
+        else if (!climber.WallToFront)
+        {
+            Break();
         }
         else
         {
-            Break();
+            StopClimbing();
         }
         UpdateAnimator();
     }
 
+    private void LookFoward(bool isRight)
+    {
+        if (orientationM.LookTo(isRight))
+        {
+            currentSpeed = -currentSpeed;
+            climber.SwapWalls();
+        }
+    }
+
     private void Run(bool isRight)
     {
+        StopClimbing();
         Accelerate(isRight);
-        //Debug.Log(new Vector3(currentSpeed, 0, 0));
         transform.Translate(new Vector3(0, 0, currentSpeed));
     }
 
     private void Break()
     {
-        if(currentSpeed > 0)
+        StopClimbing();
+        if (currentSpeed > 0)
         {
             if (jumper.CheckGround())
             {
@@ -89,20 +127,6 @@ public class PlayerController : MonoBehaviour {
 
     private void Accelerate(bool isRight)
     {
-        if (!isRight)
-        {
-            if (orientationM.LookTo(false))
-            {
-                currentSpeed = -currentSpeed;
-            }
-        }
-        else
-        {
-            if (orientationM.LookTo(true))
-            {
-                currentSpeed = -currentSpeed;
-            }
-        }
         if (jumper.CheckGround())
         {
             currentSpeed += hareAcceleration;
@@ -122,15 +146,24 @@ public class PlayerController : MonoBehaviour {
                 currentSpeed += airAcceleration;
             }
         }
-        if(currentSpeed > hareSpeed)
+        if (currentSpeed > hareSpeed)
         {
             currentSpeed = hareSpeed;
         }
+    }
+
+    public void StopClimbing(){
+        IsClimbing = false;
+        GetComponent<Rigidbody>().isKinematic = false;
     }
 
     private void UpdateAnimator()
     {
         float ratio = Mathf.Abs(currentSpeed) / hareSpeed;
         animator.SetFloat("Speed", ratio);
+    }
+
+    public float GetCurrentSpeed(){
+        return currentSpeed;
     }
 }

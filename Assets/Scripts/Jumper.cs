@@ -57,10 +57,10 @@ public class Jumper : MonoBehaviour {
         onGround = false;
     }
 
-    void OnTriggerEnter(Collider other)
+    public void Land(Collider other)
     {
-
         GameObject terrain = other.gameObject;
+        GetComponent<Rigidbody>().isKinematic = false;
 
         if (terrain.tag == "Terrain")
         {
@@ -69,7 +69,7 @@ public class Jumper : MonoBehaviour {
         }
     }
 
-    void OnTriggerExit(Collider other)
+    public void Fall()
     {
         onGround = false;
     }

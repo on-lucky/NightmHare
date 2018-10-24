@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Shadow
   - Terrain
+  - LeftWallCheck
+  - RightWallCheck
+  - FloorCheck
   layers:
   - Default
   - TransparentFX
