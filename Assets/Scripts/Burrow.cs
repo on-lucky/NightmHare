@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Burrow : MonoBehaviour {
 
+    // Other end of the burrow
     [SerializeField]
     private Burrow end;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
+    // Whether the burrow is locked or not
+    [SerializeField]
+    private bool locked = false;
+    
 	void Update () {
-		
+		// TODO Update the material when (un)locked
+
 	}
 
     private void OnTriggerEnter(Collider other)
@@ -22,7 +22,7 @@ public class Burrow : MonoBehaviour {
         // TODO fix problem with wall checks where wall checks trigger this instead
         // For now the wall checks are disabled in the scene
         GameObject go = other.gameObject;
-        if (go.tag == "Player")
+        if (!locked && go.tag == "Player")
         {
             TeleportPlayer(go);
         }
@@ -41,4 +41,15 @@ public class Burrow : MonoBehaviour {
         float y = otherEndPos.y - endSize.y / 2 + playerHeight / 2;
         playerTransform.position = new Vector3(otherEndPos.x + xOffset, y, otherEndPos.z);
     }
+
+    public void Lock()
+    {
+        locked = true;
+    }
+
+    public void Unlock()
+    {
+        locked = false;
+    }
+    
 }
