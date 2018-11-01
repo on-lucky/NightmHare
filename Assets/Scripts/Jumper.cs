@@ -26,6 +26,8 @@ public class Jumper : MonoBehaviour {
     private Animator animator;
     private Rigidbody rb;
     private Dashing dashing; 
+    private Climber climber;
+    private OrientationManager orientationManager;
     private bool onGround = false;
 
     public bool OnGround { get => onGround; set => onGround = value; }
@@ -35,23 +37,42 @@ public class Jumper : MonoBehaviour {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         dashing = GetComponent<Dashing>();
+        climber = GetComponent<Climber>();
+        orientationManager = GetComponent<OrientationManager>();
     }
 	
 	// Update is called once per frame
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Space) && !dashing.IsDashing)
         {
+            // Normal Jump
             if (onGround)
             {
                 Jump(JumpThrust);
                 animator.SetTrigger("Jumping");
             }
+            // Wall Jump
+            else if (climber.WallToFront || climber.WallToBack) 
+            {
+                Debug.Log("WALLJUMP");
+                if (climber.WallToFront)
+                {
+                    // Flip character
+                    orientationManager.LookTo(!orientationManager.IsLookingRight);
+                    climber.SwapWalls();
+                }
+
+                WallJump(JumpThrust);
+                animator.SetTrigger("Jumping");
+            }
+            // Air Jump
             else if (airJumpCount < airJumps.Length)
             {
                 Jump(airJumps[airJumpCount].jumpForce);
                 airJumpCount++;
                 animator.SetTrigger("Jumping");
             }
+            
         }
     }
 
@@ -60,6 +81,13 @@ public class Jumper : MonoBehaviour {
         animator.SetBool("AirBorn", true);
         rb.velocity = new Vector3(rb.velocity.x, 0,0);
         rb.AddForce(new Vector3(0, 1, 0) * thrust);
+        onGround = false;
+    }
+
+    private void WallJump(float thrust) 
+    {
+        rb.velocity = new Vector3(0, 0, 0);
+        rb.AddRelativeForce(new Vector3(0, 2, 2) * thrust);
         onGround = false;
     }
 

@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour {
                 Run(false);
             }
         }
-        else if (!climber.WallToFront)
+        else if (!climber.WallToFront && jumper.OnGround)
         {
             Break();
         }
