@@ -18,20 +18,22 @@ public class PlayerController : MonoBehaviour {
     private OrientationManager orientationM;
     private Jumper jumper;
     private Climber climber;
+    private Dashing dashing; 
 
     public bool IsClimbing { get => isClimbing; set => isClimbing = value; }
-
+    
     // Use this for initialization
     void Start() {
         animator = GetComponent<Animator>();
         orientationM = GetComponent<OrientationManager>();
         jumper = GetComponent<Jumper>();
         climber = GetComponent<Climber>();
+        dashing = GetComponent<Dashing>();
     }
 
     // Update is called once per frame
     void FixedUpdate() {
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow) && !dashing.IsDashing)
         {
             LookFoward(true);
             if (IsClimbing && orientationM.IsLookingRight)
@@ -44,7 +46,7 @@ public class PlayerController : MonoBehaviour {
                 Run(true);
             }
         }
-        else if (Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.LeftArrow) && !dashing.IsDashing)
         {
             LookFoward(false);
             if (IsClimbing && !orientationM.IsLookingRight)

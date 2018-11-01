@@ -25,18 +25,21 @@ public class Jumper : MonoBehaviour {
 
     private Animator animator;
     private Rigidbody rb;
+    private Dashing dashing; 
     private bool onGround = false;
+
+    public bool OnGround { get => onGround; set => onGround = value; }
 
     // Use this for initialization
     void Start () {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-        
+        dashing = GetComponent<Dashing>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !dashing.IsDashing)
         {
             if (onGround)
             {
