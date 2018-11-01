@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38074008, b: 0.35872707, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -234,7 +234,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1538917683}
   m_Script: {fileID: 11500000, guid: 3368e21fefa5f18479c9975407d093e0, type: 3}
---- !u!1001 &527881132
+--- !u!1001 &450100506
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -962,22 +962,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1391939303221050, guid: a6e0f285588f285438e0ee2b4fd0a175, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1312675371587022, guid: a6e0f285588f285438e0ee2b4fd0a175, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1360781678935130, guid: a6e0f285588f285438e0ee2b4fd0a175, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1204712211681356, guid: a6e0f285588f285438e0ee2b4fd0a175, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6e0f285588f285438e0ee2b4fd0a175, type: 2}
   m_IsPrefabAsset: 0
@@ -985,12 +969,12 @@ Prefab:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4865469043835628, guid: 9d6dcccfb5a1fdc42ad704b7ac9c49b0,
     type: 2}
-  m_PrefabInternal: {fileID: 527881132}
+  m_PrefabInternal: {fileID: 450100506}
 --- !u!114 &1883251290 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114679029655863764, guid: 9d6dcccfb5a1fdc42ad704b7ac9c49b0,
     type: 2}
-  m_PrefabInternal: {fileID: 527881132}
+  m_PrefabInternal: {fileID: 450100506}
   m_Script: {fileID: 11500000, guid: 3368e21fefa5f18479c9975407d093e0, type: 3}
 --- !u!1 &2022856641
 GameObject:
