@@ -44,17 +44,20 @@ public class Jumper : MonoBehaviour {
             if (onGround)
             {
                 Jump(JumpThrust);
+                animator.SetTrigger("Jumping");
             }
-            else if(airJumps.Length > 0)
+            else if (airJumpCount < airJumps.Length)
             {
                 Jump(airJumps[airJumpCount].jumpForce);
+                airJumpCount++;
+                animator.SetTrigger("Jumping");
             }
         }
     }
 
     private void Jump(float thrust)
     {
-        animator.SetBool("Jumping", true);
+        animator.SetBool("AirBorn", true);
         rb.velocity = new Vector3(rb.velocity.x, 0,0);
         rb.AddForce(new Vector3(0, 1, 0) * thrust);
         onGround = false;
@@ -67,9 +70,11 @@ public class Jumper : MonoBehaviour {
 
         if (terrain.tag == "Terrain")
         {
-            animator.SetBool("Jumping", false);
+            animator.SetBool("AirBorn", false);
             onGround = true;
         }
+
+        airJumpCount = 0;
     }
 
     public void Fall()

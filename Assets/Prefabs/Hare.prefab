@@ -1821,7 +1821,9 @@ MonoBehaviour:
   JumpThrust: 350
   groundCheck: {fileID: 65185339336571452}
   airJumps:
-  - jumpForce: 290
+  - jumpForce: 399
+    speedModifier: 0
+  - jumpForce: 195
     speedModifier: 0
 --- !u!114 &114565302483138174
 MonoBehaviour:

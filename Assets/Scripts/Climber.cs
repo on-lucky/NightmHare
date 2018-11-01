@@ -43,7 +43,6 @@ public class Climber : MonoBehaviour {
             GetComponent<Rigidbody>().isKinematic = true;
             collisionSpeed = GetComponent<PlayerController>().GetCurrentSpeed();
             currentUpwardSpeed = collisionSpeed * speedConversionRatio;
-            Debug.Log("collisionSpeed: " + collisionSpeed);
         }
     }
 
