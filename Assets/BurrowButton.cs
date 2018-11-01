@@ -49,7 +49,6 @@ public class BurrowButton : MonoBehaviour {
         GameObject go = collision.gameObject;
         if (go.tag == "Player")
         {
-            Debug.Log("Pressed");
             pressed = true;
         }
     }

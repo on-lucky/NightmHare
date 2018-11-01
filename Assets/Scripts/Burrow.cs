@@ -12,24 +12,34 @@ public class Burrow : MonoBehaviour {
     [SerializeField]
     private bool locked = false;
 
+    // Arrow floating above the burrow
+    private MeshRenderer arrow;
 
-    [SerializeField]
-    private MeshRenderer arrow;                 // the arrow floating above the burrow
-    [SerializeField]
-    private Material arrowShining;              // Material for when the arrow is visible
-    [SerializeField]
-    private Material arrowFaded;                // Material for when the arrow is transparent
+    // Lock floating above the burrow
+    private MeshRenderer lockIcon;
 
-    private bool teleportationEnabled = false;  // If the player is on the burrow
+    // Material for when the arrow is visible
+    [SerializeField]
+    private Material arrowShining;
+
+    // Material for when the arrow is transparent
+    [SerializeField]
+    private Material arrowFaded;
+
+    // If the player is on top of the burrow
+    private bool teleportationEnabled = false;
+
     private GameObject playerObj;
 
     void Start()
     {
         FadeArrow(true);
+        Transform floater = transform.Find("Floater");
+        arrow = floater.Find("Arrow").GetComponent<MeshRenderer>();
+        lockIcon = floater.Find("Lock").GetComponent<MeshRenderer>();
     }
 
     void Update() {
-        // TODO Update the material when (un)locked
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             if (teleportationEnabled)
@@ -37,6 +47,11 @@ public class Burrow : MonoBehaviour {
                 TeleportPlayer(playerObj);
             }
         }
+
+        // Update the material when (un)locked
+        arrow.enabled = !locked;
+        lockIcon.enabled = locked;
+        
     }
 
     private void OnTriggerEnter(Collider other)
