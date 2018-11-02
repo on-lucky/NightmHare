@@ -18,6 +18,8 @@ public class Jumper : MonoBehaviour {
 
     [SerializeField]
     private BoxCollider groundCheck;
+    [SerializeField]
+    private int MaxJumpInputCount = 10;
 
     /* SAUTS CONSECUTIFS */
     [SerializeField] Jump[] airJumps;                   // the number of consecutive air jumps that the character can make    
@@ -30,8 +32,11 @@ public class Jumper : MonoBehaviour {
     private OrientationManager orientationManager;
     private PlayerController playerController;
     private bool onGround = false;
+    private bool isJumping = false;
+    private int jumpInputCount = 0;
 
     public bool OnGround { get => onGround; set => onGround = value; }
+    public bool IsJumping { get => isJumping; set => isJumping = value; }
 
     // Use this for initialization
     void Start () {
@@ -50,6 +55,8 @@ public class Jumper : MonoBehaviour {
             // Normal Jump
             if (onGround)
             {
+                jumpInputCount = 0;
+                IsJumping = true;
                 Jump(JumpThrust);
                 animator.SetTrigger("Jumping");
             }
@@ -77,16 +84,37 @@ public class Jumper : MonoBehaviour {
                 airJumpCount++;
                 animator.SetTrigger("Jumping");
             }
-            
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (Input.GetKey(KeyCode.Space) && IsJumping && jumpInputCount < MaxJumpInputCount) 
+        {
+            Jump(JumpThrust);
+        }
+        else
+        {
+            IsJumping = false;
         }
     }
 
     private void Jump(float thrust)
     {
+        float jumpMultiplier = 1;
+
+        // Initial jump is higher
+        if (jumpInputCount == 0)
+        {
+            jumpMultiplier *= 2;
+        }
+
         animator.SetBool("AirBorn", true);
         rb.velocity = new Vector3(rb.velocity.x, 0,0);
-        rb.AddForce(new Vector3(0, 1, 0) * thrust);
+        rb.AddForce(new Vector3(0, jumpMultiplier, 0) * thrust);
         onGround = false;
+        
+        jumpInputCount++;
     }
 
     private void WallJump(float thrust) 

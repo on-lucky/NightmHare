@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38074008, b: 0.35872707, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -981,6 +981,16 @@ Prefab:
         type: 2}
       propertyPath: DashCoolDown
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114488809872378750, guid: a6e0f285588f285438e0ee2b4fd0a175,
+        type: 2}
+      propertyPath: MaxJumpInputCount
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114488809872378750, guid: a6e0f285588f285438e0ee2b4fd0a175,
+        type: 2}
+      propertyPath: JumpThrust
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6e0f285588f285438e0ee2b4fd0a175, type: 2}
