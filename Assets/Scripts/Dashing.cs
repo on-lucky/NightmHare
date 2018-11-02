@@ -4,34 +4,36 @@ using UnityEngine;
 
 public class Dashing : MonoBehaviour {
 
-	// Variables éditables
+	// Editable variables
 	[SerializeField]
     private float DashSpeed = 20f;
 	[SerializeField]
-    private float DashCoolDown = 3f;
-	[SerializeField]
     private float DashDuration = 0.5f;
+	[SerializeField]
+    private float DashCoolDown = 3f;
 	[SerializeField]
 	private float DashDeceleration = 0f;
 	
-	// Variables d'état
+	// State variables
 	private bool isDashing = false;
 	private bool canDash = true;
 	public bool IsDashing { get => isDashing; set => isDashing = value; }
 	public bool CanDash { get => canDash; set => canDash = value; }
 
-	// Variables internes
+	// Internal variables
 	private Vector3 moveDirection;
 	private float currentSpeed = 0;
 	private float currentDashTime = 0f;
 	private float currentYPosition = 0f;
 
-	// Variables externes	
+	// External variables	
 	private Animator animator;
+	private Climber climber;
 
 	// Use this for initialization
 	void Start () {
 		animator = GetComponent<Animator>();
+		climber = GetComponent<Climber>();
 	}
 	
 	// Update is called once per frame
@@ -71,17 +73,26 @@ public class Dashing : MonoBehaviour {
 			IsDashing = false;
 		}
 
-		transform.Translate(moveDirection * deltaTime);
-
-		// Air Dash
-		if (!GetComponent<Jumper>().OnGround) 
+		if (!climber.WallNearby) 
 		{
-			// Keep height (y position) with air dash
-			transform.position = new Vector3(transform.position.x, currentYPosition, transform.position.z);
-		}
+			// Dash
+			transform.Translate(moveDirection * deltaTime);
 
-		// Update animator
-        animator.SetFloat("Speed", 1f);
+			// Air Dash
+			if (!GetComponent<Jumper>().OnGround) 
+			{
+				// Keep height (y position) with air dash
+				transform.position = new Vector3(transform.position.x, currentYPosition, transform.position.z);
+			}
+
+			// Update animator
+        	animator.SetFloat("Speed", 1f);
+		}
+		else 
+		{
+			// Stop dashing, we're hitting a wall
+			IsDashing = false;
+		}
     }
 
 	IEnumerator WaitForDashCoolDown()
