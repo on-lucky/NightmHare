@@ -24,6 +24,7 @@ public class Dashing : MonoBehaviour {
 	private Vector3 moveDirection;
 	private float currentSpeed = 0;
 	private float currentDashTime = 0f;
+	private float currentYPosition = 0f;
 
 	// Variables externes	
 	private Animator animator;
@@ -42,28 +43,21 @@ public class Dashing : MonoBehaviour {
 
 			currentDashTime = 0.0f;
 			currentSpeed = DashSpeed;
+			currentYPosition = transform.position.y;
 
 			StartCoroutine(WaitForDashCoolDown());
         }
 		
 		if (IsDashing)
         {
-			bool onGround = GetComponent<Jumper>().OnGround;
-			float deltaTime = Time.deltaTime;
-
-			if (onGround) 
-			{
-				Dash(deltaTime);
-			}
-			else 
-			{
-				AirDash(deltaTime);
-			}
+			Dash();
         }
 	}
 
-	private void Dash(float deltaTime)
+	private void Dash()
     {
+		float deltaTime = Time.deltaTime;
+
 		if (currentDashTime < DashDuration)
 		{
 			moveDirection = new Vector3(0, 0, currentSpeed);
@@ -72,18 +66,22 @@ public class Dashing : MonoBehaviour {
 		}
 		else
 		{
+			// Stop dashing
 			moveDirection = new Vector3(0, 0, 0);
 			IsDashing = false;
 		}
 
 		transform.Translate(moveDirection * deltaTime);
 
+		// Air Dash
+		if (!GetComponent<Jumper>().OnGround) 
+		{
+			// Keep height (y position) with air dash
+			transform.position = new Vector3(transform.position.x, currentYPosition, transform.position.z);
+		}
+
 		// Update animator
         animator.SetFloat("Speed", 1f);
-    }
-
-	private void AirDash(float deltaTime)
-    {
     }
 
 	IEnumerator WaitForDashCoolDown()
