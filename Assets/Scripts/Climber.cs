@@ -27,9 +27,14 @@ public class Climber : MonoBehaviour {
 	void Update () {
     }
 
-    public void RegisterWallNearby(bool nearby)
+    public void RegisterWallNearby(Collider other, bool nearby)
     {
-        wallNearby = nearby;
+        GameObject wall = other.gameObject;
+
+        if (wall.tag == "Terrain")
+        {
+            wallNearby = nearby;
+        }
     }
 
         public void HitWall(Collider other, bool isFront)

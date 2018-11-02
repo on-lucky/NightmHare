@@ -1846,7 +1846,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hareSpeed: 0.18
   hareAcceleration: 0.01
-  airAcceleration: 0.004
+  airAcceleration: 0.002
 --- !u!114 &114478402257808892
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1874,10 +1874,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6dd3f86e896c684dba9d49ce44eaa0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpThrust: 350
+  JumpThrust: 8
+  WallJumpThrust: 300
   groundCheck: {fileID: 65185339336571452}
+  MaxJumpInputCount: 20
   airJumps:
-  - jumpForce: 400
+  - jumpForce: 250
     speedModifier: 0
   - jumpForce: 200
     speedModifier: 0

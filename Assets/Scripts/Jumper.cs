@@ -15,6 +15,8 @@ public class Jumper : MonoBehaviour {
 
     [SerializeField]
     private float JumpThrust = 5f;
+    [SerializeField]
+    private float WallJumpThrust = 300f;
 
     [SerializeField]
     private BoxCollider groundCheck;
@@ -50,13 +52,16 @@ public class Jumper : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        
         if (Input.GetKeyDown(KeyCode.Space) && !dashing.IsDashing)
         {
             // Normal Jump
             if (onGround)
             {
+                
                 jumpInputCount = 0;
                 IsJumping = true;
+                rb.velocity = new Vector3(rb.velocity.x, 0, 0);
                 Jump(JumpThrust);
                 animator.SetTrigger("Jumping");
             }
@@ -72,24 +77,25 @@ public class Jumper : MonoBehaviour {
                 }
                 GetComponent<Rigidbody>().isKinematic = false;
                 StartCoroutine(WaitForWallJump());
-                WallJump(JumpThrust);
+                WallJump(WallJumpThrust);
                 animator.SetBool("AirBorn", true);
                 animator.SetTrigger("Jumping");
             }
             // Air Jump
             else if (airJumpCount < airJumps.Length)
             {
-                Debug.Log("AIRJUMP");
+                rb.velocity = new Vector3(rb.velocity.x, 0, 0);
                 Jump(airJumps[airJumpCount].jumpForce);
                 airJumpCount++;
                 animator.SetTrigger("Jumping");
             }
         }
+        
     }
 
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Space) && IsJumping && jumpInputCount < MaxJumpInputCount) 
+        if (Input.GetKey(KeyCode.Space) && IsJumping && jumpInputCount < MaxJumpInputCount)
         {
             Jump(JumpThrust);
         }
@@ -102,15 +108,14 @@ public class Jumper : MonoBehaviour {
     private void Jump(float thrust)
     {
         float jumpMultiplier = 1;
-
-        // Initial jump is higher
+        //Initial jump is higher
         if (jumpInputCount == 0)
         {
-            jumpMultiplier *= 2;
+            jumpMultiplier *= 25f;
         }
 
         animator.SetBool("AirBorn", true);
-        rb.velocity = new Vector3(rb.velocity.x, 0,0);
+        
         rb.AddForce(new Vector3(0, jumpMultiplier, 0) * thrust);
         onGround = false;
         

@@ -32,7 +32,7 @@ public class CollisionChecker : MonoBehaviour {
         }
         else if (type == CheckerType.Wall)
         {
-            messageReceiver.GetComponent<Climber>().RegisterWallNearby(true);
+            messageReceiver.GetComponent<Climber>().RegisterWallNearby(other, true);
         }
     }
 
@@ -52,7 +52,7 @@ public class CollisionChecker : MonoBehaviour {
         }
         else if (type == CheckerType.Wall)
         {
-            messageReceiver.GetComponent<Climber>().RegisterWallNearby(false);
+            messageReceiver.GetComponent<Climber>().RegisterWallNearby(other, false);
         }
     }
 }

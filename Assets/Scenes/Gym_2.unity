@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38074008, b: 0.35872707, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -972,26 +972,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114215262989984884, guid: a6e0f285588f285438e0ee2b4fd0a175,
-        type: 2}
-      propertyPath: airAcceleration
-      value: 0.002
-      objectReference: {fileID: 0}
-    - target: {fileID: 114565302483138174, guid: a6e0f285588f285438e0ee2b4fd0a175,
-        type: 2}
-      propertyPath: DashCoolDown
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114488809872378750, guid: a6e0f285588f285438e0ee2b4fd0a175,
-        type: 2}
-      propertyPath: MaxJumpInputCount
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 114488809872378750, guid: a6e0f285588f285438e0ee2b4fd0a175,
-        type: 2}
-      propertyPath: JumpThrust
-      value: 200
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6e0f285588f285438e0ee2b4fd0a175, type: 2}
   m_IsPrefabAsset: 0
@@ -1020,8 +1000,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1751744508}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16, y: 7, z: 0}
-  m_LocalScale: {x: 1, y: 8, z: 10}
+  m_LocalPosition: {x: -16, y: 6.58, z: 0}
+  m_LocalScale: {x: 1, y: 9, z: 10}
   m_Children: []
   m_Father: {fileID: 246674832}
   m_RootOrder: 4
