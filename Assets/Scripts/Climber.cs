@@ -12,7 +12,9 @@ public class Climber : MonoBehaviour {
 
     private bool wallToBack = false;
     private bool wallToFront = false;
+    public bool wallNearby = false;
 
+    public bool WallNearby { get => wallNearby; set => wallNearby = value; }
     public bool WallToBack { get => wallToBack; set => wallToBack = value; }
     public bool WallToFront { get => wallToFront; set => wallToFront = value; }
 
@@ -25,7 +27,12 @@ public class Climber : MonoBehaviour {
 	void Update () {
     }
 
-    public void HitWall(Collider other, bool isFront)
+    public void RegisterWallNearby(bool nearby)
+    {
+        wallNearby = nearby;
+    }
+
+        public void HitWall(Collider other, bool isFront)
     {
         GameObject wall = other.gameObject;
 
@@ -40,7 +47,6 @@ public class Climber : MonoBehaviour {
                 wallToBack = true;
             }
             GetComponent<PlayerController>().IsClimbing = true;
-            GetComponent<Rigidbody>().isKinematic = true;
             collisionSpeed = GetComponent<PlayerController>().GetCurrentSpeed();
             currentUpwardSpeed = collisionSpeed * speedConversionRatio;
         }
@@ -58,7 +64,7 @@ public class Climber : MonoBehaviour {
                 wallToFront = false;
                 if (!wallToBack)
                 {
-                    transform.Translate(new Vector3(0f, 0, 0.1f));
+                    transform.Translate(new Vector3(0f, 0, 0.2f));
                 }
             }
             else
@@ -82,6 +88,8 @@ public class Climber : MonoBehaviour {
 
     public void Climb()
     {
+
+        GetComponent<Rigidbody>().isKinematic = true;
         transform.Translate(new Vector3(0, currentUpwardSpeed, 0));
         currentUpwardSpeed -= decelerationRate;
         if(currentUpwardSpeed <= 0)

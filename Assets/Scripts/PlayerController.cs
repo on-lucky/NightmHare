@@ -18,7 +18,8 @@ public class PlayerController : MonoBehaviour {
     private OrientationManager orientationM;
     private Jumper jumper;
     private Climber climber;
-    private Dashing dashing; 
+    private Dashing dashing;
+    private bool inputEnabled = true;
 
     public bool IsClimbing { get => isClimbing; set => isClimbing = value; }
     
@@ -33,39 +34,47 @@ public class PlayerController : MonoBehaviour {
 
     // Update is called once per frame
     void FixedUpdate() {
-        if (Input.GetKey(KeyCode.RightArrow) && !dashing.IsDashing)
+        if (inputEnabled)
         {
-            LookFoward(true);
-            if (IsClimbing && orientationM.IsLookingRight)
+            if (Input.GetKey(KeyCode.RightArrow) && !dashing.IsDashing)
             {
-                currentSpeed = 0f;
-                climber.Climb();
+                LookFoward(true);
+                if (IsClimbing && orientationM.IsLookingRight)
+                {
+                    currentSpeed = 0f;
+                    climber.Climb();
+                }
+                else if (!climber.WallToFront)
+                {
+                    Run(true);
+                }
             }
+            else if (Input.GetKey(KeyCode.LeftArrow) && !dashing.IsDashing)
+            {
+                LookFoward(false);
+                if (IsClimbing && !orientationM.IsLookingRight)
+                {
+                    currentSpeed = 0f;
+                    climber.Climb();
+                }
+                else if (!climber.WallToFront)
+                {
+                    Run(false);
+                }
+            }
+
             else if (!climber.WallToFront)
             {
-                Run(true);
+                Break();
             }
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow) && !dashing.IsDashing)
-        {
-            LookFoward(false);
-            if (IsClimbing && !orientationM.IsLookingRight)
+            else
             {
-                currentSpeed = 0f;
-                climber.Climb();
+                StopClimbing();
             }
-            else if (!climber.WallToFront)
-            {
-                Run(false);
-            }
-        }
-        else if (!climber.WallToFront && jumper.OnGround)
-        {
-            Break();
         }
         else
         {
-            StopClimbing();
+            currentSpeed = 0;
         }
         UpdateAnimator();
     }
@@ -75,7 +84,6 @@ public class PlayerController : MonoBehaviour {
         if (orientationM.LookTo(isRight))
         {
             currentSpeed = -currentSpeed;
-            climber.SwapWalls();
         }
     }
 
@@ -167,5 +175,10 @@ public class PlayerController : MonoBehaviour {
 
     public float GetCurrentSpeed(){
         return currentSpeed;
+    }
+
+    public void EnableInput(bool shouldEnable)
+    {
+        inputEnabled = shouldEnable;
     }
 }

@@ -366,6 +366,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1383561415969282
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4535163063229558}
+  - component: {fileID: 65249345317300250}
+  - component: {fileID: 114101936770187676}
+  m_Layer: 0
+  m_Name: WallCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1391939303221050
 GameObject:
   m_ObjectHideFlags: 0
@@ -1085,6 +1102,7 @@ Transform:
   - {fileID: 4228302178428598}
   - {fileID: 4712219848836992}
   - {fileID: 4625624195355928}
+  - {fileID: 4535163063229558}
   m_Father: {fileID: 4943848548365518}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1322,6 +1340,19 @@ Transform:
   m_Father: {fileID: 4574371364303142}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4535163063229558
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1383561415969282}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4280464765253168}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4574371364303142
 Transform:
   m_ObjectHideFlags: 1
@@ -1483,7 +1514,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1360781678935130}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4280464765253168}
@@ -1710,6 +1741,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 1, z: 4}
   m_Center: {x: 0, y: -2, z: 0}
+--- !u!65 &65249345317300250
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1383561415969282}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 3, z: 12}
+  m_Center: {x: 0, y: 0, z: -0.5}
 --- !u!65 &65503794825674576
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1720,8 +1763,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 3, z: 1.5}
-  m_Center: {x: 0, y: 0, z: -3.5}
+  m_Size: {x: 1, y: 3, z: 4}
+  m_Center: {x: 0, y: 0, z: -5}
 --- !u!65 &65507152740859364
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1732,8 +1775,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 3, z: 0.5}
-  m_Center: {x: 0, y: 0, z: 3.5}
+  m_Size: {x: 1, y: 3, z: 2}
+  m_Center: {x: 0, y: 0, z: 4.5}
 --- !u!95 &95436356781241342
 Animator:
   serializedVersion: 3
@@ -1764,6 +1807,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenRecording: 0.02
+--- !u!114 &114101936770187676
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1383561415969282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2a7d0e517ea68c479534ee1fb99852d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 3
+  messageReceiver: {fileID: 1391939303221050}
 --- !u!114 &114161304201098124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1821,9 +1877,9 @@ MonoBehaviour:
   JumpThrust: 350
   groundCheck: {fileID: 65185339336571452}
   airJumps:
-  - jumpForce: 399
+  - jumpForce: 400
     speedModifier: 0
-  - jumpForce: 195
+  - jumpForce: 200
     speedModifier: 0
 --- !u!114 &114565302483138174
 MonoBehaviour:
@@ -1836,7 +1892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d680581665c64e11bd1d712d1f8f860, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DashSpeed: 20
+  DashSpeed: 10
   DashCoolDown: 3
   DashDuration: 0.5
   DashDeceleration: 0
@@ -1878,6 +1934,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedConversionRatio: 0.4
   decelerationRate: 0.001
+  wallNearby: 0
 --- !u!114 &114986739967049790
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -7,6 +7,7 @@ public enum CheckerType
     Ground,
     FrontWall,
     BackWall,
+    Wall
 }
 
 public class CollisionChecker : MonoBehaviour {
@@ -29,6 +30,10 @@ public class CollisionChecker : MonoBehaviour {
         {
             messageReceiver.GetComponent<Climber>().HitWall(other, false);
         }
+        else if (type == CheckerType.Wall)
+        {
+            messageReceiver.GetComponent<Climber>().RegisterWallNearby(true);
+        }
     }
 
     void OnTriggerExit(Collider other)
@@ -44,6 +49,10 @@ public class CollisionChecker : MonoBehaviour {
         else if (type == CheckerType.BackWall)
         {
             messageReceiver.GetComponent<Climber>().LeaveWall(other, false);
+        }
+        else if (type == CheckerType.Wall)
+        {
+            messageReceiver.GetComponent<Climber>().RegisterWallNearby(false);
         }
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38074008, b: 0.35872707, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1144,20 +1144,15 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114873635261945462, guid: a6e0f285588f285438e0ee2b4fd0a175,
+    - target: {fileID: 114215262989984884, guid: a6e0f285588f285438e0ee2b4fd0a175,
         type: 2}
-      propertyPath: m_Enabled
+      propertyPath: airAcceleration
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 114565302483138174, guid: a6e0f285588f285438e0ee2b4fd0a175,
+        type: 2}
+      propertyPath: DashCoolDown
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 65503794825674576, guid: a6e0f285588f285438e0ee2b4fd0a175,
-        type: 2}
-      propertyPath: m_Size.z
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 65503794825674576, guid: a6e0f285588f285438e0ee2b4fd0a175,
-        type: 2}
-      propertyPath: m_Center.z
-      value: -5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6e0f285588f285438e0ee2b4fd0a175, type: 2}

@@ -28,6 +28,7 @@ public class Jumper : MonoBehaviour {
     private Dashing dashing; 
     private Climber climber;
     private OrientationManager orientationManager;
+    private PlayerController playerController;
     private bool onGround = false;
 
     public bool OnGround { get => onGround; set => onGround = value; }
@@ -39,6 +40,7 @@ public class Jumper : MonoBehaviour {
         dashing = GetComponent<Dashing>();
         climber = GetComponent<Climber>();
         orientationManager = GetComponent<OrientationManager>();
+        playerController = GetComponent<PlayerController>();
     }
 	
 	// Update is called once per frame
@@ -52,22 +54,25 @@ public class Jumper : MonoBehaviour {
                 animator.SetTrigger("Jumping");
             }
             // Wall Jump
-            else if (climber.WallToFront || climber.WallToBack) 
+            else if (climber.WallNearby) 
             {
-                Debug.Log("WALLJUMP");
+                
                 if (climber.WallToFront)
                 {
                     // Flip character
                     orientationManager.LookTo(!orientationManager.IsLookingRight);
-                    climber.SwapWalls();
+                    //climber.SwapWalls();
                 }
-
+                GetComponent<Rigidbody>().isKinematic = false;
+                StartCoroutine(WaitForWallJump());
                 WallJump(JumpThrust);
+                animator.SetBool("AirBorn", true);
                 animator.SetTrigger("Jumping");
             }
             // Air Jump
             else if (airJumpCount < airJumps.Length)
             {
+                Debug.Log("AIRJUMP");
                 Jump(airJumps[airJumpCount].jumpForce);
                 airJumpCount++;
                 animator.SetTrigger("Jumping");
@@ -87,7 +92,7 @@ public class Jumper : MonoBehaviour {
     private void WallJump(float thrust) 
     {
         rb.velocity = new Vector3(0, 0, 0);
-        rb.AddRelativeForce(new Vector3(0, 2, 2) * thrust);
+        rb.AddRelativeForce(new Vector3(0, 0.8f, 0.7f) * thrust);
         onGround = false;
     }
 
@@ -107,11 +112,19 @@ public class Jumper : MonoBehaviour {
 
     public void Fall()
     {
+        animator.SetBool("AirBorn", true);
         onGround = false;
     }
 
     public bool CheckGround()
     {
         return onGround;
+    }
+
+    IEnumerator WaitForWallJump()
+    {
+        playerController.EnableInput(false);
+        yield return new WaitForSeconds(0.5f);
+        playerController.EnableInput(true);
     }
 }
