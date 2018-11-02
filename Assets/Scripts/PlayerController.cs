@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour {
     void FixedUpdate() {
         if (inputEnabled)
         {
-            if (Input.GetKey(KeyCode.RightArrow) && !dashing.IsDashing)
+            if (Input.GetKey(KeyCode.RightArrow))
             {
                 LookFoward(true);
                 if (IsClimbing && orientationM.IsLookingRight)
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour {
                     Run(true);
                 }
             }
-            else if (Input.GetKey(KeyCode.LeftArrow) && !dashing.IsDashing)
+            else if (Input.GetKey(KeyCode.LeftArrow))
             {
                 LookFoward(false);
                 if (IsClimbing && !orientationM.IsLookingRight)
@@ -71,10 +71,6 @@ public class PlayerController : MonoBehaviour {
             {
                 StopClimbing();
             }
-        }
-        else
-        {
-            currentSpeed = 0;
         }
         UpdateAnimator();
     }
@@ -180,5 +176,10 @@ public class PlayerController : MonoBehaviour {
     public void EnableInput(bool shouldEnable)
     {
         inputEnabled = shouldEnable;
+    }
+
+    public void SetCurrentSpeed(float _currentSpeed)
+    {
+        currentSpeed =  _currentSpeed;
     }
 }

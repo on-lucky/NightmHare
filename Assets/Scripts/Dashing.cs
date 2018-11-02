@@ -29,12 +29,14 @@ public class Dashing : MonoBehaviour {
 	// External variables	
 	private Animator animator;
 	private Climber climber;
+    private PlayerController playerController;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		animator = GetComponent<Animator>();
 		climber = GetComponent<Climber>();
-	}
+        playerController = GetComponent<PlayerController>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -47,7 +49,11 @@ public class Dashing : MonoBehaviour {
 			currentSpeed = DashSpeed;
 			currentYPosition = transform.position.y;
 
-			StartCoroutine(WaitForDashCoolDown());
+            playerController.SetCurrentSpeed(0.2f);
+
+            StartCoroutine(WaitForDashCoolDown());
+
+            playerController.EnableInput(false);
         }
 		
 		if (IsDashing)
@@ -68,10 +74,9 @@ public class Dashing : MonoBehaviour {
 		}
 		else
 		{
-			// Stop dashing
-			moveDirection = new Vector3(0, 0, 0);
-			IsDashing = false;
-		}
+            // Stop dashing
+            StopDashing();
+        }
 
 		if (!climber.WallNearby) 
 		{
@@ -90,9 +95,19 @@ public class Dashing : MonoBehaviour {
 		}
 		else 
 		{
-			// Stop dashing, we're hitting a wall
-			IsDashing = false;
-		}
+            // Stop dashing, we're hitting a wall
+            StopDashing();
+        }
+        
+    }
+
+    private void StopDashing()
+    {
+        IsDashing = false;
+        playerController.EnableInput(true);
+        Vector3 v = GetComponent<Rigidbody>().velocity;
+        v.y = 0;
+        GetComponent<Rigidbody>().velocity = v;
     }
 
 	IEnumerator WaitForDashCoolDown()

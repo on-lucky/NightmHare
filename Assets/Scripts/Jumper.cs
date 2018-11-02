@@ -92,7 +92,7 @@ public class Jumper : MonoBehaviour {
     private void WallJump(float thrust) 
     {
         rb.velocity = new Vector3(0, 0, 0);
-        rb.AddRelativeForce(new Vector3(0, 0.8f, 0.7f) * thrust);
+        rb.AddRelativeForce(new Vector3(0, 0.8f, 1f) * thrust);
         onGround = false;
     }
 
@@ -126,5 +126,6 @@ public class Jumper : MonoBehaviour {
         playerController.EnableInput(false);
         yield return new WaitForSeconds(0.5f);
         playerController.EnableInput(true);
+        playerController.SetCurrentSpeed(0.05f);
     }
 }
