@@ -24,6 +24,10 @@ public class OrbKey : MonoBehaviour {
     // The trajectory
     private QuadraticCurve trajectory;
 
+    // The spiral
+    [SerializeField]
+    private Helix helix = new Helix();
+
     void Start()
     {
         origin = new Vector3(transform.position.x, transform.position.y, transform.position.z);
@@ -35,18 +39,24 @@ public class OrbKey : MonoBehaviour {
     void Update() {
         if (go)
         {
+            if (trajectory == null)
+            {
+                GetCurve2D();
+            }
+
             Vector3 pos = transform.position;
-            if (Vector3.Distance(pos, destination) <= 0.5) {
+            if (Mathf.Abs(pos.x - destination.x) <= 0.5) {
                 burrow.Unlock();
                 Destroy(gameObject);
             } else
             {
                 // Quadratic curve for the trajectory
-                // Sinus wave for extra coolness
+                // Spiral for extra coolness
                 float x = pos.x + Time.deltaTime * speed;
                 float ox = x - origin.x;
-                float y = trajectory.compute(x) + Mathf.Sin(x);
-                transform.position = new Vector3(x, y, pos.z);
+                float y = trajectory.compute(x) + helix.computeY(ox);
+                float z = origin.z + helix.computeZ(ox);
+                transform.position = new Vector3(x, y, z);
             }
         }
     }
@@ -89,6 +99,23 @@ public class OrbKey : MonoBehaviour {
         public float compute(float x)
         {
             return a * Mathf.Pow(x, 2) + b * x + c;
+        }
+    }
+
+    [System.Serializable]
+    class Helix
+    {
+        [SerializeField]
+        float frequency = 1, amplitude = 1;
+
+        public float computeY(float x)
+        {
+            return amplitude * Mathf.Sin(frequency * x);
+        }
+
+        public float computeZ(float x)
+        {
+            return amplitude * Mathf.Cos(frequency * x);
         }
     }
 }

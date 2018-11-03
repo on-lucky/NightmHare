@@ -129,8 +129,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   go: 0
   burrow: {fileID: 0}
-  speed: 4
-  curveHeight: 2
+  speed: 2
+  curveHeight: 4
+  helix:
+    frequency: 3
+    amplitude: 0.25
 --- !u!135 &135909749284081798
 SphereCollider:
   m_ObjectHideFlags: 1
