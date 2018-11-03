@@ -68,8 +68,6 @@ public class Burrow : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        // TODO fix problem with wall checks where wall checks trigger this instead
-        // For now the wall checks are disabled in the scene
         GameObject go = other.gameObject;
         if (!locked && go.tag == "Player")
         {
@@ -80,8 +78,6 @@ public class Burrow : MonoBehaviour {
 
     private void OnTriggerExit(Collider other)
     {
-        // TODO fix problem with wall checks where wall checks trigger this instead
-        // For now the wall checks are disabled in the scene
         GameObject go = other.gameObject;
         if (!locked && go.tag == "Player")
         {

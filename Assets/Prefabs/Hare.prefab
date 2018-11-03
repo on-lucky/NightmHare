@@ -188,13 +188,13 @@ GameObject:
   - component: {fileID: 4625624195355928}
   - component: {fileID: 65507152740859364}
   - component: {fileID: 114986739967049790}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Right Wall Check
   m_TagString: RightWallCheck
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1208318062872772
 GameObject:
   m_ObjectHideFlags: 1
@@ -328,13 +328,13 @@ GameObject:
   - component: {fileID: 4712219848836992}
   - component: {fileID: 65503794825674576}
   - component: {fileID: 114646740855695192}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Left Wall Check
   m_TagString: LeftWallCheck
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1362726249698410
 GameObject:
   m_ObjectHideFlags: 1

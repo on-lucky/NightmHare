@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114863286389589532}
   - component: {fileID: 33300351671838938}
   - component: {fileID: 23868009114322160}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Floater
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 4865469043835628}
   - component: {fileID: 65101293575542052}
   - component: {fileID: 114679029655863764}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Burrow
   m_TagString: Terrain
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4147118355713022}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 4469802956437072}
   - component: {fileID: 218810298311682928}
   - component: {fileID: 154193558888621146}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Terrain
   m_TagString: Terrain
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 4661192456562892}
   - component: {fileID: 33963334230046866}
   - component: {fileID: 23566672691596796}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: hole shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,8 +259,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Size: {x: 1, y: 0.2248149, z: 1}
+  m_Center: {x: 0, y: 0.11240745, z: 0}
 --- !u!114 &114679029655863764
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -273,7 +273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {fileID: 0}
-  locked: 1
+  locked: 0
   inRangeMaterial: {fileID: 2100000, guid: 690fca35935b9774e974cb3e4d3c6abb, type: 2}
   awayMaterial: {fileID: 2100000, guid: 17b232fccf84b5245a14fe28b1c6a34f, type: 2}
   lockedMaterial: {fileID: 2100000, guid: d22d72fcc0c498a40b85354476cb0779, type: 2}
