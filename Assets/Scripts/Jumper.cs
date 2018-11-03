@@ -5,10 +5,8 @@ using UnityEngine;
 [System.Serializable]
 class Jump
 {
-    [Range(0, 1500f)]
+    [Range(0, 20f)]
     public float jumpForce = 400f; // upward force of the jump
-    [Range(0, 1f)]
-    public float speedModifier = 1f; // horizontal speed modifier of the jump (cumulative)
 }
 
 public class Jumper : MonoBehaviour {
@@ -84,6 +82,8 @@ public class Jumper : MonoBehaviour {
             // Air Jump
             else if (airJumpCount < airJumps.Length)
             {
+                jumpInputCount = 0;
+                IsJumping = true;
                 rb.velocity = new Vector3(rb.velocity.x, 0, 0);
                 Jump(airJumps[airJumpCount].jumpForce);
                 airJumpCount++;
@@ -127,6 +127,9 @@ public class Jumper : MonoBehaviour {
         rb.velocity = new Vector3(0, 0, 0);
         rb.AddRelativeForce(new Vector3(0, 0.8f, 1f) * thrust);
         onGround = false;
+
+        jumpInputCount++;
+        airJumpCount = 0;
     }
 
     public void Land(Collider other)

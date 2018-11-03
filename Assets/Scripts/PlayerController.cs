@@ -93,6 +93,10 @@ public class PlayerController : MonoBehaviour {
     private void Break()
     {
         StopClimbing();
+        if (currentSpeed > hareSpeed)
+        {
+            currentSpeed = hareSpeed;
+        }
         if (currentSpeed > 0)
         {
             if (jumper.CheckGround())
@@ -152,6 +156,7 @@ public class PlayerController : MonoBehaviour {
                 currentSpeed += airAcceleration;
             }
         }
+        
         if (currentSpeed > hareSpeed)
         {
             currentSpeed = hareSpeed;
@@ -161,6 +166,7 @@ public class PlayerController : MonoBehaviour {
     public void StopClimbing(){
         IsClimbing = false;
         GetComponent<Rigidbody>().isKinematic = false;
+        animator.SetBool("StopClimbing", true);
     }
 
     private void UpdateAnimator()

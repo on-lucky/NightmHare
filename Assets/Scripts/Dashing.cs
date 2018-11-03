@@ -40,7 +40,7 @@ public class Dashing : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.V) && CanDash)
+		if (Input.GetKeyDown(KeyCode.R) && CanDash)
         {
 			CanDash = false;
 			IsDashing = true;
@@ -54,6 +54,9 @@ public class Dashing : MonoBehaviour {
             StartCoroutine(WaitForDashCoolDown());
 
             playerController.EnableInput(false);
+
+            // Update animator
+            animator.SetTrigger("Dash");
         }
 		
 		if (IsDashing)
@@ -89,9 +92,6 @@ public class Dashing : MonoBehaviour {
 				// Keep height (y position) with air dash
 				transform.position = new Vector3(transform.position.x, currentYPosition, transform.position.z);
 			}
-
-			// Update animator
-        	animator.SetFloat("Speed", 1f);
 		}
 		else 
 		{
@@ -105,6 +105,7 @@ public class Dashing : MonoBehaviour {
     {
         IsDashing = false;
         playerController.EnableInput(true);
+        playerController.SetCurrentSpeed(currentSpeed);
         Vector3 v = GetComponent<Rigidbody>().velocity;
         v.y = 0;
         GetComponent<Rigidbody>().velocity = v;

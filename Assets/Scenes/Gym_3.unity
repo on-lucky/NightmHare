@@ -1141,10 +1141,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114478402257808892, guid: a6e0f285588f285438e0ee2b4fd0a175,
+    - target: {fileID: 65185339336571452, guid: a6e0f285588f285438e0ee2b4fd0a175,
         type: 2}
-      propertyPath: sceneName
-      value: Gym_3
+      propertyPath: m_Center.z
+      value: 0.75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6e0f285588f285438e0ee2b4fd0a175, type: 2}
