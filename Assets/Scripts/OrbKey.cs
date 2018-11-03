@@ -3,7 +3,6 @@
 public class OrbKey : MonoBehaviour {
 
     // Start moving towards destination
-    [SerializeField]
     private bool go = false;
 
     private Vector3 origin;
@@ -52,7 +51,8 @@ public class OrbKey : MonoBehaviour {
             {
                 // Quadratic curve for the trajectory
                 // Spiral for extra coolness
-                float x = pos.x + Time.deltaTime * speed;
+                float direction = pos.x < destination.x ? 1 : -1;
+                float x = pos.x + direction * Time.deltaTime * speed;
                 float ox = x - origin.x;
                 float y = trajectory.compute(x) + helix.computeY(ox);
                 float z = origin.z + helix.computeZ(ox);
