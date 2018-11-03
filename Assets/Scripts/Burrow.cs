@@ -12,37 +12,46 @@ public class Burrow : MonoBehaviour {
     [SerializeField]
     private bool locked = false;
 
-    // Arrow floating above the burrow
-    private MeshRenderer arrow;
-
-    // Lock floating above the burrow
-    private MeshRenderer lockIcon;
-
-    // Material for when the arrow is visible
-    [SerializeField]
-    private Material arrowShining;
-
-    // Material for when the arrow is transparent
-    [SerializeField]
-    private Material arrowFaded;
-
     // If the player is on top of the burrow
     private bool playerInRange = false;
 
     // If the teleportation is enabled or not
     private bool teleportationEnabled = true;
 
+    // The player GameObject
     private GameObject playerObj;
+
+    // Floating object above the burrow
+    private MeshRenderer floater;
+
+    // Material for when the player is in range
+    [SerializeField]
+    private Material inRangeMaterial;
+
+    // Material for when the player is away
+    [SerializeField]
+    private Material awayMaterial;
+
+    // Material for when the burrow is locked
+    [SerializeField]
+    private Material lockedMaterial;
 
     void Start()
     {
         FadeArrow(true);
-        Transform floater = transform.Find("Floater");
-        arrow = floater.Find("Arrow").GetComponent<MeshRenderer>();
-        lockIcon = floater.Find("Lock").GetComponent<MeshRenderer>();
+        floater = transform.Find("Floater").GetComponent<MeshRenderer>();
     }
 
     void Update() {
+        // Update floater material
+        if (!locked)
+        {
+            FadeArrow(!playerInRange);
+        } else
+        {
+            floater.material = lockedMaterial;
+        }
+
         if (Input.GetKey(KeyCode.DownArrow))
         {
             if (playerInRange && teleportationEnabled && !locked)
@@ -50,11 +59,6 @@ public class Burrow : MonoBehaviour {
                 TeleportPlayer(playerObj);
             }
         }
-
-        // Update the material when (un)locked
-        arrow.gameObject.SetActive(!locked);
-        lockIcon.gameObject.SetActive(locked);
-        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -65,7 +69,6 @@ public class Burrow : MonoBehaviour {
         if (!locked && go.tag == "Player")
         {
             playerObj = go;
-            FadeArrow(false);
             playerInRange = true;
         }
     }
@@ -77,7 +80,6 @@ public class Burrow : MonoBehaviour {
         GameObject go = other.gameObject;
         if (!locked && go.tag == "Player")
         {
-            FadeArrow(true);
             playerInRange = false;
             teleportationEnabled = true;
         }
@@ -88,28 +90,27 @@ public class Burrow : MonoBehaviour {
         // Disable other burrow to avoid loops
         end.DisableTeleportation();
 
+        // Teleport the player to the other burrow
         Transform playerTransform = player.transform;
         Vector3 endSize = end.GetComponent<Collider>().bounds.size;
-
-        // Teleport the player to the other burrow
-        float playerHeight = player.GetComponent<Collider>().bounds.size.y;
+        Vector3 playerSize = player.GetComponent<Collider>().bounds.size;
         Vector3 otherEndPos = end.transform.position;
-        float y = otherEndPos.y - endSize.y / 2 + playerHeight / 2;
+        float y = otherEndPos.y - endSize.y / 2 + playerSize.y / 2;
         playerTransform.position = new Vector3(otherEndPos.x, y, otherEndPos.z);
     }
 
     private void FadeArrow(bool shouldFade)
     {
         
-        if (arrow)
+        if (floater != null)
         {
             if (shouldFade)
             {
-                arrow.material = arrowFaded;
+                floater.material = awayMaterial;
             }
             else
             {
-                arrow.material = arrowShining;
+                floater.material = inRangeMaterial;
             }
         }
     }
