@@ -59,6 +59,11 @@ public class Burrow : MonoBehaviour {
                 TeleportPlayer(playerObj);
             }
         }
+        else
+        {
+            // Allow teleportation if the user stops holding the down arrow
+            teleportationEnabled = true;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
