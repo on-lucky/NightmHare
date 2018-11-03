@@ -36,6 +36,9 @@ public class Burrow : MonoBehaviour {
     [SerializeField]
     private Material lockedMaterial;
 
+    [SerializeField]
+    private Hinter hinter;
+
     void Start()
     {
         FadeArrow(true);
@@ -73,6 +76,10 @@ public class Burrow : MonoBehaviour {
         {
             playerObj = go;
             playerInRange = true;
+            if (hinter)
+            {
+                hinter.StartTimer();
+            }
         }
     }
 
@@ -83,6 +90,10 @@ public class Burrow : MonoBehaviour {
         {
             playerInRange = false;
             teleportationEnabled = true;
+            if (hinter)
+            {
+                hinter.StopTimer();
+            }
         }
     }
 
