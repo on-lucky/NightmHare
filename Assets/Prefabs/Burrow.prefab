@@ -93,7 +93,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1778328246063842
 GameObject:
   m_ObjectHideFlags: 1
@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {fileID: 0}
-  locked: 0
+  locked: 1
   arrowShining: {fileID: 2100000, guid: 690fca35935b9774e974cb3e4d3c6abb, type: 2}
   arrowFaded: {fileID: 2100000, guid: 17b232fccf84b5245a14fe28b1c6a34f, type: 2}
 --- !u!114 &114863286389589532

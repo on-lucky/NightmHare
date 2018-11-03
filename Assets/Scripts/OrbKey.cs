@@ -1,13 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class FloatingKey : MonoBehaviour {
-
-    /*
-     * A FloatingKey is an object that starts from its parent and
-     * floats to its destination following a quadratic curve
-     */
+public class OrbKey : MonoBehaviour {
 
     // Start moving towards destination
     [SerializeField]
@@ -15,25 +8,26 @@ public class FloatingKey : MonoBehaviour {
 
     private Vector3 origin;
 
+    // The burrow to unlock
     [SerializeField]
-    private Transform destinationTransform;
-
+    private Burrow burrow;
     private Vector3 destination;
 
+    // The speed to reach the burrow
     [SerializeField]
     private float speed = 3;
 
+    // The height of the curve
     [SerializeField]
     private float curveHeight = 2;
 
-    private QuadraticCurve curve;
-
-    private bool recalculateCurve = true;
+    // The trajectory
+    private QuadraticCurve trajectory;
 
     void Start()
     {
-        origin = transform.parent.position;
-        destination = destinationTransform.position;
+        origin = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        destination = burrow.transform.position;
         GetCurve2D();
     }
 
@@ -41,40 +35,28 @@ public class FloatingKey : MonoBehaviour {
     void Update() {
         if (go)
         {
-            if (recalculateCurve)
-            {
-                GetCurve2D();
-                recalculateCurve = false;
-            }
-
             Vector3 pos = transform.position;
             if (Vector3.Distance(pos, destination) <= 0.5) {
-                transform.position = destination;
+                burrow.Unlock();
+                Destroy(gameObject);
             } else
             {
                 // Quadratic curve for the trajectory
                 // Sinus wave for extra coolness
                 float x = pos.x + Time.deltaTime * speed;
                 float ox = x - origin.x;
-                float y = curve.compute(x) + Mathf.Sin(x);
+                float y = trajectory.compute(x) + Mathf.Sin(x);
                 transform.position = new Vector3(x, y, pos.z);
             }
         }
-
-        // TODO remove this
-        else
-        {
-            transform.position = origin;
-            recalculateCurve = true;
-        }
     }
 
-    // Starts the movement
-    public void Go(Vector3 destination)
+    private void OnTriggerEnter(Collider other)
     {
-        this.destination = destination;
-        GetCurve2D();
-        go = true;
+        if (other.tag == "Player")
+        {
+            go = true;
+        }
     }
 
     private void GetCurve2D()
@@ -83,7 +65,7 @@ public class FloatingKey : MonoBehaviour {
                     (origin.x + destination.x) / 2,
                     Mathf.Max(origin.y, destination.y) + curveHeight,
                     (origin.z + destination.z) / 2);
-        curve = new QuadraticCurve(origin, mid, destination);
+        trajectory = new QuadraticCurve(origin, mid, destination);
     }
 
     class QuadraticCurve

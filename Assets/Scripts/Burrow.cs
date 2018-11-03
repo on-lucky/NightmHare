@@ -27,7 +27,10 @@ public class Burrow : MonoBehaviour {
     private Material arrowFaded;
 
     // If the player is on top of the burrow
-    private bool teleportationEnabled = false;
+    private bool playerInRange = false;
+
+    // If the teleportation is enabled or not
+    private bool teleportationEnabled = true;
 
     private GameObject playerObj;
 
@@ -40,17 +43,17 @@ public class Burrow : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.DownArrow))
         {
-            if (teleportationEnabled)
+            if (playerInRange && teleportationEnabled && !locked)
             {
                 TeleportPlayer(playerObj);
             }
         }
 
         // Update the material when (un)locked
-        arrow.enabled = !locked;
-        lockIcon.enabled = locked;
+        arrow.gameObject.SetActive(!locked);
+        lockIcon.gameObject.SetActive(locked);
         
     }
 
@@ -63,7 +66,7 @@ public class Burrow : MonoBehaviour {
         {
             playerObj = go;
             FadeArrow(false);
-            teleportationEnabled = true;
+            playerInRange = true;
         }
     }
 
@@ -75,21 +78,23 @@ public class Burrow : MonoBehaviour {
         if (!locked && go.tag == "Player")
         {
             FadeArrow(true);
-            teleportationEnabled = false;
+            playerInRange = false;
+            teleportationEnabled = true;
         }
     }
 
     private void TeleportPlayer(GameObject player)
     {
-        // Check if the player entered from the right or left
+        // Disable other burrow to avoid loops
+        end.DisableTeleportation();
+
         Transform playerTransform = player.transform;
         Vector3 endSize = end.GetComponent<Collider>().bounds.size;
-        //float xOffset = playerTransform.position.x < transform.position.x ? endSize.x / 2 + 0.5f : -(endSize.x / 2 + 0.5f);
 
-        // Teleport the player to the other burrow on the opposite side he entered from
+        // Teleport the player to the other burrow
         float playerHeight = player.GetComponent<Collider>().bounds.size.y;
         Vector3 otherEndPos = end.transform.position;
-        float y = otherEndPos.y - endSize.y / 2 + playerHeight / 2 + 0.5f;
+        float y = otherEndPos.y - endSize.y / 2 + playerHeight / 2;
         playerTransform.position = new Vector3(otherEndPos.x, y, otherEndPos.z);
     }
 
@@ -109,14 +114,16 @@ public class Burrow : MonoBehaviour {
         }
     }
 
-    public void Lock()
-    {
-        locked = true;
-    }
+    public void DisableTeleportation() { teleportationEnabled = false; }
 
-    public void Unlock()
-    {
+    public void Lock() { locked = true; }
+
+    public void Unlock(bool both = true) {
         locked = false;
+        if (both)
+        {
+            end.Unlock(false);
+        }
     }
     
 }
