@@ -10,6 +10,8 @@ public class Digger : MonoBehaviour {
     private Animator animator;
     private Rigidbody rb;
     private PlayerController controller;
+    private Jumper jumper;
+    private Dashing dashing;
 
     private Burrow origin;
     private Burrow destination;
@@ -19,6 +21,8 @@ public class Digger : MonoBehaviour {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         controller = GetComponent<PlayerController>();
+        jumper = GetComponent<Jumper>();
+        dashing = GetComponent<Dashing>();
     }
 
     private void LateUpdate()
@@ -34,7 +38,8 @@ public class Digger : MonoBehaviour {
         {
             // Give control back when dig out animation ends
             diggingOut = false;
-            controller.EnableInput(true);
+            // REENABLE EVERYTHINNNNG
+            EnableScripts(true);
         }
     }
 
@@ -50,9 +55,11 @@ public class Digger : MonoBehaviour {
             this.origin = origin;
             this.destination = end;
 
-            // Disable player movemnet, move player to center of burrow for better effect
+            // DISABLE EVERYTHINNNNG
+            EnableScripts(false);
+
+            // Move player to center of burrow for better effect
             rb.velocity = Vector3.zero;
-            controller.EnableInput(false);
             Vector3 pos = transform.position;
             Vector3 originPos = origin.transform.position;
             transform.position = new Vector3(originPos.x, pos.y, originPos.z);
@@ -91,6 +98,13 @@ public class Digger : MonoBehaviour {
         }
 
         CameraFollower.instance.SlideTo(new Vector3(destinationPos.x, destinationPos.y + deltaCamY, posCamZ));
+    }
+
+    private void EnableScripts(bool enable)
+    {
+        controller.enabled = enable;
+        jumper.enabled = enable;
+        dashing.enabled = enable;
     }
 
 }
