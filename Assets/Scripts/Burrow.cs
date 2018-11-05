@@ -19,7 +19,7 @@ public class Burrow : MonoBehaviour {
     private bool teleportationEnabled = true;
 
     // The player GameObject
-    private GameObject playerObj;
+    private Digger digger;
 
     // Floating object above the burrow
     private MeshRenderer floater;
@@ -55,11 +55,11 @@ public class Burrow : MonoBehaviour {
             floater.material = lockedMaterial;
         }
 
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             if (playerInRange && teleportationEnabled && !locked)
             {
-                TeleportPlayer(playerObj);
+                digger.Dig(this, end);
             }
         }
         else
@@ -72,9 +72,10 @@ public class Burrow : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         GameObject go = other.gameObject;
-        if (!locked && go.tag == "Player")
+        Digger digger = go.GetComponent<Digger>();
+        if (!locked && digger)
         {
-            playerObj = go;
+            this.digger = digger;
             playerInRange = true;
             if (hinter)
             {
@@ -86,7 +87,8 @@ public class Burrow : MonoBehaviour {
     private void OnTriggerExit(Collider other)
     {
         GameObject go = other.gameObject;
-        if (!locked && go.tag == "Player")
+        Digger digger = go.GetComponent<Digger>();
+        if (!locked && digger)
         {
             playerInRange = false;
             teleportationEnabled = true;
@@ -95,31 +97,6 @@ public class Burrow : MonoBehaviour {
                 hinter.StopTimer();
             }
         }
-    }
-
-    private void TeleportPlayer(GameObject player)
-    {
-        // Disable other burrow to avoid loops
-        end.DisableTeleportation();
-
-        // Teleport the player to the other burrow
-        Transform playerTransform = player.transform;
-        Vector3 endSize = end.GetComponent<Collider>().bounds.size;
-        Vector3 playerSize = player.GetComponent<Collider>().bounds.size;
-        Vector3 otherEndPos = end.transform.position;
-
-        float y = otherEndPos.y - endSize.y / 2 + playerSize.y / 2;
-        float deltaCamY = CameraFollower.instance.transform.position.y - transform.position.y;
-
-        float posCamZ = -10;
-        if (otherEndPos.z > 5)
-        {
-            posCamZ = -5;
-        }
-
-        CameraFollower.instance.SlideTo(new Vector3(otherEndPos.x, otherEndPos.y + deltaCamY, posCamZ));
-
-        playerTransform.position = new Vector3(otherEndPos.x, y, otherEndPos.z);
     }
 
     private void FadeArrow(bool shouldFade)
