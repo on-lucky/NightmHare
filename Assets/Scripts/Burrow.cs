@@ -107,7 +107,18 @@ public class Burrow : MonoBehaviour {
         Vector3 endSize = end.GetComponent<Collider>().bounds.size;
         Vector3 playerSize = player.GetComponent<Collider>().bounds.size;
         Vector3 otherEndPos = end.transform.position;
+
         float y = otherEndPos.y - endSize.y / 2 + playerSize.y / 2;
+        float deltaCamY = CameraFollower.instance.transform.position.y - transform.position.y;
+
+        float posCamZ = -10;
+        if (otherEndPos.z > 5)
+        {
+            posCamZ = -5;
+        }
+
+        CameraFollower.instance.SlideTo(new Vector3(otherEndPos.x, otherEndPos.y + deltaCamY, posCamZ));
+
         playerTransform.position = new Vector3(otherEndPos.x, y, otherEndPos.z);
     }
 
