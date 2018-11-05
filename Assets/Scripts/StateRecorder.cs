@@ -46,7 +46,7 @@ public class StateRecorder : MonoBehaviour
 
     private void Record()
     {
-        MomentCapture capture = new MomentCapture(transform.position, animator.GetCurrentAnimatorStateInfo(0), animator.GetFloat("Speed"), animator.GetBool("Jumping"), orientationManager.IsLookingRight);
+        MomentCapture capture = new MomentCapture(transform.position, animator.GetCurrentAnimatorStateInfo(0), orientationManager.IsLookingRight);
         MomentCaptures.Enqueue(capture);
     }
 

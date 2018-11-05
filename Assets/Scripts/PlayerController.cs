@@ -18,52 +18,59 @@ public class PlayerController : MonoBehaviour {
     private OrientationManager orientationM;
     private Jumper jumper;
     private Climber climber;
+    private Dashing dashing;
+    private bool inputEnabled = true;
 
     public bool IsClimbing { get => isClimbing; set => isClimbing = value; }
-
+    
     // Use this for initialization
     void Start() {
         animator = GetComponent<Animator>();
         orientationM = GetComponent<OrientationManager>();
         jumper = GetComponent<Jumper>();
         climber = GetComponent<Climber>();
+        dashing = GetComponent<Dashing>();
     }
 
     // Update is called once per frame
     void FixedUpdate() {
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (inputEnabled)
         {
-            LookFoward(true);
-            if (IsClimbing && orientationM.IsLookingRight)
+            if (Input.GetKey(KeyCode.RightArrow))
             {
-                currentSpeed = 0f;
-                climber.Climb();
+                LookFoward(true);
+                if (IsClimbing && orientationM.IsLookingRight)
+                {
+                    currentSpeed = 0f;
+                    climber.Climb();
+                }
+                else if (!climber.WallToFront)
+                {
+                    Run(true);
+                }
             }
+            else if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                LookFoward(false);
+                if (IsClimbing && !orientationM.IsLookingRight)
+                {
+                    currentSpeed = 0f;
+                    climber.Climb();
+                }
+                else if (!climber.WallToFront)
+                {
+                    Run(false);
+                }
+            }
+
             else if (!climber.WallToFront)
             {
-                Run(true);
+                Break();
             }
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            LookFoward(false);
-            if (IsClimbing && !orientationM.IsLookingRight)
+            else
             {
-                currentSpeed = 0f;
-                climber.Climb();
+                StopClimbing();
             }
-            else if (!climber.WallToFront)
-            {
-                Run(false);
-            }
-        }
-        else if (!climber.WallToFront)
-        {
-            Break();
-        }
-        else
-        {
-            StopClimbing();
         }
         UpdateAnimator();
     }
@@ -73,7 +80,6 @@ public class PlayerController : MonoBehaviour {
         if (orientationM.LookTo(isRight))
         {
             currentSpeed = -currentSpeed;
-            climber.SwapWalls();
         }
     }
 
@@ -87,6 +93,10 @@ public class PlayerController : MonoBehaviour {
     private void Break()
     {
         StopClimbing();
+        if (currentSpeed > hareSpeed)
+        {
+            currentSpeed = hareSpeed;
+        }
         if (currentSpeed > 0)
         {
             if (jumper.CheckGround())
@@ -146,6 +156,7 @@ public class PlayerController : MonoBehaviour {
                 currentSpeed += airAcceleration;
             }
         }
+        
         if (currentSpeed > hareSpeed)
         {
             currentSpeed = hareSpeed;
@@ -155,6 +166,7 @@ public class PlayerController : MonoBehaviour {
     public void StopClimbing(){
         IsClimbing = false;
         GetComponent<Rigidbody>().isKinematic = false;
+        animator.SetBool("StopClimbing", true);
     }
 
     private void UpdateAnimator()
@@ -165,5 +177,15 @@ public class PlayerController : MonoBehaviour {
 
     public float GetCurrentSpeed(){
         return currentSpeed;
+    }
+
+    public void EnableInput(bool shouldEnable)
+    {
+        inputEnabled = shouldEnable;
+    }
+
+    public void SetCurrentSpeed(float _currentSpeed)
+    {
+        currentSpeed =  _currentSpeed;
     }
 }

@@ -11,29 +11,47 @@ public class Climber : MonoBehaviour {
     private float collisionSpeed = 0;
 
     private bool wallToBack = false;
-    private bool wallToFront = false;
+    public bool wallToFront = false;
+    public bool wallNearby = false;
 
+    public bool WallNearby { get => wallNearby; set => wallNearby = value; }
     public bool WallToBack { get => wallToBack; set => wallToBack = value; }
     public bool WallToFront { get => wallToFront; set => wallToFront = value; }
 
+    private Animator animator;
+
     // Use this for initialization
     void Start () {
-		
-	}
+        animator = GetComponent<Animator>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
     }
 
-    public void HitWall(Collider other, bool isFront)
+    public void RegisterWallNearby(Collider other, bool nearby)
     {
         GameObject wall = other.gameObject;
+
+        if (wall.tag == "Terrain")
+        {
+            wallNearby = nearby;
+        }
+    }
+
+        public void HitWall(Collider other, bool isFront)
+    {
+        GameObject wall = other.gameObject;
+        animator.SetTrigger("Climbing");
 
         if (wall.tag == "Terrain")
         {
             if (isFront)
             {
                 wallToFront = true;
+                GetComponent<PlayerController>().IsClimbing = true;
+                collisionSpeed = GetComponent<PlayerController>().GetCurrentSpeed();
+                currentUpwardSpeed = collisionSpeed * speedConversionRatio;
             }
             else
             {
@@ -43,7 +61,6 @@ public class Climber : MonoBehaviour {
             GetComponent<Rigidbody>().isKinematic = true;
             collisionSpeed = GetComponent<PlayerController>().GetCurrentSpeed();
             currentUpwardSpeed = collisionSpeed * speedConversionRatio;
-            //Debug.Log("collisionSpeed: " + collisionSpeed);
         }
     }
 
@@ -59,7 +76,7 @@ public class Climber : MonoBehaviour {
                 wallToFront = false;
                 if (!wallToBack)
                 {
-                    transform.Translate(new Vector3(0f, 0, 0.1f));
+                    transform.Translate(new Vector3(0f, 0, 0.4f));
                 }
             }
             else
@@ -83,6 +100,9 @@ public class Climber : MonoBehaviour {
 
     public void Climb()
     {
+        animator.SetBool("StopClimbing", false);
+        
+        GetComponent<Rigidbody>().isKinematic = true;
         transform.Translate(new Vector3(0, currentUpwardSpeed, 0));
         currentUpwardSpeed -= decelerationRate;
         if(currentUpwardSpeed <= 0)

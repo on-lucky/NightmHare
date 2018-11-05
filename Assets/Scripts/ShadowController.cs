@@ -45,8 +45,6 @@ public class ShadowController : MonoBehaviour {
     {
         transform.position = moment.position;
         orientationManager.LookTo(moment.lookingRight);
-        animator.SetFloat("Speed", moment.speed);
-        animator.SetBool("Jumping", moment.jumping);
         animator.Play(moment.animationState.fullPathHash, 0, moment.animationState.normalizedTime);
     }
 
