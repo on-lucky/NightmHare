@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Digger : MonoBehaviour {
 
-    private bool isDigging = false;
+    private bool diggingIn = false;
+    private bool diggingOut = false;
 
     private Animator animator;
     private Rigidbody rb;
@@ -22,25 +23,29 @@ public class Digger : MonoBehaviour {
 
     private void LateUpdate()
     {
-        if (isDigging && !isAnimationPlaying())
+        if (diggingIn && !isAnimationPlaying("Dig"))
         {
-            // The animation just ended so teleport the player
-            isDigging = false;
+            // Teleport the player when dig in animation ends
+            diggingIn = false;
             Teleport();
-
-            // reenable player controls
+            diggingOut = true;
+        }
+        else if (diggingOut && !isAnimationPlaying("DigOut"))
+        {
+            // Give control back when dig out animation ends
+            diggingOut = false;
             controller.EnableInput(true);
         }
     }
 
-    private bool isAnimationPlaying()
+    private bool isAnimationPlaying(string name)
     {
-        return animator.GetCurrentAnimatorStateInfo(0).IsName("Base.Dig");
+        return animator.GetCurrentAnimatorStateInfo(0).IsName(name);
     }
 
     public void Dig(Burrow origin, Burrow end)
     {
-        if (!isDigging)
+        if (!diggingIn)
         {
             this.origin = origin;
             this.destination = end;
@@ -54,7 +59,7 @@ public class Digger : MonoBehaviour {
 
             SlideCamera();
 
-            isDigging = true;
+            diggingIn = true;
             animator.SetTrigger("Dig");
         }
         // else finish digging first

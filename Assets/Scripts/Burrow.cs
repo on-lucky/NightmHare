@@ -55,7 +55,7 @@ public class Burrow : MonoBehaviour {
             floater.material = lockedMaterial;
         }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.DownArrow))
         {
             if (playerInRange && teleportationEnabled && !locked)
             {
