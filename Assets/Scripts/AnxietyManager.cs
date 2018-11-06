@@ -16,7 +16,7 @@ public class AnxietyManager : MonoBehaviour {
     GameObject hare;
     GameObject shadowObject;
     GameObject shadow;    
-    [SerializeField] float distance;
+    float distance;
     [SerializeField] float anxietyZoneRadius = 5f;
     [SerializeField] float anxietyAugmentation = .02f;   
 
