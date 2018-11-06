@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Slider : MonoBehaviour {
+public class CameraSlider : MonoBehaviour {
 
     public float slidingDuration = 2;
 

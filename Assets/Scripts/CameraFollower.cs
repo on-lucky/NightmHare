@@ -77,8 +77,8 @@ public class CameraFollower : MonoBehaviour {
 
     public void SlideTo(Vector3 destination)
     {
-        GetComponent<Slider>().SetDestination(destination);
-        GetComponent<Slider>().Slide();
+        GetComponent<CameraSlider>().SetDestination(destination);
+        GetComponent<CameraSlider>().Slide();
     }
 
     public void EnableFollowing(bool shouldFollow)
