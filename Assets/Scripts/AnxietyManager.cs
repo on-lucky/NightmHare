@@ -34,7 +34,9 @@ public class AnxietyManager : MonoBehaviour {
         {
 
         }        
-        currentAnxiety = 0;            
+        currentAnxiety = 0;
+        veil.rectTransform.sizeDelta = new Vector2(veilOriginalDimension, veilOriginalDimension);
+        veil.color = new Vector4(veil.color.r, veil.color.g, veil.color.b, (1.5f * currentAnxiety) / maxAnxiety);
     }    
 
     // Update is called once per frame
