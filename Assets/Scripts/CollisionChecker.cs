@@ -58,7 +58,6 @@ public class CollisionChecker : MonoBehaviour {
             case CheckerType.Ground:
                 if (obj.tag == "Ground")
                 {
-                    Debug.Log("fall");
                     messageReceiver.GetComponent<Jumper>().Fall();
                 }
                 break;
