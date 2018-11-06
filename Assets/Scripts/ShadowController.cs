@@ -14,6 +14,9 @@ public class ShadowController : MonoBehaviour {
     private float currentTime = 0f;
     public float speedRatio = 1;
     private float timeBetweenReading = -1f;
+    private GameObject[] traps;
+    [SerializeField] private int trapDuration;
+    [SerializeField] private float slowRatio;    
 
     public void setObjToFollow(GameObject value)
     {
@@ -24,6 +27,7 @@ public class ShadowController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         animator = GetComponentInChildren<Animator>();
+        
         orientationManager = GetComponentInChildren<OrientationManager>();
     }
 	
@@ -38,13 +42,14 @@ public class ShadowController : MonoBehaviour {
                 SetState(objToFollow.GetComponent<StateRecorder>().DequeueMomentState());
                 currentTime -= timeBetweenReading / speedRatio;
             }
-        }
+        }           
 	}
 
     private void SetState(MomentCapture moment)
     {
-        transform.position = moment.position;
+        transform.position = new Vector3(moment.position.x, moment.position.y, 0);
         orientationManager.LookTo(moment.lookingRight);
+        animator.SetFloat("Speed", moment.speed);
         animator.Play(moment.animationState.fullPathHash, 0, moment.animationState.normalizedTime);
     }
 
@@ -65,10 +70,24 @@ public class ShadowController : MonoBehaviour {
         isFollowing = true;
     }
 
-    private void EnableShadowVisuals() {
+    public void EnableShadowVisuals() {
         foreach (Transform child in transform)
         {
             child.gameObject.SetActive(true);
         }
+    }
+
+    public void TrapShadow()
+    {
+        animator.speed *= slowRatio;
+        speedRatio = speedRatio*slowRatio;       
+        StartCoroutine(FreeShadow());
+    }
+
+    IEnumerator FreeShadow()
+    {
+        yield return new WaitForSeconds(trapDuration);
+        animator.speed = 1;
+        speedRatio = speedRatio/slowRatio;       
     }
 }

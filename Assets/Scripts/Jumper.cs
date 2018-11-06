@@ -157,6 +157,11 @@ public class Jumper : MonoBehaviour {
         return onGround;
     }
 
+    public void resetAirJumpCount()
+    {
+        airJumpCount = 0;
+    }
+
     IEnumerator WaitForWallJump()
     {
         playerController.EnableInput(false);

@@ -9,6 +9,8 @@ TagManager:
   - LeftWallCheck
   - RightWallCheck
   - FloorCheck
+  - trap
+  - Mushroom
   layers:
   - Default
   - TransparentFX
