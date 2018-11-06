@@ -38,6 +38,10 @@ public class Digger : MonoBehaviour {
         {
             // Give control back when dig out animation ends
             diggingOut = false;
+
+            // FIX: Change z plane in player controller
+            controller.SetZPos(transform.position.z);
+
             // REENABLE EVERYTHINNNNG
             EnableScripts(true);
         }

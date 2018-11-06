@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour {
     private AnxietyManager anxietyManager;
 
     public bool IsClimbing { get => isClimbing; set => isClimbing = value; }
+
+    private float zPos = 0;
     
     // Use this for initialization
     void Start() {
@@ -45,7 +47,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Update()
     {
-        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, 0);
+        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, zPos);
     }
 
     // Update is called once per frame
@@ -269,5 +271,9 @@ public class PlayerController : MonoBehaviour {
         currentSpeed =  _currentSpeed;
     }
 
-    
+    public void SetZPos(float z)
+    {
+        this.zPos = z;
+    } 
+
 }
