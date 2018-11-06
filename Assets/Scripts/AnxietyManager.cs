@@ -11,7 +11,7 @@ public class AnxietyManager : MonoBehaviour {
     [SerializeField] private float sprintAnxietyLevel;
     [SerializeField] private float trapAnxietyLevel;
     private RawImage veil;
-    [SerializeField] private float veilOriginalDimension;
+    private float veilOriginalDimension;
 
     GameObject hare;
     GameObject shadowObject;
@@ -24,6 +24,7 @@ public class AnxietyManager : MonoBehaviour {
     void Start () {
         hare = GameObject.Find("Hare");        
         anxietySlider = GameObject.Find("AnxietyBar").GetComponent<Slider>();
+        veilOriginalDimension = Screen.width * 2.5f;
         try
         {
             veil = GameObject.Find("Veil").GetComponent<RawImage>();
