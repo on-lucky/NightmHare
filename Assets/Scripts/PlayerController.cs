@@ -11,15 +11,25 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private float airAcceleration = 0.04f;
 
+    [SerializeField] private float sprintCooldown = 0;
+    [SerializeField] private float maxSprintDuration = 3;
+    [SerializeField] private float hareSprint = 0.05f;    
+    private bool canSprint = true;
+
+    [SerializeField] private GameObject lightTrap;
+    [SerializeField] private float trapCooldown;
+    private bool canSetTrap = true;
+
     private bool isClimbing = false;
 
-    private float currentSpeed = 0f;
+    [SerializeField] private float currentSpeed = 0f;
     private Animator animator;
     private OrientationManager orientationM;
     private Jumper jumper;
     private Climber climber;
     private Dashing dashing;
     private bool inputEnabled = true;
+    private AnxietyManager anxietyManager;
 
     public bool IsClimbing { get => isClimbing; set => isClimbing = value; }
     
@@ -30,12 +40,31 @@ public class PlayerController : MonoBehaviour {
         jumper = GetComponent<Jumper>();
         climber = GetComponent<Climber>();
         dashing = GetComponent<Dashing>();
+        anxietyManager = GetComponent<AnxietyManager>();
+    }
+
+    private void Update()
+    {
+        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, 0);
     }
 
     // Update is called once per frame
-    void FixedUpdate() {
+    void FixedUpdate() {        
         if (inputEnabled)
         {
+            if (anxietyManager != null)
+            {
+                if (Input.GetKey(KeyCode.Z) && canSprint)
+                {
+                    StartSprinting();
+                }
+
+                if (Input.GetKey(KeyCode.X) && canSetTrap)
+                {
+                    SetLightTrap();
+                }
+            }
+            
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 LookFoward(true);
@@ -71,9 +100,17 @@ public class PlayerController : MonoBehaviour {
             {
                 StopClimbing();
             }
+        }        
+        else if (!climber.WallToFront)
+        {
+            Break();
         }
-        UpdateAnimator();
-    }
+        else
+        {
+            StopClimbing();
+        }                
+        UpdateAnimator();       
+    }    
 
     private void LookFoward(bool isRight)
     {
@@ -163,6 +200,49 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    public void StartSprinting()
+    {
+        if (anxietyManager.CanSprint())
+        {
+            hareSpeed += hareSprint;
+            canSprint = false;
+            animator.speed = 2;
+            StartCoroutine(StopSprinting());
+        }
+    } 
+
+    IEnumerator StopSprinting()
+    {
+        yield return new WaitForSeconds(maxSprintDuration);
+        hareSpeed -= hareSprint;
+        animator.speed = 1;
+        StartCoroutine(RefreshSprintCooldown());
+    }
+
+    IEnumerator RefreshSprintCooldown()
+    {
+        yield return new WaitForSeconds(sprintCooldown);
+        canSprint = true;
+    }
+
+    public void SetLightTrap()
+    {       
+        if (canSetTrap && anxietyManager.CanSetTrap() && lightTrap != null) {
+            float x = this.transform.position.x;
+            float y = this.transform.position.y + 0.1f;
+            Instantiate(lightTrap, new Vector3(x, y, 0), Quaternion.identity);
+            lightTrap.tag = "trap";
+            canSetTrap = false;
+            StartCoroutine(RefreshTrapCooldown());
+        }
+    }
+
+    IEnumerator RefreshTrapCooldown()
+    {
+        yield return new WaitForSeconds(trapCooldown);
+        canSetTrap = true;
+    }
+
     public void StopClimbing(){
         IsClimbing = false;
         GetComponent<Rigidbody>().isKinematic = false;
@@ -171,7 +251,7 @@ public class PlayerController : MonoBehaviour {
 
     private void UpdateAnimator()
     {
-        float ratio = Mathf.Abs(currentSpeed) / hareSpeed;
+        float ratio = Mathf.Abs(currentSpeed) / hareSpeed;        
         animator.SetFloat("Speed", ratio);
     }
 
@@ -188,4 +268,6 @@ public class PlayerController : MonoBehaviour {
     {
         currentSpeed =  _currentSpeed;
     }
+
+    
 }
