@@ -27,7 +27,7 @@ public class ShadowGate : MonoBehaviour {
                 GameObject shadowObject = Instantiate(shadow, this.transform);
 
                 shadowObject.GetComponent<ShadowController>().setObjToFollow(hare);
-                shadowObject.GetComponent<ShadowController>().StartFollowing(initialDelay);
+                shadowObject.GetComponent<ShadowController>().StartFollowing(initialDelay);                                
                 gateUsed = true;
             }
         }

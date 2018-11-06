@@ -12,7 +12,7 @@ public class LifeManager : MonoBehaviour {
     [SerializeField]
     private ParticleSystem hareParticles;
     [SerializeField]
-    private GameObject armature;
+    private GameObject armature;    
 
     private SkinnedMeshRenderer renderer;
 
@@ -22,7 +22,7 @@ public class LifeManager : MonoBehaviour {
     {
         rb = GetComponent<Rigidbody>();
         renderer = GetComponentInChildren<SkinnedMeshRenderer>();
-        Spawn();
+        Spawn();        
     }
 
     void OnTriggerEnter(Collider other)
@@ -65,7 +65,7 @@ public class LifeManager : MonoBehaviour {
     private void Spawn(){
         GetComponent<PlayerController>().enabled = false;
         renderer.enabled = false;
-        StartCoroutine(waitAndEnable(1f));
+        StartCoroutine(waitAndEnable(1f));        
     }
 
     IEnumerator waitAndEnable(float timeToWait)

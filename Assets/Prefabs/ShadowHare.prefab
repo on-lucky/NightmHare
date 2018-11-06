@@ -1233,6 +1233,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedRatio: 1.05
+  trapDuration: 3
+  slowRatio: 0.5
 --- !u!122 &122051581810015566
 Halo:
   m_ObjectHideFlags: 1

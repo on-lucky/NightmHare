@@ -401,6 +401,8 @@ GameObject:
   - component: {fileID: 114478402257808892}
   - component: {fileID: 114873635261945462}
   - component: {fileID: 114565302483138174}
+  - component: {fileID: 114863671707426946}
+  - component: {fileID: 114722074653094902}
   m_Layer: 0
   m_Name: Hare
   m_TagString: Player
@@ -1847,6 +1849,11 @@ MonoBehaviour:
   hareSpeed: 0.18
   hareAcceleration: 0.01
   airAcceleration: 0.002
+  currentSprintDuration: 0
+  maxSprintDuration: 60
+  hareSprint: 0.2
+  isSprinting: 0
+  currentSpeed: 0
 --- !u!114 &114478402257808892
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1911,6 +1918,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   messageReceiver: {fileID: 1391939303221050}
+--- !u!114 &114722074653094902
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1391939303221050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e2c7e65311d2d842b6be514186530fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAnxiety: 100
+  sprintAnxietyLevel: 0
+  shadow: {fileID: 1644204507318930, guid: a20c8791fc02ee041943f41d59c2cee1, type: 2}
+  distance: 0
+  anxietyZoneRadius: 5
+  anxietyAugmentation: 0.1
 --- !u!114 &114748469801891578
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1923,6 +1947,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerCam: {fileID: 0}
+--- !u!114 &114863671707426946
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1391939303221050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e2c7e65311d2d842b6be514186530fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAnxiety: 100
+  sprintAnxietyLevel: 0
+  shadow: {fileID: 1644204507318930, guid: a20c8791fc02ee041943f41d59c2cee1, type: 2}
+  distance: 0
+  anxietyZoneRadius: 5
+  anxietyAugmentation: 0.05
 --- !u!114 &114873635261945462
 MonoBehaviour:
   m_ObjectHideFlags: 1
