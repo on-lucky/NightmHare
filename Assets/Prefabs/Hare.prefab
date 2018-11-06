@@ -418,6 +418,8 @@ GameObject:
   - component: {fileID: 114478402257808892}
   - component: {fileID: 114873635261945462}
   - component: {fileID: 114565302483138174}
+  - component: {fileID: 114896545492835912}
+  - component: {fileID: 114467780961291544}
   m_Layer: 0
   m_Name: Hare
   m_TagString: Player
@@ -549,7 +551,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1531853301043926
 GameObject:
   m_ObjectHideFlags: 1
@@ -1771,7 +1773,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 1, z: 4}
-  m_Center: {x: 0, y: -2, z: 0.75}
+  m_Center: {x: 0, y: -2, z: 0.25}
 --- !u!65 &65249345317300250
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1782,8 +1784,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 3.3, z: 14}
-  m_Center: {x: 0, y: 0, z: -1.5}
+  m_Size: {x: 3, y: 3, z: 14}
+  m_Center: {x: 0, y: -0.3, z: -1.5}
 --- !u!65 &65503794825674576
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1794,8 +1796,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 3.3, z: 5.5}
-  m_Center: {x: 0, y: 0, z: -6.3}
+  m_Size: {x: 1, y: 3, z: 5.5}
+  m_Center: {x: 0, y: -0.3, z: -6.3}
 --- !u!65 &65507152740859364
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1806,8 +1808,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 3.3, z: 2.5}
-  m_Center: {x: 0, y: 0, z: 4.25}
+  m_Size: {x: 1, y: 3, z: 2.5}
+  m_Center: {x: 0, y: -0.3, z: 4.25}
 --- !u!95 &95436356781241342
 Animator:
   serializedVersion: 3
@@ -1884,6 +1886,24 @@ MonoBehaviour:
   lightTrap: {fileID: 0}
   trapCooldown: 0
   currentSpeed: 0
+--- !u!114 &114467780961291544
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1391939303221050}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e2c7e65311d2d842b6be514186530fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAnxiety: 100
+  sprintAnxietyLevel: 0
+  trapAnxietyLevel: 0
+  veilOriginalDimension: 0
+  distance: 0
+  anxietyZoneRadius: 5
+  anxietyAugmentation: 0.05
 --- !u!114 &114478402257808892
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1912,7 +1932,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   JumpThrust: 8
-  WallJumpThrust: 6
+  WallJumpThrust: 300
   groundCheck: {fileID: 65185339336571452}
   MaxJumpInputCount: 20
   airJumps:
@@ -1974,6 +1994,17 @@ MonoBehaviour:
   decelerationRate: 0.001
   wallToFront: 0
   wallNearby: 0
+--- !u!114 &114896545492835912
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1391939303221050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 658b6b3cdae9e694ab67dec810d9fe38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114986739967049790
 MonoBehaviour:
   m_ObjectHideFlags: 1

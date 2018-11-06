@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraFollower : MonoBehaviour {
 
+    public static CameraFollower instance;
+
     [SerializeField]
     private Transform subject;
 
@@ -16,23 +18,40 @@ public class CameraFollower : MonoBehaviour {
     [SerializeField]
     private float yOffset = 2;
 
+    private bool following = true;
+
+    void Awake()
+    {
+        if(CameraFollower.instance != null)
+        {
+            Debug.LogError("More than one CameraFollower in the scene!");
+        }
+        else
+        {
+            CameraFollower.instance = this;
+        }
+    }
+
     // Update is called once per frame
     void Update () {
-		if(subject.position.x > transform.position.x + xRange)
+        if (following)
         {
-            UpdatePosX(false);
-        }
-        else if (subject.position.x < transform.position.x - xRange)
-        {
-            UpdatePosX(true);
-        }
-        if (subject.position.y > transform.position.y + yRange - yOffset)
-        {
-            UpdatePosY(false);
-        }
-        else if (subject.position.y < transform.position.y - yRange - yOffset)
-        {
-            UpdatePosY(true);
+            if (subject.position.x > transform.position.x + xRange)
+            {
+                UpdatePosX(false);
+            }
+            else if (subject.position.x < transform.position.x - xRange)
+            {
+                UpdatePosX(true);
+            }
+            if (subject.position.y > transform.position.y + yRange - yOffset)
+            {
+                UpdatePosY(false);
+            }
+            else if (subject.position.y < transform.position.y - yRange - yOffset)
+            {
+                UpdatePosY(true);
+            }
         }
     }
 
@@ -54,5 +73,16 @@ public class CameraFollower : MonoBehaviour {
             posY = subject.position.y + yRange + yOffset;
         }
         transform.position = new Vector3(transform.position.x, posY, transform.position.z);
+    }
+
+    public void SlideTo(Vector3 destination)
+    {
+        GetComponent<CameraSlider>().SetDestination(destination);
+        GetComponent<CameraSlider>().Slide();
+    }
+
+    public void EnableFollowing(bool shouldFollow)
+    {
+        following = shouldFollow;
     }
 }
