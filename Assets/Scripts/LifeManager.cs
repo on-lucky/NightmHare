@@ -53,7 +53,7 @@ public class LifeManager : MonoBehaviour {
             Instantiate(deathParticles, this.transform);
             deathParticles.Play();
         }
-        StartCoroutine(waitAndLoad(2f));
+        StartCoroutine(waitAndLoad(3f));
     }
 
     IEnumerator waitAndLoad(float timeToWait)
