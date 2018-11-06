@@ -20,50 +20,65 @@ public class CollisionChecker : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         GameObject obj = other.gameObject;
-
-        if (obj.tag == "Terrain")
+        switch (type)
         {
-            if (type == CheckerType.Ground)
-            {
-                messageReceiver.GetComponent<Jumper>().Land(other);
-            }
-            else if (type == CheckerType.FrontWall)
-            {
-                messageReceiver.GetComponent<Climber>().HitWall(other, true);
-            }
-            else if (type == CheckerType.BackWall)
-            {
-                messageReceiver.GetComponent<Climber>().HitWall(other, false);
-            }
-            else if (type == CheckerType.Wall)
-            {
-                messageReceiver.GetComponent<Climber>().RegisterWallNearby(other, true);
-            }
+            case CheckerType.Ground:
+                if (obj.tag == "Ground")
+                {
+                    messageReceiver.GetComponent<Jumper>().Land(other);
+                }
+                break;
+            case CheckerType.FrontWall:
+                if (obj.tag == "Wall")
+                {
+                    messageReceiver.GetComponent<Climber>().HitWall(other, true);
+                }
+                break;
+            case CheckerType.BackWall:
+                if (obj.tag == "Wall")
+                {
+                    messageReceiver.GetComponent<Climber>().HitWall(other, false);
+                }
+                break;
+            case CheckerType.Wall:
+                if (obj.tag == "Wall")
+                {
+                    messageReceiver.GetComponent<Climber>().RegisterWallNearby(other, true);
+                }
+                break;
         }
     }
 
     void OnTriggerExit(Collider other)
     {
         GameObject obj = other.gameObject;
-        if (obj.tag == "Terrain")
-        {
 
-            if (type == CheckerType.Ground)
-            {
-                messageReceiver.GetComponent<Jumper>().Fall();
-            }
-            else if (type == CheckerType.FrontWall)
-            {
-                messageReceiver.GetComponent<Climber>().LeaveWall(other, true);
-            }
-            else if (type == CheckerType.BackWall)
-            {
-                messageReceiver.GetComponent<Climber>().LeaveWall(other, false);
-            }
-            else if (type == CheckerType.Wall)
-            {
-                messageReceiver.GetComponent<Climber>().RegisterWallNearby(other, false);
-            }
+        switch (type)
+        {
+            case CheckerType.Ground:
+                if (obj.tag == "Ground")
+                {
+                    messageReceiver.GetComponent<Jumper>().Fall();
+                }
+                break;
+            case CheckerType.FrontWall:
+                if (obj.tag == "Wall")
+                {
+                    messageReceiver.GetComponent<Climber>().LeaveWall(other, true);
+                }
+                break;
+            case CheckerType.BackWall:
+                if (obj.tag == "Wall")
+                {
+                    messageReceiver.GetComponent<Climber>().LeaveWall(other, false);
+                }
+                break;
+            case CheckerType.Wall:
+                if (obj.tag == "Wall")
+                {
+                    messageReceiver.GetComponent<Climber>().RegisterWallNearby(other, false);
+                }
+                break;
         }
     }
 }

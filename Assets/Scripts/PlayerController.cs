@@ -98,6 +98,7 @@ public class PlayerController : MonoBehaviour {
             }
             else
             {
+                currentSpeed = 0;
                 StopClimbing();
             }
         }        
@@ -107,6 +108,7 @@ public class PlayerController : MonoBehaviour {
         }
         else
         {
+            currentSpeed = 0;
             StopClimbing();
         }                
         UpdateAnimator();       

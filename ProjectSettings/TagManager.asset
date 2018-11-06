@@ -11,6 +11,9 @@ TagManager:
   - FloorCheck
   - trap
   - Mushroom
+  - Wall
+  - Ground
+  - Ceiling
   layers:
   - Default
   - TransparentFX

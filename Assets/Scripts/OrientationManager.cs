@@ -11,6 +11,7 @@ public class OrientationManager : MonoBehaviour {
 
     public bool LookTo(bool shouldLookRight)
     {
+        
         bool hasTurned = false;
         if (isLookingRight && !shouldLookRight)
         {

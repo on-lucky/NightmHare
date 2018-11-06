@@ -33,21 +33,22 @@ public class Climber : MonoBehaviour {
     {
         GameObject wall = other.gameObject;
 
-        if (wall.tag == "Terrain")
+        if (wall.tag == "Wall")
         {
             wallNearby = nearby;
         }
     }
 
-        public void HitWall(Collider other, bool isFront)
+    public void HitWall(Collider other, bool isFront)
     {
         GameObject wall = other.gameObject;
-        animator.SetTrigger("Climbing");
+        
 
-        if (wall.tag == "Terrain")
+        if (wall.tag == "Wall")
         {
             if (isFront)
             {
+                animator.SetTrigger("Climbing");
                 wallToFront = true;
                 GetComponent<PlayerController>().IsClimbing = true;
                 collisionSpeed = GetComponent<PlayerController>().GetCurrentSpeed();
@@ -64,7 +65,7 @@ public class Climber : MonoBehaviour {
     {
         GameObject wall = other.gameObject;
 
-        if (wall.tag == "Terrain")
+        if (wall.tag == "Wall")
         {
             GetComponent<PlayerController>().StopClimbing();
             if (isFront)

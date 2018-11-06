@@ -50,7 +50,6 @@ public class Jumper : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
         if (Input.GetKeyDown(KeyCode.Space) && !dashing.IsDashing)
         {
             // Normal Jump
@@ -125,8 +124,9 @@ public class Jumper : MonoBehaviour {
     private void WallJump(float thrust) 
     {
         rb.velocity = new Vector3(0, 0, 0);
-        rb.AddRelativeForce(new Vector3(0, 0.8f, 1f) * thrust);
+        rb.AddRelativeForce(new Vector3(0, 1f, 1f) * thrust);
         onGround = false;
+        playerController.SetCurrentSpeed(0);
 
         jumpInputCount++;
         airJumpCount = 0;
@@ -137,7 +137,7 @@ public class Jumper : MonoBehaviour {
         GameObject terrain = other.gameObject;
         GetComponent<Rigidbody>().isKinematic = false;
 
-        if (terrain.tag == "Terrain")
+        if (terrain.tag == "Ground")
         {
             animator.SetBool("AirBorn", false);
             onGround = true;
@@ -167,6 +167,7 @@ public class Jumper : MonoBehaviour {
         playerController.EnableInput(false);
         yield return new WaitForSeconds(0.5f);
         playerController.EnableInput(true);
-        playerController.SetCurrentSpeed(0.05f);
+        playerController.SetCurrentSpeed(0.14f);
+        rb.velocity = new Vector3(0, 0, 0);
     }
 }

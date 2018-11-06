@@ -60,13 +60,23 @@ public class Dashing : MonoBehaviour {
             animator.SetTrigger("Dash");
 
             particles.Play();
+
+            if (climber.WallToFront)
+            {
+                GetComponent<OrientationManager>().LookTo(!GetComponent<OrientationManager>().IsLookingRight);
+            }
         }
 		
-		if (IsDashing)
-        {
-			Dash();
-        }
+		
 	}
+
+    private void FixedUpdate()
+    {
+        if (IsDashing)
+        {
+            Dash();
+        }
+    }
 
 	private void Dash()
     {
@@ -83,11 +93,8 @@ public class Dashing : MonoBehaviour {
             // Stop dashing
             StopDashing();
         }
-
-		if (!climber.WallNearby) 
-		{
 			// Dash
-			transform.Translate(moveDirection * deltaTime);
+			transform.Translate(moveDirection);
 
 			// Air Dash
 			if (!GetComponent<Jumper>().OnGround) 
@@ -95,13 +102,16 @@ public class Dashing : MonoBehaviour {
 				// Keep height (y position) with air dash
 				transform.position = new Vector3(transform.position.x, currentYPosition, transform.position.z);
 			}
-		}
-		else 
-		{
-            // Stop dashing, we're hitting a wall
+		
+        
+    }
+
+    void OnCollisionEnter()
+    {
+        if (IsDashing)
+        {
             StopDashing();
         }
-        
     }
 
     private void StopDashing()
@@ -111,7 +121,7 @@ public class Dashing : MonoBehaviour {
         Vector3 v = GetComponent<Rigidbody>().velocity;
         v.y = 0;
         GetComponent<Rigidbody>().velocity = v;
-        if (!climber.WallNearby)
+        if (!climber.WallToFront)
         {
             playerController.SetCurrentSpeed(currentSpeed);
         }
