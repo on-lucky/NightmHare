@@ -19,6 +19,7 @@ public class Dashing : MonoBehaviour {
 	private bool canDash = true;
 	public bool IsDashing { get => isDashing; set => isDashing = value; }
 	public bool CanDash { get => canDash; set => canDash = value; }
+    public ParticleSystem particles;
 
 	// Internal variables
 	private Vector3 moveDirection;
@@ -49,7 +50,7 @@ public class Dashing : MonoBehaviour {
 			currentSpeed = DashSpeed;
 			currentYPosition = transform.position.y;
 
-            playerController.SetCurrentSpeed(0.2f);
+            GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
 
             StartCoroutine(WaitForDashCoolDown());
 
@@ -57,6 +58,8 @@ public class Dashing : MonoBehaviour {
 
             // Update animator
             animator.SetTrigger("Dash");
+
+            particles.Play();
         }
 		
 		if (IsDashing)
@@ -105,10 +108,17 @@ public class Dashing : MonoBehaviour {
     {
         IsDashing = false;
         playerController.EnableInput(true);
-        playerController.SetCurrentSpeed(currentSpeed);
         Vector3 v = GetComponent<Rigidbody>().velocity;
         v.y = 0;
         GetComponent<Rigidbody>().velocity = v;
+        if (!climber.WallNearby)
+        {
+            playerController.SetCurrentSpeed(currentSpeed);
+        }
+        else
+        {
+            playerController.SetCurrentSpeed(0f);
+        }
     }
 
 	IEnumerator WaitForDashCoolDown()
