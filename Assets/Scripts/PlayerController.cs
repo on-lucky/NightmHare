@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour {
     private OrientationManager orientationM;
     private Jumper jumper;
     private Climber climber;
-    private Dashing dashing;
     private bool inputEnabled = true;
     private AnxietyManager anxietyManager;
 
@@ -41,7 +40,6 @@ public class PlayerController : MonoBehaviour {
         orientationM = GetComponent<OrientationManager>();
         jumper = GetComponent<Jumper>();
         climber = GetComponent<Climber>();
-        dashing = GetComponent<Dashing>();
         anxietyManager = GetComponent<AnxietyManager>();
     }
 
@@ -56,12 +54,12 @@ public class PlayerController : MonoBehaviour {
         {
             if (anxietyManager != null)
             {
-                if (Input.GetKey(KeyCode.Z) && canSprint)
+                if (Input.GetKey(KeyCode.Q) && canSprint)
                 {
                     StartSprinting();
                 }
 
-                if (Input.GetKey(KeyCode.X) && canSetTrap)
+                if (Input.GetKey(KeyCode.W) && canSetTrap)
                 {
                     SetLightTrap();
                 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Digger : MonoBehaviour {
-
+    
     private bool diggingIn = false;
     private bool diggingOut = false;
 
@@ -25,9 +25,9 @@ public class Digger : MonoBehaviour {
         dashing = GetComponent<Dashing>();
     }
 
-    private void LateUpdate()
+    private void Update()
     {
-        if (diggingIn && !isAnimationPlaying("Dig"))
+        if (diggingIn && isAnimationPlaying("DigOut"))
         {
             // Teleport the player when dig in animation ends
             diggingIn = false;
@@ -42,8 +42,8 @@ public class Digger : MonoBehaviour {
             // FIX: Change z plane in player controller
             controller.SetZPos(transform.position.z);
 
-            // REENABLE EVERYTHINNNNG
-            EnableScripts(true);
+            // reenable player controls
+            SetScriptsEnabled(true);
         }
     }
 
@@ -52,18 +52,19 @@ public class Digger : MonoBehaviour {
         return animator.GetCurrentAnimatorStateInfo(0).IsName(name);
     }
 
-    public void Dig(Burrow origin, Burrow end)
+    public void Dig(Burrow origin, Burrow destination)
     {
-        if (!diggingIn)
+        if (!diggingIn && !diggingOut)
         {
             this.origin = origin;
-            this.destination = end;
+            this.destination = destination;
 
-            // DISABLE EVERYTHINNNNG
-            EnableScripts(false);
+            // disable player controls and stop movement
+            SetScriptsEnabled(false);
+            controller.SetCurrentSpeed(0);
+            rb.velocity = Vector3.zero;
 
             // Move player to center of burrow for better effect
-            rb.velocity = Vector3.zero;
             Vector3 pos = transform.position;
             Vector3 originPos = origin.transform.position;
             transform.position = new Vector3(originPos.x, pos.y, originPos.z);
@@ -104,7 +105,7 @@ public class Digger : MonoBehaviour {
         CameraFollower.instance.SlideTo(new Vector3(destinationPos.x, destinationPos.y + deltaCamY, posCamZ));
     }
 
-    private void EnableScripts(bool enable)
+    private void SetScriptsEnabled(bool enable)
     {
         controller.enabled = enable;
         jumper.enabled = enable;
