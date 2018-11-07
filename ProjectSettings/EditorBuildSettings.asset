@@ -11,4 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Gym_9.unity
     guid: ef7304d7adafec14a8fd4daeac0b4f96
+  - enabled: 1
+    path: Assets/Scenes/Gym_4.unity
+    guid: b018233573582e9409481d6b69351545
+  - enabled: 1
+    path: Assets/Scenes/Gym_6.unity
+    guid: 8fb6ab6eba90456469cfd2e20ba43062
+  - enabled: 1
+    path: Assets/Scenes/Gym_10.unity
+    guid: 31bd2dc774124c743988479b24fd7e51
   m_configObjects: {}
