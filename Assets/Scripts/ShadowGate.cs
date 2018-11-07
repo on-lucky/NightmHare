@@ -36,12 +36,6 @@ public class ShadowGate : MonoBehaviour {
 
     private void ShowPassageEffect(GameObject hare)
     {
-        float direction = -1;
-        if(hare.transform.position.x > transform.position.x)
-        {
-            direction = 1;
-        }
-
         if (passageEffect)
         {
             Instantiate(passageEffect, hare.transform.position, hare.transform.rotation);
