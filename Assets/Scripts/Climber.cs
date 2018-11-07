@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Climber : MonoBehaviour {
 
-    public float speedConversionRatio = 0.6f;
-    public float decelerationRate = 0.005f;
+    public float speedConversionRatio = 0.4f;
+    public float decelerationRate = 0.001f;
 
     private float currentUpwardSpeed = 0;
     private float collisionSpeed = 0;
 
     private bool wallToBack = false;
-    public bool wallToFront = false;
-    public bool wallNearby = false;
+    private bool wallToFront = false;
+    private bool wallNearby = false;
 
     public bool WallNearby { get => wallNearby; set => wallNearby = value; }
     public bool WallToBack { get => wallToBack; set => wallToBack = value; }
