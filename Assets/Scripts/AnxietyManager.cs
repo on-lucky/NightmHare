@@ -25,18 +25,14 @@ public class AnxietyManager : MonoBehaviour {
         hare = GameObject.Find("Hare");        
         anxietySlider = GameObject.Find("AnxietyBar").GetComponent<Slider>();
         veilOriginalDimension = Screen.width * 2.5f;
-        try
-        {
-            veil = GameObject.Find("Veil").GetComponent<RawImage>();
-            veil.rectTransform.sizeDelta = new Vector2(veilOriginalDimension, veilOriginalDimension);
-        }
-        catch
-        {
-
-        }        
         currentAnxiety = 0;
-        veil.rectTransform.sizeDelta = new Vector2(veilOriginalDimension, veilOriginalDimension);
-        veil.color = new Vector4(veil.color.r, veil.color.g, veil.color.b, (1.5f * currentAnxiety) / maxAnxiety);
+        GameObject veilGo = GameObject.Find("Veil");
+        if (veilGo != null)
+        {
+            veil = veilGo.GetComponent<RawImage>();
+            veil.rectTransform.sizeDelta = new Vector2(veilOriginalDimension, veilOriginalDimension);
+            veil.color = new Vector4(veil.color.r, veil.color.g, veil.color.b, (1.5f * currentAnxiety) / maxAnxiety);
+        }
     }    
 
     // Update is called once per frame
