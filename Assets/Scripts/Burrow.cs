@@ -59,6 +59,7 @@ public class Burrow : MonoBehaviour {
         {
             if (playerInRange && teleportationEnabled && !locked)
             {
+                teleportationEnabled = false;
                 digger.Dig(this, end);
             }
         }

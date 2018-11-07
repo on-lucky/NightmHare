@@ -4,9 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LifeManager : MonoBehaviour {
-
-    [SerializeField]
-    private string sceneName = "";
+    
     [SerializeField]
     private ParticleSystem deathParticles;
     [SerializeField]
@@ -14,14 +12,14 @@ public class LifeManager : MonoBehaviour {
     [SerializeField]
     private GameObject armature;    
 
-    private SkinnedMeshRenderer renderer;
+    private SkinnedMeshRenderer hareRenderer;
 
     private Rigidbody rb;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        renderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        hareRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         Spawn();        
     }
 
@@ -59,19 +57,19 @@ public class LifeManager : MonoBehaviour {
     IEnumerator waitAndLoad(float timeToWait)
     {
         yield return new WaitForSeconds(timeToWait);
-        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void Spawn(){
         GetComponent<PlayerController>().enabled = false;
-        renderer.enabled = false;
+        hareRenderer.enabled = false;
         StartCoroutine(waitAndEnable(1f));        
     }
 
     IEnumerator waitAndEnable(float timeToWait)
     {
         yield return new WaitForSeconds(timeToWait);
-        renderer.enabled = true;
+        hareRenderer.enabled = true;
         armature.SetActive(true);
         GetComponent<PlayerController>().enabled = true;
         hareParticles.Play();
