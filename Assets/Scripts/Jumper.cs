@@ -34,6 +34,7 @@ public class Jumper : MonoBehaviour {
     private bool onGround = false;
     private bool isJumping = false;
     private int jumpInputCount = 0;
+    private bool canJump = true;
 
     public bool OnGround { get => onGround; set => onGround = value; }
     public bool IsJumping { get => isJumping; set => isJumping = value; }
@@ -50,7 +51,7 @@ public class Jumper : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.Space) && !dashing.IsDashing)
+        if (Input.GetKeyDown(KeyCode.Space) && !dashing.IsDashing && canJump)
         {
             // Normal Jump
             if (onGround)
@@ -160,6 +161,18 @@ public class Jumper : MonoBehaviour {
     public void resetAirJumpCount()
     {
         airJumpCount = 0;
+    }
+
+    public void DisableJump(float duration)
+    {
+        StartCoroutine(WaitForJump(duration));
+    }
+
+    IEnumerator WaitForJump(float duration)
+    {
+        canJump = false;
+        yield return new WaitForSeconds(duration);
+        canJump = true;
     }
 
     IEnumerator WaitForWallJump()
