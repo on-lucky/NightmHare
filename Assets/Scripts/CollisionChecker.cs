@@ -15,6 +15,8 @@ public class CollisionChecker : MonoBehaviour {
     public CheckerType type;
 
     public GameObject messageReceiver;
+
+    private int groundIndex = 0;
     
 
     void OnTriggerEnter(Collider other)
@@ -25,6 +27,7 @@ public class CollisionChecker : MonoBehaviour {
             case CheckerType.Ground:
                 if (obj.tag == "Ground")
                 {
+                    groundIndex++;
                     messageReceiver.GetComponent<Jumper>().Land(other);
                 }
                 break;
@@ -58,7 +61,10 @@ public class CollisionChecker : MonoBehaviour {
             case CheckerType.Ground:
                 if (obj.tag == "Ground")
                 {
-                    messageReceiver.GetComponent<Jumper>().Fall();
+                    groundIndex--;
+                    if(groundIndex == 0){
+                        messageReceiver.GetComponent<Jumper>().Fall();
+                    }
                 }
                 break;
             case CheckerType.FrontWall:
