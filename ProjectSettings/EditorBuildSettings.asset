@@ -5,19 +5,22 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Gym_9.unity
     guid: ef7304d7adafec14a8fd4daeac0b4f96
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Gym_4.unity
     guid: b018233573582e9409481d6b69351545
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Gym_6.unity
     guid: 8fb6ab6eba90456469cfd2e20ba43062
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Gym_10.unity
     guid: 31bd2dc774124c743988479b24fd7e51
+  - enabled: 1
+    path: Assets/Scenes/Visual Test Scene.unity
+    guid: 8e54d665cc46efd499f0366ea32dc22f
   m_configObjects: {}
