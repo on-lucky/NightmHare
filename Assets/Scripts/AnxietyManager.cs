@@ -5,12 +5,13 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class AnxietyManager : MonoBehaviour {
-    [SerializeField] private float maxAnxiety = 100;                            
-    private float currentAnxiety = 0;                              
-    private Slider anxietySlider;    
+    private float maxAnxiety = 100;                            
+    private float currentAnxiety = 0;                                  
+    public RectTransform anxietyBar;
     [SerializeField] private float sprintAnxietyLevel;
     [SerializeField] private float trapAnxietyLevel;
     private RawImage veil;
+    [SerializeField] private float veilFactor = 1.0f;
     private float veilOriginalDimension;
 
     GameObject hare;
@@ -22,9 +23,10 @@ public class AnxietyManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        hare = GameObject.Find("Hare");        
-        anxietySlider = GameObject.Find("AnxietyBar").GetComponent<Slider>();
+        hare = GameObject.Find("Hare");               
+        anxietyBar = GameObject.Find("Foreground").GetComponent<Image>().rectTransform;
         veilOriginalDimension = Screen.width * 2.5f;
+        maxAnxiety = anxietyBar.sizeDelta.x;
         currentAnxiety = 0;
         GameObject veilGo = GameObject.Find("Veil");
         if (veilGo != null)
@@ -57,13 +59,13 @@ public class AnxietyManager : MonoBehaviour {
             if (currentAnxiety < 0)
             {
                 currentAnxiety = 0;
-            }        
-            anxietySlider.value = currentAnxiety;
+            }                          
+            anxietyBar.sizeDelta = new Vector2(currentAnxiety, anxietyBar.sizeDelta.y);
             if (veil != null)
             {
                 if (currentAnxiety / maxAnxiety < 0.6)
                 {
-                    float dimension = veilOriginalDimension * (1 - currentAnxiety / maxAnxiety);
+                    float dimension = veilOriginalDimension * (1 - (currentAnxiety * veilFactor) / maxAnxiety);
                     veil.rectTransform.sizeDelta = new Vector2(dimension, dimension);
                 }
                 veil.color = new Vector4(veil.color.r, veil.color.g, veil.color.b, (1.5f * currentAnxiety) / maxAnxiety);

@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Burrow : MonoBehaviour {
+public class MasterBurrow : MonoBehaviour {
 
     // Other end of the burrow
     [SerializeField]
-    private Burrow end;
+    private MasterBurrow end;
 
     // Whether the burrow is locked or not
     [SerializeField]
-    private bool locked = false;
+    private int locks = 0;
 
     // If the player is on top of the burrow
     private bool playerInRange = false;
@@ -32,9 +32,8 @@ public class Burrow : MonoBehaviour {
     [SerializeField]
     private Material awayMaterial;
 
-    // Material for when the burrow is locked
     [SerializeField]
-    private Material lockedMaterial;
+    private Material[] lockedMaterials;
 
     [SerializeField]
     private Hinter hinter;
@@ -44,21 +43,22 @@ public class Burrow : MonoBehaviour {
         FadeArrow(true);
         floater = transform.Find("Floater").GetComponent<MeshRenderer>();
         floater.enabled = end != null;
+        locks = lockedMaterials.Length;
     }
 
     void Update() {
         // Update floater material
-        if (!locked)
+        if (Locked())
         {
-            FadeArrow(!playerInRange);
+            floater.material = lockedMaterials[locks - 1];
         } else
         {
-            floater.material = lockedMaterial;
+            FadeArrow(!playerInRange);
         }
 
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            if (end && playerInRange && teleportationEnabled && !locked)
+            if (end && playerInRange && teleportationEnabled && !Locked())
             {
                 teleportationEnabled = false;
                 digger.Dig(this, end);
@@ -75,7 +75,7 @@ public class Burrow : MonoBehaviour {
     {
         GameObject go = other.gameObject;
         Digger digger = go.GetComponent<Digger>();
-        if (!locked && digger)
+        if (!Locked() && digger)
         {
             this.digger = digger;
             playerInRange = true;
@@ -90,7 +90,7 @@ public class Burrow : MonoBehaviour {
     {
         GameObject go = other.gameObject;
         Digger digger = go.GetComponent<Digger>();
-        if (!locked && digger)
+        if (!Locked() && digger)
         {
             playerInRange = false;
             teleportationEnabled = true;
@@ -119,14 +119,18 @@ public class Burrow : MonoBehaviour {
 
     public void DisableTeleportation() { teleportationEnabled = false; }
 
-    public void Lock() { locked = true; }
+    public void Lock() { locks++; }
 
     public void Unlock(bool both = true) {
-        locked = false;
+        locks--;
         if (both)
         {
             end.Unlock(false);
         }
     }
     
+    private bool Locked()
+    {
+        return locks > 0;
+    }
 }
