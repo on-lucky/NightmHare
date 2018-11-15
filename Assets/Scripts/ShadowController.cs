@@ -16,7 +16,8 @@ public class ShadowController : MonoBehaviour {
     private float timeBetweenReading = -1f;
     private GameObject[] traps;
     [SerializeField] private int trapDuration;
-    [SerializeField] private float slowRatio;    
+    [SerializeField] private float slowRatio;
+    [SerializeField] private ParticleSystem deathParticles;
 
     public void setObjToFollow(GameObject value)
     {
@@ -89,5 +90,23 @@ public class ShadowController : MonoBehaviour {
         yield return new WaitForSeconds(trapDuration);
         animator.speed = 1;
         speedRatio = speedRatio/slowRatio;       
+    }
+
+    public void Die()
+    {
+        GetComponent<Rigidbody>().isKinematic = true;
+        StopFollowing();
+
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(false);
+        }
+
+        if (deathParticles)
+        {
+            deathParticles = Instantiate(deathParticles, this.transform.position, this.transform.rotation);
+            deathParticles.Play();
+        }
+        Destroy(gameObject);
     }
 }
