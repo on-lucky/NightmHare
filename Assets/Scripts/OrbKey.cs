@@ -7,9 +7,9 @@ public class OrbKey : MonoBehaviour {
 
     private Vector3 origin;
 
-    // The burrow to unlock
+    // The burrow's LockManager
     [SerializeField]
-    private Burrow burrow;
+    private LockManager lockManager;
     private Vector3 destination;
 
     // The speed to reach the burrow
@@ -30,7 +30,7 @@ public class OrbKey : MonoBehaviour {
     void Start()
     {
         origin = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        destination = burrow.transform.position;
+        destination = lockManager.transform.position;
         GetCurve2D();
     }
 
@@ -45,7 +45,7 @@ public class OrbKey : MonoBehaviour {
 
             Vector3 pos = transform.position;
             if (Mathf.Abs(pos.x - destination.x) <= 0.5) {
-                burrow.Unlock();
+                lockManager.Unlock();
                 Destroy(gameObject);
             } else
             {
