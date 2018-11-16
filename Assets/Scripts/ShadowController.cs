@@ -57,6 +57,7 @@ public class ShadowController : MonoBehaviour {
     public void StartFollowing(float timeToWait)
     {
         StartCoroutine(waitAndFollow(timeToWait));
+        
     }
 
     public void StopFollowing()
@@ -69,6 +70,7 @@ public class ShadowController : MonoBehaviour {
         yield return new WaitForSeconds(timeToWait);
         EnableShadowVisuals();
         isFollowing = true;
+        GetComponent<BoxCollider>().enabled = true;
     }
 
     public void EnableShadowVisuals() {
