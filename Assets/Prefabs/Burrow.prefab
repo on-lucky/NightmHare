@@ -273,10 +273,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {fileID: 0}
-  locked: 0
   inRangeMaterial: {fileID: 2100000, guid: 690fca35935b9774e974cb3e4d3c6abb, type: 2}
   awayMaterial: {fileID: 2100000, guid: 17b232fccf84b5245a14fe28b1c6a34f, type: 2}
   lockedMaterial: {fileID: 2100000, guid: d22d72fcc0c498a40b85354476cb0779, type: 2}
+  hinter: {fileID: 0}
 --- !u!114 &114863286389589532
 MonoBehaviour:
   m_ObjectHideFlags: 1
