@@ -18,16 +18,17 @@ public class ShadowGate : MonoBehaviour {
     {
         GameObject hare = other.gameObject;
 
-        if (hare.tag == "Player") {
-            ShowPassageEffect(hare);
+        if (hare.tag == "Player") {  
 
             if (!gateUsed) {
+                ShowPassageEffect(hare);
                 hare.GetComponent<StateRecorder>().StartRecording();
 
-                GameObject shadowObject = Instantiate(shadow, this.transform);
+                GameObject shadowObject = Instantiate(shadow, hare.transform.position, hare.transform.rotation);
 
                 shadowObject.GetComponent<ShadowController>().setObjToFollow(hare);
-                shadowObject.GetComponent<ShadowController>().StartFollowing(initialDelay);                                
+                shadowObject.GetComponent<ShadowController>().StartFollowing(initialDelay);
+                DestroyGate();
                 gateUsed = true;
             }
         }
@@ -40,5 +41,15 @@ public class ShadowGate : MonoBehaviour {
         {
             Instantiate(passageEffect, hare.transform.position, hare.transform.rotation);
         }
+    }
+
+    private void DestroyGate()
+    {
+        ParticleSystem[] systems = GetComponentsInChildren<ParticleSystem>();
+        foreach (ParticleSystem system in systems)
+        {
+            system.Stop();
+        }
+        Destroy(gameObject, 3f);
     }
 }

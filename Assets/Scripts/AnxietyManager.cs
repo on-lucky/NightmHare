@@ -24,7 +24,7 @@ public class AnxietyManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         hare = GameObject.Find("Hare");               
-        anxietyBar = GameObject.Find("Foreground").GetComponent<Image>().rectTransform;
+        anxietyBar = GameObject.Find("AnxietyLevel").GetComponent<Image>().rectTransform;
         veilOriginalDimension = Screen.width * 2.5f;
         maxAnxiety = anxietyBar.sizeDelta.x;
         currentAnxiety = 0;

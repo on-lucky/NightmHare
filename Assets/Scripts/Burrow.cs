@@ -9,7 +9,6 @@ public class Burrow : MonoBehaviour {
     private Burrow end;
 
     // Whether the burrow is locked or not
-    [SerializeField]
     private bool locked = false;
 
     // If the player is on top of the burrow
@@ -103,7 +102,6 @@ public class Burrow : MonoBehaviour {
 
     private void FadeArrow(bool shouldFade)
     {
-        
         if (floater != null)
         {
             if (shouldFade)
@@ -127,6 +125,10 @@ public class Burrow : MonoBehaviour {
         {
             end.Unlock(false);
         }
+    }
+
+    public void SetLockMaterial(Material material) {
+        lockedMaterial = material;
     }
     
 }

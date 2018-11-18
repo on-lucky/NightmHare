@@ -77,11 +77,6 @@ public class Digger : MonoBehaviour {
         // else finish digging first
     }
 
-    public void Dig(MasterBurrow origin, MasterBurrow destination)
-    {
-
-    }
-
     public void Teleport()
     {
         // Disable other burrow to avoid loops
