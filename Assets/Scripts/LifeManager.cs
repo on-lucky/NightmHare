@@ -25,11 +25,15 @@ public class LifeManager : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        GameObject shadow = other.gameObject;
+        GameObject obj = other.gameObject;
 
-        if (shadow.tag == "Shadow")
+        if (obj.tag == "Shadow")
         {
-            shadow.GetComponent<ShadowController>().StopFollowing();
+            obj.GetComponent<ShadowController>().StopFollowing();
+            Die();
+        }
+        else if (obj.tag == "hazard")
+        {
             Die();
         }
     }
