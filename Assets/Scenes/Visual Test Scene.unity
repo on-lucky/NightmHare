@@ -4576,23 +4576,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1357229991610396, guid: 30769cf34e64af34f9ed2821ae609f93, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1956344180556220, guid: 30769cf34e64af34f9ed2821ae609f93, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1232197597642418, guid: 30769cf34e64af34f9ed2821ae609f93, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1187043151047450, guid: 30769cf34e64af34f9ed2821ae609f93, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1718479622587656, guid: 30769cf34e64af34f9ed2821ae609f93, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30769cf34e64af34f9ed2821ae609f93, type: 2}
@@ -6986,23 +6986,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1956344180556220, guid: 30769cf34e64af34f9ed2821ae609f93, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1187043151047450, guid: 30769cf34e64af34f9ed2821ae609f93, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1357229991610396, guid: 30769cf34e64af34f9ed2821ae609f93, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1718479622587656, guid: 30769cf34e64af34f9ed2821ae609f93, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1232197597642418, guid: 30769cf34e64af34f9ed2821ae609f93, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30769cf34e64af34f9ed2821ae609f93, type: 2}
