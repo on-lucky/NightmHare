@@ -8,7 +8,7 @@ public class Floater : MonoBehaviour {
 
     public float floatingSpeed = 0.5f;
 
-    public float rotationSpeed = 180;
+    public float rotationSpeed = 0;
 
     private float intitialHeight;
 
