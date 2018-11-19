@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class LightGate : MonoBehaviour {
 
+    private bool gateUsed = false;
+
+    void Start()
+    {
+        SpawnManager.instance.RegisterLightGate(this);
+    }
+
     [SerializeField]
     private GameObject harePassageEffect;
 
@@ -11,7 +18,7 @@ public class LightGate : MonoBehaviour {
     {
         GameObject hare = other.gameObject;
 
-        if (hare.tag == "Player")
+        if (hare.tag == "Player" && !gateUsed)
         {
             ShowHarePassageEffect(hare);
         }
@@ -23,6 +30,7 @@ public class LightGate : MonoBehaviour {
 
         if (hare.tag == "Shadow")
         {
+            gateUsed = true;
             ShowShadowPassageEffect(hare);
         }
     }
@@ -43,6 +51,16 @@ public class LightGate : MonoBehaviour {
             system.Stop();
         }
         shadow.GetComponent<ShadowController>().Die();
-        Destroy(gameObject, 2f);
+        //Destroy(gameObject, 2f);
+    }
+
+    public void RestartGate()
+    {
+        gateUsed = false;
+        ParticleSystem[] systems = GetComponentsInChildren<ParticleSystem>();
+        foreach (ParticleSystem system in systems)
+        {
+            system.Play();
+        }
     }
 }
