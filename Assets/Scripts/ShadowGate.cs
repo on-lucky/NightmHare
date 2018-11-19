@@ -5,14 +5,46 @@ using UnityEngine;
 public class ShadowGate : MonoBehaviour {
 
     public GameObject shadow;
+    public float deathTime = 5f;
+    public ParticleSystem ps;
 
     private bool gateUsed = false;
+    private bool dying = false;
+    private float currentTime = 0f;
+    private float initialEmmission;
+    
 
     [SerializeField]
     private float initialDelay = 2f;
 
     [SerializeField]
     private GameObject passageEffect;
+
+    void Start()
+    {
+        initialEmmission = ps.emission.rateOverTime.constant;
+    }
+
+    void FixedUpdate()
+    {
+        if (dying)
+        {
+            currentTime += Time.deltaTime;
+
+            if(currentTime >= deathTime)
+            {
+                ps.Stop();
+                dying = false;
+            }
+            else
+            {
+                float multiplier = initialEmmission * ( 1 - (currentTime / deathTime));
+                Debug.Log(multiplier);
+                var emission = ps.emission;
+                emission.rateOverTime = (int)multiplier;
+            }
+        }
+    }
 
     void OnTriggerExit(Collider other)
     {
@@ -50,6 +82,7 @@ public class ShadowGate : MonoBehaviour {
         {
             system.Stop();
         }
-        Destroy(gameObject, 3f);
+        dying = true;
+        Destroy(gameObject, deathTime + 5f);
     }
 }
