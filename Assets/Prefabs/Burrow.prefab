@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 4865469043835628}
   - component: {fileID: 65101293575542052}
   - component: {fileID: 114679029655863764}
+  - component: {fileID: 114307805321068328}
   m_Layer: 10
   m_Name: Burrow
   m_TagString: Ground
@@ -156,7 +157,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1268786113997952}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.210001, y: -0.03, z: 0}
+  m_LocalPosition: {x: 6, y: -0.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4145886857791132}
@@ -261,6 +262,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.2248149, z: 1}
   m_Center: {x: 0, y: 0.11240745, z: 0}
+--- !u!114 &114307805321068328
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1268786113997952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81ed1b1eec375a54894b275674e724af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockedMaterials: []
 --- !u!114 &114679029655863764
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -290,6 +303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floatingHeight: 0.2
   floatingSpeed: 1.5
+  rotationSpeed: 0
 --- !u!154 &154193558888621146
 TerrainCollider:
   m_ObjectHideFlags: 1
