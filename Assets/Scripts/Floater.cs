@@ -24,7 +24,6 @@ public class Floater : MonoBehaviour {
 	void FixedUpdate () {
         timer += Time.deltaTime * floatingSpeed;
         transform.position = new Vector3(transform.position.x, floatingHeight * Mathf.Sin(timer) + intitialHeight, transform.position.z);
-        Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z + rotationSpeed);
         transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime, Space.World);
     }
 }
