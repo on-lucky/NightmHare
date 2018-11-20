@@ -15,11 +15,13 @@ public class Bouncer : MonoBehaviour {
     private float a;
     private float currentTime = 0f;
 
+    private bool canBounce = true;
+
     // Use this for initialization
     void Start () {
         spores = this.gameObject.GetComponentInChildren<ParticleSystem>();
         spores.Pause();
-        shroomTransform = transform.root;
+        shroomTransform = transform.parent;
         startShroomSize = shroomTransform.localScale.y;
         FindA();
     }
@@ -55,15 +57,32 @@ public class Bouncer : MonoBehaviour {
     {
         if (c.gameObject.name == "Hare")
         {
-            Vector3 velocity = c.gameObject.GetComponent<Rigidbody>().velocity;
+            Rigidbody hareBody = c.gameObject.GetComponent<Rigidbody>();
+            Vector3 velocity = hareBody.velocity;
             velocity.y = 0;
-            c.gameObject.GetComponent<Rigidbody>().velocity = velocity;            
-            c.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0, 1, 0)  * force);
+            hareBody.AddForce(this.transform.up  * force);
+            hareBody.velocity = velocity;            
             c.gameObject.GetComponent<Jumper>().resetAirJumpCount();           
             spores.Play();
             bouncing = true;
             currentTime = 0;
+            if (this.transform.up.x > 0)
+            {
+                c.gameObject.GetComponent<OrientationManager>().LookTo(true);                
+            }
+            else if (this.transform.up.x < 0)
+            {
+                c.gameObject.GetComponent<OrientationManager>().LookTo(false);
+            }
             c.gameObject.GetComponent<Jumper>().DisableJump(0.5f);
+            StartCoroutine(RefreshBounceCooldown());
         }
+    }
+
+    IEnumerator RefreshBounceCooldown()
+    {
+        canBounce = false;
+        yield return new WaitForSeconds(0.5f);
+        canBounce = true;
     }
 }
