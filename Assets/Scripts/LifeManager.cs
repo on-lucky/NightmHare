@@ -10,11 +10,22 @@ public class LifeManager : MonoBehaviour {
     [SerializeField]
     private ParticleSystem hareParticles;
     [SerializeField]
+    private ParticleSystem spawnParticles;
+    [SerializeField]
+    private float timeLossRatioOnSpike = 0.9f;
+
+    [SerializeField]
     private GameObject armature;    
 
     private SkinnedMeshRenderer hareRenderer;
 
     private Rigidbody rb;
+
+    private bool isSpike = false;
+    private bool shadowExists = false;
+    private Vector3 spawnPos;
+    private float spawnDelay;
+    private bool dead = false;
 
     private void Start()
     {
@@ -27,23 +38,44 @@ public class LifeManager : MonoBehaviour {
     {
         GameObject obj = other.gameObject;
 
-        if (obj.tag == "Shadow")
+        if (!dead)
         {
-            obj.GetComponent<ShadowController>().StopFollowing();
-            Die();
-        }
-        else if (obj.tag == "hazard")
-        {
-            Die();
+            if (obj.tag == "Shadow")
+            {
+                ShadowController.instance.StopFollowing();
+                ShadowController.instance.Die();
+                isSpike = false;
+                spawnPos = SpawnManager.instance.GetSpawnPoint();
+                Die();
+            }
+            else if (obj.tag == "hazard")
+            {
+                if (ShadowController.instance != null)
+                {
+                    ShadowController.instance.StopFollowing();
+                    ShadowController.instance.Die();
+                    shadowExists = true;
+                }
+                else
+                {
+                    shadowExists = false;
+                }
+
+                isSpike = true;
+                spawnPos = SpawnManager.instance.GetSpikeSpawnPoint();
+                Die();
+            }
         }
     }
 
     private void Die()
     {
+        dead = true;
         rb.isKinematic = true;
+        GetComponent<PlayerController>().SetCurrentSpeed(0);
         GetComponent<PlayerController>().enabled = false;
         GetComponent<StateRecorder>().StopRecording();
-
+        
 
         foreach (Transform child in transform)
         {
@@ -52,10 +84,18 @@ public class LifeManager : MonoBehaviour {
 
         if (deathParticles)
         {
-            Instantiate(deathParticles, this.transform);
-            deathParticles.Play();
+            ParticleSystem death = Instantiate(deathParticles, this.transform);
+            death.Play();
         }
-        StartCoroutine(waitAndLoad(3f));
+        StartCoroutine(waitAndRespawn(3f)); 
+    }
+
+    IEnumerator waitAndRespawn(float timeToWait)
+    {
+        spawnDelay = GetComponent<StateRecorder>().GetDelay() * timeLossRatioOnSpike;
+        GetComponent<StateRecorder>().ResetMomentStates();
+        yield return new WaitForSeconds(timeToWait);
+        Spawn(true);
     }
 
     IEnumerator waitAndLoad(float timeToWait)
@@ -64,18 +104,42 @@ public class LifeManager : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    private void Spawn(){
+    private void Spawn(bool shouldTeleport = false){
+
+        if (shouldTeleport)
+        {
+            transform.position = spawnPos;
+        }
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(true);
+        }
+        if (!isSpike)
+        {
+            SpawnManager.instance.RestartGates();
+        }
+        
+        armature.SetActive(false);
         GetComponent<PlayerController>().enabled = false;
         hareRenderer.enabled = false;
-        StartCoroutine(waitAndEnable(1f));        
+        spawnParticles.Play();
+        StartCoroutine(waitAndEnable(1f));
     }
 
     IEnumerator waitAndEnable(float timeToWait)
     {
         yield return new WaitForSeconds(timeToWait);
+        dead = false;
         hareRenderer.enabled = true;
         armature.SetActive(true);
         GetComponent<PlayerController>().enabled = true;
         hareParticles.Play();
+        if (isSpike && shadowExists)
+        {
+            GetComponent<StateRecorder>().StartRecording();
+            GetComponent<ShadowFactory>().SpawnShadow(spawnPos, spawnDelay);
+        }
     }
+
+    
 }

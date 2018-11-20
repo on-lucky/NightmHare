@@ -5,32 +5,39 @@ using UnityEngine;
 public class ShadowFactory : MonoBehaviour {
 
     [SerializeField] GameObject shadow;
-    GameObject hare;
+
+    [SerializeField] private float shadowDelay;
+
     // Use this for initialization
     void Start () {
-        hare = GameObject.Find("Hare");
+        //hare = GameObject.Find("Hare");
         //StartCoroutine(InstantiateShadow());
-        hare.GetComponent<StateRecorder>().StartRecording();                
-        shadow = Instantiate(shadow, new Vector3(3,0.2f,0), hare.transform.rotation);
-        shadow.GetComponent<ShadowController>().setObjToFollow(hare);
-        shadow.GetComponent<ShadowController>().EnableShadowVisuals();
+        //hare.GetComponent<StateRecorder>().StartRecording();                
+        //shadow = Instantiate(shadow, new Vector3(3,0.2f,0), hare.transform.rotation);
+        
+        //shadow.GetComponent<ShadowController>().EnableShadowVisuals();
         //shadow.transform.position = new Vector3(-3, 0, 0);
     }
 
-    IEnumerator InstantiateShadow()
-    {        
-        hare.GetComponent<StateRecorder>().StartRecording();
-        GameObject temp = new GameObject();
-        temp.transform.position = new Vector3(5, 1, 0);
-        shadow = Instantiate(shadow, temp.transform);
-        shadow.GetComponent<ShadowController>().setObjToFollow(hare);
-        shadow.GetComponent<ShadowController>().EnableShadowVisuals();
-        yield return new WaitForSeconds(3);
-        shadow.GetComponent<ShadowController>().StopFollowing();        
+    IEnumerator InstantiateShadow(Vector3 pos, float delay)
+    {
+        if (ShadowController.instance == null)
+        {
+            GetComponent<StateRecorder>().StartRecording();
+            yield return new WaitForSeconds(shadowDelay);
+            GameObject shadowObj = Instantiate(shadow, pos, transform.rotation);
+            shadowObj.GetComponent<BoxCollider>().enabled = false;
+            shadowObj.GetComponent<ShadowController>().setObjToFollow(this.gameObject);
+            shadowObj.GetComponent<ShadowController>().StartFollowing(Mathf.Max(delay, shadowDelay));
+        }
     }
 
-    // Update is called once per frame
-    void Update () {
-        
+    public void SpawnShadow(Vector3 pos, float delay)
+    {
+        GetComponent<StateRecorder>().StartRecording();
+        GameObject shadowObj = Instantiate(shadow, pos, transform.rotation);
+        shadowObj.GetComponent<BoxCollider>().enabled = false;
+        shadowObj.GetComponent<ShadowController>().setObjToFollow(this.gameObject);
+        shadowObj.GetComponent<ShadowController>().StartFollowing(Mathf.Max(delay, shadowDelay));
     }
 }

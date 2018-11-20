@@ -69,4 +69,9 @@ public class StateRecorder : MonoBehaviour
     {
         return momentCaptures.Dequeue();
     }
+
+    public float GetDelay()
+    {
+        return timeBetweenRecording * MomentCaptures.Count;
+    }
 }

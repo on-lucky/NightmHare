@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ShadowController : MonoBehaviour {
 
+    public static ShadowController instance;
+
     private GameObject objToFollow;
 
     private bool isFollowing = false;
@@ -19,7 +21,20 @@ public class ShadowController : MonoBehaviour {
     [SerializeField] private float slowRatio;
     [SerializeField] private ParticleSystem deathParticles;
 
-    public void setObjToFollow(GameObject value)
+    void Awake()
+    {
+        if (ShadowController.instance == null)
+        {
+            ShadowController.instance = this;
+        }
+        else
+        {
+            Debug.LogError("More than one ShadowController in the scene!");
+        }
+       
+    }
+
+        public void setObjToFollow(GameObject value)
     {
         objToFollow = value;
         timeBetweenReading = objToFollow.GetComponent<StateRecorder>().TimeBetweenRecording;
@@ -28,7 +43,7 @@ public class ShadowController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         animator = GetComponentInChildren<Animator>();
-        
+        GetComponent<BoxCollider>().enabled = false;
         orientationManager = GetComponentInChildren<OrientationManager>();
     }
 	
@@ -109,6 +124,7 @@ public class ShadowController : MonoBehaviour {
             deathParticles = Instantiate(deathParticles, this.transform.position, this.transform.rotation);
             deathParticles.Play();
         }
+        ShadowController.instance = null;
         Destroy(gameObject);
     }
 }

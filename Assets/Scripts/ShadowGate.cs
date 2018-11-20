@@ -23,6 +23,7 @@ public class ShadowGate : MonoBehaviour {
     void Start()
     {
         initialEmmission = ps.emission.rateOverTime.constant;
+        SpawnManager.instance.RegisterShadowGate(this);
     }
 
     void FixedUpdate()
@@ -39,7 +40,6 @@ public class ShadowGate : MonoBehaviour {
             else
             {
                 float multiplier = initialEmmission * ( 1 - (currentTime / deathTime));
-                Debug.Log(multiplier);
                 var emission = ps.emission;
                 emission.rateOverTime = (int)multiplier;
             }
@@ -82,7 +82,17 @@ public class ShadowGate : MonoBehaviour {
         {
             system.Stop();
         }
-        dying = true;
-        Destroy(gameObject, deathTime + 5f);
+        //dying = true;
+        //Destroy(gameObject, deathTime + 5f);
+    }
+
+    public void RestartGate()
+    {
+        ParticleSystem[] systems = GetComponentsInChildren<ParticleSystem>();
+        foreach (ParticleSystem system in systems)
+        {
+            system.Play();
+        }
+        gateUsed = false;
     }
 }

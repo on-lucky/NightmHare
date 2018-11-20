@@ -8,6 +8,8 @@ public class Floater : MonoBehaviour {
 
     public float floatingSpeed = 0.5f;
 
+    public float rotationSpeed = 0;
+
     private float intitialHeight;
 
     private float timer = 0;
@@ -22,5 +24,6 @@ public class Floater : MonoBehaviour {
 	void FixedUpdate () {
         timer += Time.deltaTime * floatingSpeed;
         transform.position = new Vector3(transform.position.x, floatingHeight * Mathf.Sin(timer) + intitialHeight, transform.position.z);
+        transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime, Space.World);
     }
 }
