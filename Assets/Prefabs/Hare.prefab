@@ -420,6 +420,7 @@ GameObject:
   - component: {fileID: 114565302483138174}
   - component: {fileID: 114896545492835912}
   - component: {fileID: 114467780961291544}
+  - component: {fileID: 114783249295809826}
   m_Layer: 0
   m_Name: Hare
   m_TagString: Player
@@ -732,7 +733,7 @@ GameObject:
   - component: {fileID: 198487384430954680}
   - component: {fileID: 199848136898537012}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: Spawn Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1772,8 +1773,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 1, z: 4}
-  m_Center: {x: 0, y: -2, z: 0.25}
+  m_Size: {x: 2, y: 2, z: 4}
+  m_Center: {x: 0, y: -2.5, z: 0.25}
 --- !u!65 &65249345317300250
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1881,10 +1882,10 @@ MonoBehaviour:
   hareAcceleration: 0.01
   airAcceleration: 0.002
   sprintCooldown: 0
-  maxSprintDuration: 60
+  maxSprintDuration: 3
   hareSprint: 0.2
-  lightTrap: {fileID: 0}
-  trapCooldown: 0
+  lightTrap: {fileID: 1541535916695244, guid: f1b264c532930074cbb1152b49a0800d, type: 2}
+  trapCooldown: 10
   currentSpeed: 0
 --- !u!114 &114467780961291544
 MonoBehaviour:
@@ -1897,13 +1898,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e2c7e65311d2d842b6be514186530fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAnxiety: 100
+  anxietyBar: {fileID: 0}
   sprintAnxietyLevel: 0
   trapAnxietyLevel: 0
-  veilOriginalDimension: 0
-  distance: 0
+  veilFactor: 0.8
   anxietyZoneRadius: 5
-  anxietyAugmentation: 0.05
+  anxietyAugmentation: 1
 --- !u!114 &114478402257808892
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1915,10 +1915,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab659ace70ae84549b515091ad1c3366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Gym_3
   deathParticles: {fileID: 198848142367104692, guid: 18e92a04185e6384fb8ef5ddf4dae0d6,
     type: 2}
   hareParticles: {fileID: 198947816774352464}
+  spawnParticles: {fileID: 198487384430954680}
+  timeLossRatioOnSpike: 0.9
   armature: {fileID: 1527811707488240}
 --- !u!114 &114488809872378750
 MonoBehaviour:
@@ -1937,7 +1938,6 @@ MonoBehaviour:
   MaxJumpInputCount: 20
   airJumps:
   - jumpForce: 8
-  - jumpForce: 6
 --- !u!114 &114565302483138174
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1979,6 +1979,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerCam: {fileID: 0}
+--- !u!114 &114783249295809826
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1391939303221050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e482a9d630cd06439164cf6ca7da977, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shadow: {fileID: 1644204507318930, guid: a20c8791fc02ee041943f41d59c2cee1, type: 2}
+  shadowDelay: 1
 --- !u!114 &114873635261945462
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1992,8 +2005,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedConversionRatio: 0.4
   decelerationRate: 0.001
-  wallToFront: 0
-  wallNearby: 0
 --- !u!114 &114896545492835912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6996,7 +7007,7 @@ ParticleSystem:
   stopAction: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1

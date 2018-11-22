@@ -216,11 +216,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114488809872378750, guid: a6e0f285588f285438e0ee2b4fd0a175,
-        type: 2}
-      propertyPath: airJumps.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4943848548365518, guid: a6e0f285588f285438e0ee2b4fd0a175, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -252,80 +247,6 @@ Prefab:
     - target: {fileID: 4943848548365518, guid: a6e0f285588f285438e0ee2b4fd0a175, type: 2}
       propertyPath: m_RootOrder
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1391939303221050, guid: a6e0f285588f285438e0ee2b4fd0a175, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 65185339336571452, guid: a6e0f285588f285438e0ee2b4fd0a175,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 65185339336571452, guid: a6e0f285588f285438e0ee2b4fd0a175,
-        type: 2}
-      propertyPath: m_Center.y
-      value: -2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114467780961291544, guid: a6e0f285588f285438e0ee2b4fd0a175,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114215262989984884, guid: a6e0f285588f285438e0ee2b4fd0a175,
-        type: 2}
-      propertyPath: maxSprintDuration
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114215262989984884, guid: a6e0f285588f285438e0ee2b4fd0a175,
-        type: 2}
-      propertyPath: lightTrap
-      value: 
-      objectReference: {fileID: 1541535916695244, guid: f1b264c532930074cbb1152b49a0800d,
-        type: 2}
-    - target: {fileID: 114215262989984884, guid: a6e0f285588f285438e0ee2b4fd0a175,
-        type: 2}
-      propertyPath: trapCooldown
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114467780961291544, guid: a6e0f285588f285438e0ee2b4fd0a175,
-        type: 2}
-      propertyPath: anxietyAugmentation
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114467780961291544, guid: a6e0f285588f285438e0ee2b4fd0a175,
-        type: 2}
-      propertyPath: veilFactor
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114488809872378750, guid: a6e0f285588f285438e0ee2b4fd0a175,
-        type: 2}
-      propertyPath: airJumps.Array.data[1].jumpForce
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 198487384430954680, guid: a6e0f285588f285438e0ee2b4fd0a175,
-        type: 2}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1723293732210988, guid: a6e0f285588f285438e0ee2b4fd0a175, type: 2}
-      propertyPath: m_Name
-      value: Spawn Particles
-      objectReference: {fileID: 0}
-    - target: {fileID: 114478402257808892, guid: a6e0f285588f285438e0ee2b4fd0a175,
-        type: 2}
-      propertyPath: spawnParticles
-      value: 
-      objectReference: {fileID: 115562661}
-    - target: {fileID: 114478402257808892, guid: a6e0f285588f285438e0ee2b4fd0a175,
-        type: 2}
-      propertyPath: deathParticles
-      value: 
-      objectReference: {fileID: 198848142367104692, guid: 18e92a04185e6384fb8ef5ddf4dae0d6,
-        type: 2}
-    - target: {fileID: 1456140499775238, guid: a6e0f285588f285438e0ee2b4fd0a175, type: 2}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6e0f285588f285438e0ee2b4fd0a175, type: 2}
@@ -1133,11 +1054,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4000012572276496, guid: da4f7b4359ecb4446a55ca12785c99c7,
     type: 2}
   m_PrefabInternal: {fileID: 111872391}
---- !u!198 &115562661 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 198487384430954680, guid: a6e0f285588f285438e0ee2b4fd0a175,
-    type: 2}
-  m_PrefabInternal: {fileID: 35253357}
 --- !u!1001 &121842177
 Prefab:
   m_ObjectHideFlags: 0
@@ -2202,24 +2118,6 @@ Transform:
   m_Father: {fileID: 1641328465}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &375812704 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1391939303221050, guid: a6e0f285588f285438e0ee2b4fd0a175,
-    type: 2}
-  m_PrefabInternal: {fileID: 35253357}
---- !u!114 &375812705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 375812704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e482a9d630cd06439164cf6ca7da977, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shadow: {fileID: 1644204507318930, guid: a20c8791fc02ee041943f41d59c2cee1, type: 2}
-  shadowDelay: 1
 --- !u!1001 &397776215
 Prefab:
   m_ObjectHideFlags: 0
