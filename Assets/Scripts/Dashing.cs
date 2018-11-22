@@ -58,7 +58,7 @@ public class Dashing : MonoBehaviour {
 
             // Update animator
             animator.SetTrigger("Dash");
-            AudioManager.instance.PlaySound("Woosh", 1f, 0f, false);
+            AudioManager.instance.PlaySound("Woosh", 0.5f, 0f, false);
 
             particles.Play();
 

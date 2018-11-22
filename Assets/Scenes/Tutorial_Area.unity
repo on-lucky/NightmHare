@@ -3892,7 +3892,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000012572276496, guid: da4f7b4359ecb4446a55ca12785c99c7, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 88.4
+      value: 102.18
       objectReference: {fileID: 0}
     - target: {fileID: 4000012572276496, guid: da4f7b4359ecb4446a55ca12785c99c7, type: 2}
       propertyPath: m_LocalPosition.y
@@ -3900,7 +3900,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012572276496, guid: da4f7b4359ecb4446a55ca12785c99c7, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 6.56
+      value: 4.93
       objectReference: {fileID: 0}
     - target: {fileID: 4000012572276496, guid: da4f7b4359ecb4446a55ca12785c99c7, type: 2}
       propertyPath: m_LocalRotation.x
@@ -5272,6 +5272,7 @@ Transform:
   m_Children:
   - {fileID: 1278871697}
   - {fileID: 1826979562}
+  - {fileID: 1633095284}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5764,7 +5765,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4765711316756092, guid: 321dfa5c57a993c42b996fa263a8aa1a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 88.19506
+      value: 102.2
       objectReference: {fileID: 0}
     - target: {fileID: 4765711316756092, guid: 321dfa5c57a993c42b996fa263a8aa1a, type: 2}
       propertyPath: m_LocalPosition.y
@@ -7209,6 +7210,34 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4000012572276496, guid: b7ebff1b87d7ca945b423ef079c87d3f,
     type: 2}
   m_PrefabInternal: {fileID: 1632607457}
+--- !u!1 &1633095283
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1633095284}
+  m_Layer: 0
+  m_Name: GameStateManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1633095284
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1633095283}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1168626426}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1641328464
 GameObject:
   m_ObjectHideFlags: 0
@@ -8508,7 +8537,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1817226385}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 88.01, y: 0.5, z: 0}
+  m_LocalPosition: {x: 102.3, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1976887922}
@@ -8681,7 +8710,7 @@ MonoBehaviour:
     RandomPitch: 0
   - name: Laugh
     clip: {fileID: 8300000, guid: a5a44f925cb651f488694224bbe3d765, type: 3}
-    volume: 1
+    volume: 0.401
     pitch: 1.5
     RandomVolume: 0
     RandomPitch: 0
