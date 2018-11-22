@@ -45,6 +45,7 @@ public class ShadowController : MonoBehaviour {
         animator = GetComponentInChildren<Animator>();
         GetComponent<BoxCollider>().enabled = false;
         orientationManager = GetComponentInChildren<OrientationManager>();
+        AudioManager.instance.PlaySound("Laugh", 1f, 0f, false);
     }
 	
 	// Update is called once per frame
