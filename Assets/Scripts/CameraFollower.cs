@@ -85,4 +85,14 @@ public class CameraFollower : MonoBehaviour {
     {
         following = shouldFollow;
     }
+
+    public void SetYOffset(float offset)
+    {
+        yOffset = offset;
+    }
+
+    public float GetYOffset()
+    {
+        return yOffset;
+    }
 }
