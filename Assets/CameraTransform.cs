@@ -32,6 +32,14 @@ public class CameraTransform : MonoBehaviour {
     private float finalZ = 0;
     private float finalRotation = 0;
 
+    private void Start()
+    {
+        // Save current values
+        originOffsetY = CameraFollower.instance.GetYOffset();
+        originZ = Camera.main.transform.position.z;
+        originRotation = Camera.main.transform.rotation.eulerAngles.x;
+    }
+
     private void Update()
     {
         if (go)
@@ -58,11 +66,6 @@ public class CameraTransform : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
-            // Save current values
-            originOffsetY = CameraFollower.instance.GetYOffset();
-            originZ = Camera.main.transform.position.z;
-            originRotation = Camera.main.transform.rotation.eulerAngles.x;
-
             // Calculate speeds
             var camPos = Camera.main.transform.position;
             var camRotation = Camera.main.transform.rotation.eulerAngles;

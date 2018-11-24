@@ -3790,7 +3790,7 @@ GameObject:
   - component: {fileID: 823149333}
   - component: {fileID: 823149332}
   m_Layer: 0
-  m_Name: Move Camera
+  m_Name: Zoomed in
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3819,9 +3819,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58e5539d210d1f34399205085272d301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forward: 1
-  translation: {x: 0, y: 0, z: 0}
-  rotation: {x: 0, y: 0, z: 0}
+  duration: 1
+  isForward: 1
+  offsetY: 1
+  z: -5
+  rotation: 0
 --- !u!4 &823149334
 Transform:
   m_ObjectHideFlags: 0
@@ -3829,8 +3831,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 823149331}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 44.85, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 60, y: 1, z: 0}
+  m_LocalScale: {x: 32.370743, y: 1.6800046, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
@@ -4514,6 +4516,7 @@ GameObject:
   - component: {fileID: 948122193}
   - component: {fileID: 948122194}
   - component: {fileID: 948122195}
+  - component: {fileID: 948122196}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4619,7 +4622,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfca5c304ad9db64ea554a34f6e4c850, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slidingDuration: 2
+  slidingDuration: 1
+--- !u!114 &948122196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 948122189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 240ce686216ea3c429a58dd47f2227cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &962951176
 Prefab:
   m_ObjectHideFlags: 0
