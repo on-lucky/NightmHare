@@ -2676,6 +2676,46 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.051456638, y: 0.05184012, z: 0.037308287}
   m_Center: {x: -0.005565626, y: 0.02346941, z: 0.013663684}
+--- !u!1 &541646753
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 541646755}
+  - component: {fileID: 541646754}
+  m_Layer: 0
+  m_Name: CameraManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &541646754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 541646753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a5d70befbbb5b14093c44baac53bf2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &541646755
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 541646753}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 43.839123, y: 1.0360632, z: 0.538517}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &554018526
 Prefab:
   m_ObjectHideFlags: 0
@@ -3787,8 +3827,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 823149334}
-  - component: {fileID: 823149333}
   - component: {fileID: 823149332}
+  - component: {fileID: 823149333}
   m_Layer: 0
   m_Name: Zoomed in
   m_TagString: Untagged
@@ -3820,8 +3860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 1
-  isForward: 1
-  offsetY: 1
+  offsetY: 0
   z: -5
   rotation: 0
 --- !u!4 &823149334
