@@ -22,7 +22,7 @@ public class CameraSlider : MonoBehaviour {
         if (sliding)
         {
             currentTime += Time.deltaTime;
-            updateSlide(currentTime);
+            UpdateSlide(currentTime);
 
             if(currentTime >= slidingDuration)
             {
@@ -45,7 +45,7 @@ public class CameraSlider : MonoBehaviour {
         GetComponent<CameraFollower>().EnableFollowing(false);
     }
 
-    private void updateSlide(float time)
+    private void UpdateSlide(float time)
     {
         float ratio = Mathf.Sin(time / a);
         transform.position = Vector3.Lerp(origin, destination, ratio);

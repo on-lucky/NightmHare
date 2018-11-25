@@ -13,11 +13,13 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField] private float sprintCooldown = 0;
     [SerializeField] private float maxSprintDuration = 3;
-    [SerializeField] private float hareSprint = 0.05f;    
+    [SerializeField] private float hareSprint = 0.05f;
+    [SerializeField] private Ability sprintUI;
     private bool canSprint = true;
 
     [SerializeField] private GameObject lightTrap;
     [SerializeField] private float trapCooldown;
+    [SerializeField] private Ability trapUI;
     private bool canSetTrap = true;
 
     private bool isClimbing = false;
@@ -206,6 +208,10 @@ public class PlayerController : MonoBehaviour {
     {
         if (anxietyManager.CanSprint())
         {
+            if (sprintUI)
+            {
+                sprintUI.Fill();
+            }
             hareSpeed += hareSprint;
             canSprint = false;
             animator.speed = 2;
@@ -223,6 +229,10 @@ public class PlayerController : MonoBehaviour {
 
     IEnumerator RefreshSprintCooldown()
     {
+        if (sprintUI)
+        {
+            sprintUI.StartCooldown(sprintCooldown);
+        }
         yield return new WaitForSeconds(sprintCooldown);
         canSprint = true;
     }
@@ -230,6 +240,10 @@ public class PlayerController : MonoBehaviour {
     public void SetLightTrap()
     {       
         if (canSetTrap && anxietyManager.CanSetTrap() && lightTrap != null) {
+            if (trapUI)
+            {
+                trapUI.Fill();
+            }
             float x = this.transform.position.x;
             float y = this.transform.position.y + 0.1f;
             Instantiate(lightTrap, new Vector3(x, y, 0), Quaternion.identity);
@@ -241,6 +255,10 @@ public class PlayerController : MonoBehaviour {
 
     IEnumerator RefreshTrapCooldown()
     {
+        if (trapUI)
+        {
+            trapUI.StartCooldown(trapCooldown);
+        }
         yield return new WaitForSeconds(trapCooldown);
         canSetTrap = true;
     }

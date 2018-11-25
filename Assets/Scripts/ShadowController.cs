@@ -45,6 +45,7 @@ public class ShadowController : MonoBehaviour {
         animator = GetComponentInChildren<Animator>();
         GetComponent<BoxCollider>().enabled = false;
         orientationManager = GetComponentInChildren<OrientationManager>();
+        AudioManager.instance.PlaySound("Laugh", 0.1f, 0f, false);
     }
 	
 	// Update is called once per frame
@@ -63,7 +64,7 @@ public class ShadowController : MonoBehaviour {
 
     private void SetState(MomentCapture moment)
     {
-        transform.position = new Vector3(moment.position.x, moment.position.y, 0);
+        transform.position = new Vector3(moment.position.x, moment.position.y, moment.position.z);
         orientationManager.LookTo(moment.lookingRight);
         animator.SetFloat("Speed", moment.speed);
         animator.Play(moment.animationState.fullPathHash, 0, moment.animationState.normalizedTime);

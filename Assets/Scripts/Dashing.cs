@@ -13,6 +13,8 @@ public class Dashing : MonoBehaviour {
     private float DashCoolDown = 3f;
 	[SerializeField]
 	private float DashDeceleration = 0f;
+    [SerializeField]
+    private Ability DashUI;
 	
 	// State variables
 	private bool isDashing = false;
@@ -58,6 +60,7 @@ public class Dashing : MonoBehaviour {
 
             // Update animator
             animator.SetTrigger("Dash");
+            AudioManager.instance.PlaySound("Woosh", 0.5f, 0f, false);
 
             particles.Play();
 
@@ -133,6 +136,10 @@ public class Dashing : MonoBehaviour {
 
 	IEnumerator WaitForDashCoolDown()
 	{
+        if (DashUI)
+        {
+            DashUI.StartCooldown(DashCoolDown);
+        }
 		yield return new WaitForSeconds(DashCoolDown);
 		CanDash = true;
 	}

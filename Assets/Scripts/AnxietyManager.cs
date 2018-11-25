@@ -5,13 +5,17 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class AnxietyManager : MonoBehaviour {
-    private float maxAnxiety = 100;                            
-    private float currentAnxiety = 0;                                  
-    public RectTransform anxietyBar;
-    [SerializeField] private float sprintAnxietyLevel;
-    [SerializeField] private float trapAnxietyLevel;
-    private RawImage veil;
+    private float maxAnxiety = 100;
+    [SerializeField] private float currentAnxiety = 0;
+    [SerializeField] private float sprintAnxietyLevel = 0;
+    [SerializeField] private float trapAnxietyLevel = 0;
     [SerializeField] private float veilFactor = 1.0f;
+
+    private RectTransform anxietyGauge;
+    private RectTransform anxietyLevel;
+    private RectTransform ability1;
+    private RectTransform ability2;
+    private RawImage veil;
     private float veilOriginalDimension;
 
     GameObject hare;
@@ -23,10 +27,28 @@ public class AnxietyManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        hare = GameObject.Find("Hare");               
-        anxietyBar = GameObject.Find("AnxietyLevel").GetComponent<Image>().rectTransform;
+        // Get Ari
+        hare = GameObject.Find("Hare");
+
+        // Get anxiety level
+        var anxiety = GameObject.Find("AnxietyLevel");
+        if (anxiety) {
+            anxietyLevel = anxiety.GetComponent<Image>().rectTransform;
+        }
+
+        // Setup gauge
+        var anxietyGaugeGO = GameObject.Find("AnxietyGauge");
+        if (anxietyGaugeGO)
+        {
+            anxietyGauge = anxietyGaugeGO.GetComponent<RectTransform>();
+            ability1 = GameObject.Find("Ability_1").GetComponent<RectTransform>();
+            ability2 = GameObject.Find("Ability_2").GetComponent<RectTransform>();
+        }
+        SetupAbilitiesThreshold();
+
+        // Setup veil
         veilOriginalDimension = Screen.width * 2.5f;
-        maxAnxiety = anxietyBar.sizeDelta.x;
+        maxAnxiety = anxietyLevel.sizeDelta.x;
         currentAnxiety = 0;
         GameObject veilGo = GameObject.Find("Veil");
         if (veilGo != null)
@@ -59,8 +81,8 @@ public class AnxietyManager : MonoBehaviour {
             if (currentAnxiety < 0)
             {
                 currentAnxiety = 0;
-            }                          
-            anxietyBar.sizeDelta = new Vector2(currentAnxiety, anxietyBar.sizeDelta.y);
+            }
+            anxietyLevel.sizeDelta = new Vector2(currentAnxiety, anxietyLevel.sizeDelta.y);
             if (veil != null)
             {
                 if (currentAnxiety / maxAnxiety < 0.6)
@@ -74,6 +96,8 @@ public class AnxietyManager : MonoBehaviour {
         {            
             shadowObject = GameObject.Find("ShadowHare(Clone)");
         }
+
+        SetupAbilitiesThreshold();
     }
 
     public bool CanSprint()
@@ -84,5 +108,17 @@ public class AnxietyManager : MonoBehaviour {
     public bool CanSetTrap()
     {
         return currentAnxiety >= trapAnxietyLevel;
+    }
+
+    private void SetupAbilitiesThreshold()
+    {
+        if (anxietyGauge)
+        {
+            float offset = 4 - ability1.sizeDelta.x/2; // CHIFFRE MAGIQUE WOOHOO
+            float ratio1 = (sprintAnxietyLevel / 100);
+            float ratio2 = (trapAnxietyLevel / 100);
+            ability1.localPosition = new Vector3(offset + ratio1 * maxAnxiety, ability1.localPosition.y);
+            ability2.localPosition = new Vector3(offset + ratio2 * maxAnxiety, ability2.localPosition.y);
+        }
     }
 }

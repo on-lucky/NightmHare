@@ -1263,7 +1263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20c34b5cbedc16749bb067b727db3d7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedRatio: 1.15
+  speedRatio: 1.06
   trapDuration: 3
   slowRatio: 0.5
   deathParticles: {fileID: 198545892037839830, guid: 133540407a9ba124da2c8ccddc6d34f5,
