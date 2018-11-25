@@ -55,7 +55,7 @@ public class Bouncer : MonoBehaviour {
 
     void OnCollisionEnter(Collision c)
     {
-        if (c.gameObject.name == "Hare")
+        if (c.gameObject.name == "Hare" && canBounce)
         {
             Rigidbody hareBody = c.gameObject.GetComponent<Rigidbody>();
             Vector3 velocity = hareBody.velocity;
