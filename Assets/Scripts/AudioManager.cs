@@ -137,7 +137,6 @@ public class AudioManager : MonoBehaviour
                 sounds[i].SetTime(time);
                 sounds[i].play(loop);
                 sounds[i].setVolume(volume);
-                Debug.Log(sounds[i].name + ": " + sounds[i].volume);
                 return;
             }
         }
