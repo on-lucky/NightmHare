@@ -8,6 +8,8 @@ public class CameraTransform : MonoBehaviour {
     [SerializeField] private float duration = 1;
 
     // Transformations to do on the camera
+    [SerializeField] private bool doTranslation = true;
+    [SerializeField] private bool doRotation = true;
     [SerializeField] private float offsetY = 0;
     [SerializeField] private float z = 0;
     [SerializeField] private float rotation = 0;
@@ -41,8 +43,9 @@ public class CameraTransform : MonoBehaviour {
         if (go)
         {
             currentTime += Time.deltaTime;
-            UpdateTranslation();
-            UpdateRotation();
+            
+            if (doTranslation) UpdateTranslation();
+            if (doRotation) UpdateRotation();
 
             if (currentTime >= duration)
             {
@@ -50,9 +53,15 @@ public class CameraTransform : MonoBehaviour {
 
                 // Clip final values to what they should really be to avoid accumulating floating point errors
                 var camTransform = CameraFollower.instance.transform;
-                camTransform.position = new Vector3(camTransform.position.x, camTransform.position.y, finalZ);
-                CameraFollower.instance.SetYOffset(finalOffsetY);
-                camTransform.rotation = Quaternion.AngleAxis(finalRotation, Vector3.right);
+                if (doTranslation)
+                {
+                    camTransform.position = new Vector3(camTransform.position.x, camTransform.position.y, finalZ);
+                    CameraFollower.instance.SetYOffset(finalOffsetY);
+                }
+                if (doRotation)
+                {
+                    camTransform.rotation = Quaternion.AngleAxis(finalRotation, Vector3.right);
+                }
             }
         }
     }

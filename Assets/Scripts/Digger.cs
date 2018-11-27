@@ -70,6 +70,7 @@ public class Digger : MonoBehaviour {
             transform.position = new Vector3(originPos.x, pos.y, originPos.z);
 
             SlideCamera();
+
             AudioManager.instance.PlaySound("Digging", 1f, 0f, false);
 
             diggingIn = true;
