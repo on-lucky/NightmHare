@@ -740,7 +740,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4943848548365518, guid: a6e0f285588f285438e0ee2b4fd0a175, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 312.58
       objectReference: {fileID: 0}
     - target: {fileID: 4943848548365518, guid: a6e0f285588f285438e0ee2b4fd0a175, type: 2}
       propertyPath: m_LocalPosition.y
@@ -7797,6 +7797,10 @@ Prefab:
         type: 2}
       propertyPath: locked
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268786113997952, guid: 9d6dcccfb5a1fdc42ad704b7ac9c49b0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d6dcccfb5a1fdc42ad704b7ac9c49b0, type: 2}
@@ -20365,7 +20369,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &809747914
 Transform:
   m_ObjectHideFlags: 0
@@ -33795,7 +33799,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1349374877
 Transform:
   m_ObjectHideFlags: 0
@@ -46988,6 +46992,12 @@ MonoBehaviour:
     RandomPitch: 0
   - name: Woosh
     clip: {fileID: 8300000, guid: 4d108a3039ca0844fbe881a462517e67, type: 3}
+    volume: 1
+    pitch: 1.5
+    RandomVolume: 0
+    RandomPitch: 0
+  - name: Digging
+    clip: {fileID: 8300000, guid: 18aef70b47a05624dbe73dd83ea93404, type: 3}
     volume: 1
     pitch: 1.5
     RandomVolume: 0

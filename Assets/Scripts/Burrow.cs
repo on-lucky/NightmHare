@@ -11,8 +11,9 @@ public class Burrow : MonoBehaviour {
     // Whether the burrow is locked or not
     private bool locked = false;
 
-    // If the player is on top of the burrow
+    // If the player is on top of the burrow or on top of its other end
     private bool playerInRange = false;
+    private bool otherInRange = false;
 
     // If the teleportation is enabled or not
     private bool teleportationEnabled = true;
@@ -40,7 +41,7 @@ public class Burrow : MonoBehaviour {
 
     void Start()
     {
-        FadeArrow(true);
+        SetFloaterMaterial(false);
         floater = transform.Find("Floater").GetComponent<MeshRenderer>();
         floater.enabled = end != null;
     }
@@ -49,7 +50,7 @@ public class Burrow : MonoBehaviour {
         // Update floater material
         if (!locked)
         {
-            FadeArrow(!playerInRange);
+            SetFloaterMaterial(playerInRange || otherInRange);
         } else
         {
             floater.material = lockedMaterial;
@@ -77,7 +78,7 @@ public class Burrow : MonoBehaviour {
         if (!locked && digger)
         {
             this.digger = digger;
-            playerInRange = true;
+            SetInRange(true);
             if (hinter)
             {
                 hinter.StartTimer();
@@ -91,7 +92,7 @@ public class Burrow : MonoBehaviour {
         Digger digger = go.GetComponent<Digger>();
         if (!locked && digger)
         {
-            playerInRange = false;
+            SetInRange(false);
             teleportationEnabled = true;
             if (hinter)
             {
@@ -100,17 +101,17 @@ public class Burrow : MonoBehaviour {
         }
     }
 
-    private void FadeArrow(bool shouldFade)
+    public void SetFloaterMaterial(bool inRange)
     {
         if (floater != null)
         {
-            if (shouldFade)
+            if (inRange)
             {
-                floater.material = awayMaterial;
+                floater.material = inRangeMaterial;
             }
             else
             {
-                floater.material = inRangeMaterial;
+                floater.material = awayMaterial;
             }
         }
     }
@@ -130,5 +131,13 @@ public class Burrow : MonoBehaviour {
     public void SetLockMaterial(Material material) {
         lockedMaterial = material;
     }
-    
+
+    public void SetInRange(bool inRange)
+    {
+        playerInRange = inRange;
+        if (end)
+        {
+            end.otherInRange = inRange;
+        }
+    }
 }
