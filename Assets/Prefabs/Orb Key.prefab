@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4669895786477688}
   - component: {fileID: 198832369416771312}
   - component: {fileID: 199272609812421422}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 23835606229663874}
   - component: {fileID: 135909749284081798}
   - component: {fileID: 114477972183388270}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Orb Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1929713095824668}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3, y: 0.25, z: 0}
+  m_LocalPosition: {x: 82.74002, y: -3.5700002, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 4669895786477688}
@@ -127,8 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87b7c4cfc4082a34bad21ed25f3ba98f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  go: 0
-  burrow: {fileID: 0}
+  lockManager: {fileID: 0}
   speed: 2
   curveHeight: 4
   helix:
