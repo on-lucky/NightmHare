@@ -57,7 +57,15 @@ public class AnxietyManager : MonoBehaviour {
             veil.rectTransform.sizeDelta = new Vector2(veilOriginalDimension, veilOriginalDimension);
             veil.color = new Vector4(veil.color.r, veil.color.g, veil.color.b, (1.5f * currentAnxiety) / maxAnxiety);
         }
-    }    
+
+        // Subscribe to HareDied event
+        hare.GetComponent<LifeManager>().HareDied += OnHareDied;
+    }
+
+    private void OnHareDied(object sender, System.EventArgs e)
+    {
+        currentAnxiety = 0;
+    }
 
     // Update is called once per frame
     void Update () {        
@@ -82,19 +90,21 @@ public class AnxietyManager : MonoBehaviour {
             {
                 currentAnxiety = 0;
             }
-            anxietyLevel.sizeDelta = new Vector2(currentAnxiety, anxietyLevel.sizeDelta.y);
-            if (veil != null)
-            {
-                if (currentAnxiety / maxAnxiety < 0.6)
-                {
-                    float dimension = veilOriginalDimension * (1 - (currentAnxiety * veilFactor) / maxAnxiety);
-                    veil.rectTransform.sizeDelta = new Vector2(dimension, dimension);
-                }
-                veil.color = new Vector4(veil.color.r, veil.color.g, veil.color.b, (1.5f * currentAnxiety) / maxAnxiety);
-            }            
         } else
-        {            
+        {
+            // FIXME: not very efficient. should be done when the shadow is spawned or maybe we never despawn the shadow simply disable it
             shadowObject = GameObject.Find("ShadowHare(Clone)");
+        }
+
+        anxietyLevel.sizeDelta = new Vector2(currentAnxiety, anxietyLevel.sizeDelta.y);
+        if (veil != null)
+        {
+            if (currentAnxiety / maxAnxiety < 0.6)
+            {
+                float dimension = veilOriginalDimension * (1 - (currentAnxiety * veilFactor) / maxAnxiety);
+                veil.rectTransform.sizeDelta = new Vector2(dimension, dimension);
+            }
+            veil.color = new Vector4(veil.color.r, veil.color.g, veil.color.b, (1.5f * currentAnxiety) / maxAnxiety);
         }
 
         //SetupAbilitiesThreshold();
