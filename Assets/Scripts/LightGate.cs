@@ -40,6 +40,7 @@ public class LightGate : MonoBehaviour {
         if (harePassageEffect)
         {
             Instantiate(harePassageEffect, hare.transform.position, hare.transform.rotation);
+            hare.GetComponent<StateRecorder>().StopRecording();
         }
     }
 
