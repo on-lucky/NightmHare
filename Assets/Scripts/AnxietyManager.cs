@@ -94,6 +94,7 @@ public class AnxietyManager : MonoBehaviour {
         {
             // FIXME: not very efficient. should be done when the shadow is spawned or maybe we never despawn the shadow simply disable it
             shadowObject = GameObject.Find("ShadowHare(Clone)");
+            currentAnxiety = 0;
         }
 
         anxietyLevel.sizeDelta = new Vector2(currentAnxiety, anxietyLevel.sizeDelta.y);
