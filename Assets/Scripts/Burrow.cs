@@ -75,7 +75,7 @@ public class Burrow : MonoBehaviour {
     {
         GameObject go = other.gameObject;
         Digger digger = go.GetComponent<Digger>();
-        if (!locked && digger)
+        if (digger)
         {
             this.digger = digger;
             SetInRange(true);
@@ -90,7 +90,7 @@ public class Burrow : MonoBehaviour {
     {
         GameObject go = other.gameObject;
         Digger digger = go.GetComponent<Digger>();
-        if (!locked && digger)
+        if (digger)
         {
             SetInRange(false);
             teleportationEnabled = true;
