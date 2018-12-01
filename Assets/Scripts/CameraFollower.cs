@@ -18,6 +18,15 @@ public class CameraFollower : MonoBehaviour {
     [SerializeField]
     private float yOffset = 2;
 
+    [SerializeField]
+    private float zMidPlane = 10;
+
+    [SerializeField]
+    private float zFrontPlane = -10;
+
+    [SerializeField]
+    private float zBackPlane = -5;
+
     private bool following = true;
 
     void Awake()
@@ -52,6 +61,7 @@ public class CameraFollower : MonoBehaviour {
             {
                 UpdatePosY(true);
             }
+            UpdatePosZ();
         }
     }
 
@@ -73,6 +83,16 @@ public class CameraFollower : MonoBehaviour {
             posY = subject.position.y + yRange + yOffset;
         }
         transform.position = new Vector3(transform.position.x, posY, transform.position.z);
+    }
+
+    private void UpdatePosZ()
+    {
+        if (subject.position.z < zMidPlane)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, zFrontPlane);
+        } else {
+            transform.position = new Vector3(transform.position.x, transform.position.y, zBackPlane);
+        }
     }
 
     public void SlideTo(Vector3 destination)
