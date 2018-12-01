@@ -44,7 +44,7 @@ public class AnxietyManager : MonoBehaviour {
             ability1 = GameObject.Find("Ability_1").GetComponent<RectTransform>();
             ability2 = GameObject.Find("Ability_2").GetComponent<RectTransform>();
         }
-        SetupAbilitiesThreshold();
+        //SetupAbilitiesThreshold();
 
         // Setup veil
         veilOriginalDimension = Screen.width * 2.5f;
@@ -97,7 +97,7 @@ public class AnxietyManager : MonoBehaviour {
             shadowObject = GameObject.Find("ShadowHare(Clone)");
         }
 
-        SetupAbilitiesThreshold();
+        //SetupAbilitiesThreshold();
     }
 
     public bool CanSprint()
