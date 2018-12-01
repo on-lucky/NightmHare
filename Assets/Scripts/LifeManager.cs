@@ -120,6 +120,7 @@ public class LifeManager : MonoBehaviour {
         }
         
         armature.SetActive(false);
+        GetComponent<PlayerController>().SetZPos(transform.position.z);
         GetComponent<PlayerController>().enabled = false;
         hareRenderer.enabled = false;
         spawnParticles.Play();
