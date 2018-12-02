@@ -246,7 +246,8 @@ public class PlayerController : MonoBehaviour {
             }
             float x = this.transform.position.x;
             float y = this.transform.position.y + 0.1f;
-            Instantiate(lightTrap, new Vector3(x, y, 0), Quaternion.identity);
+            float z = this.transform.position.z;
+            Instantiate(lightTrap, new Vector3(x, y, z), Quaternion.identity);
             lightTrap.tag = "trap";
             canSetTrap = false;
             StartCoroutine(RefreshTrapCooldown());
