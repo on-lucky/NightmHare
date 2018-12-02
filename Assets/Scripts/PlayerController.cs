@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float sprintCooldown = 0;
     [SerializeField] private float maxSprintDuration = 3;
     [SerializeField] private float hareSprint = 0.05f;
+    public float shadowSpeedRatio = 0f;
     [SerializeField] private Ability sprintUI;
     private bool canSprint = true;
 
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour {
         jumper = GetComponent<Jumper>();
         climber = GetComponent<Climber>();
         anxietyManager = GetComponent<AnxietyManager>();
+        shadowSpeedRatio = (hareSpeed + hareSprint) / hareSpeed;
     }
 
     private void Update()
@@ -213,6 +215,7 @@ public class PlayerController : MonoBehaviour {
                 sprintUI.Fill();
             }
             hareSpeed += hareSprint;
+            ShadowController.instance.speedRatio /= shadowSpeedRatio;
             canSprint = false;
             animator.speed = 2;
             StartCoroutine(StopSprinting());
@@ -222,7 +225,8 @@ public class PlayerController : MonoBehaviour {
     IEnumerator StopSprinting()
     {
         yield return new WaitForSeconds(maxSprintDuration);
-        hareSpeed -= hareSprint;
+        ShadowController.instance.speedRatio *= shadowSpeedRatio;
+        hareSpeed -= hareSprint;        
         animator.speed = 1;
         StartCoroutine(RefreshSprintCooldown());
     }
