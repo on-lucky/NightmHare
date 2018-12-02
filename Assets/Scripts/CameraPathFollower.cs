@@ -27,7 +27,7 @@ public class CameraPathFollower : MonoBehaviour {
                 else
                 {
                     // Or stop following if we are at the end
-                    Follow(false);
+                    isFollowing = false;
                 }
             }
         }

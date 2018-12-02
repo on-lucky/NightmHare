@@ -97,7 +97,11 @@ public class AnxietyManager : MonoBehaviour {
             currentAnxiety = 0;
         }
 
-        anxietyLevel.sizeDelta = new Vector2(currentAnxiety, anxietyLevel.sizeDelta.y);
+        if (anxietyLevel != null)
+        {
+            anxietyLevel.sizeDelta = new Vector2(currentAnxiety, anxietyLevel.sizeDelta.y);
+        }
+
         if (veil != null)
         {
             if (currentAnxiety / maxAnxiety < 0.6)

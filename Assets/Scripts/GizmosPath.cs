@@ -23,12 +23,11 @@ public class GizmosPath : MonoBehaviour {
         GizmosPoint[] points = GetComponentsInChildren<GizmosPoint>();
         if (points.Length > 1)
         {
-            Vector3 from = points[0].transform.position;
             for (int i = 1; i < points.Length; i++)
             {
-                Vector3 pos = points[i].transform.position;
-                Gizmos.DrawLine(from, pos);
-                from = pos;
+                Vector3 from = points[i-1].transform.position;
+                Vector3 to = points[i].transform.position;
+                Gizmos.DrawLine(from, to);
             }
         }
     }

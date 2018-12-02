@@ -39,6 +39,9 @@ public class Burrow : MonoBehaviour {
     [SerializeField]
     private Hinter hinter;
 
+    [SerializeField]
+    private bool doCameraSlide = true;
+
     void Start()
     {
         SetFloaterMaterial(false);
@@ -61,7 +64,7 @@ public class Burrow : MonoBehaviour {
             if (end && playerInRange && teleportationEnabled && !locked)
             {
                 teleportationEnabled = false;
-                digger.Dig(this, end);
+                digger.Dig(this, end, doCameraSlide);
             }
         }
         else
