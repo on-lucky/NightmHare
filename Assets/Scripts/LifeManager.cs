@@ -30,6 +30,7 @@ public class LifeManager : MonoBehaviour {
     private float spawnDepth;
     private float spawnDelay;
     private bool dead = false;
+    private bool invincible = false;
 
     private void Start()
     {
@@ -42,7 +43,7 @@ public class LifeManager : MonoBehaviour {
     {
         GameObject obj = other.gameObject;          
 
-        if (!dead)
+        if (!dead && !invincible)
         {
             if (obj.tag == "Shadow")
             {
@@ -127,6 +128,11 @@ public class LifeManager : MonoBehaviour {
         GetComponent<StateRecorder>().ResetMomentStates();
         yield return new WaitForSeconds(timeToWait);
         Spawn(true);
+        // FIXME hardcoded magic
+        if (!isSpike)
+        {
+            SoundStateManager.instance.ChangeMusic("NightDreams", 1, 3, 0);
+        }
     }
 
     IEnumerator waitAndLoad(float timeToWait)
@@ -175,5 +181,8 @@ public class LifeManager : MonoBehaviour {
         }
     }
 
-    
+    public void SetInvinsible(bool shoulBe)
+    {
+        invincible = shoulBe;
+    }
 }

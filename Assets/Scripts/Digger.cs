@@ -44,6 +44,9 @@ public class Digger : MonoBehaviour {
 
             // reenable player controls
             SetScriptsEnabled(true);
+
+            // make the character vulnerable again
+            GetComponent<LifeManager>().SetInvinsible(false);
         }
     }
 
@@ -78,6 +81,7 @@ public class Digger : MonoBehaviour {
 
             diggingIn = true;
             animator.SetTrigger("Dig");
+            GetComponent<LifeManager>().SetInvinsible(true);
         }
         // else finish digging first
     }
