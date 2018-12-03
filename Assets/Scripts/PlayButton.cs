@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 public class PlayButton : MonoBehaviour {
 
     public MeshRenderer overLayLight;
+    public string goalScene = "Main";
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         overLayLight.enabled = false;
     }
 
@@ -24,6 +25,6 @@ public class PlayButton : MonoBehaviour {
 
     void OnMouseDown()
     {
-        SceneManager.LoadScene("Main", LoadSceneMode.Single);
+        SceneManager.LoadScene(goalScene, LoadSceneMode.Single);
     }
 }

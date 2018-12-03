@@ -17,6 +17,7 @@ public class FinalPlayer : MonoBehaviour {
 
     [SerializeField] float hareSpeed = 0.025f;
     [SerializeField] float runDuration = 3;
+    [SerializeField] GameObject endMenu;
     float currentTime = 0;
 
     bool isFading = false;
@@ -46,6 +47,7 @@ public class FinalPlayer : MonoBehaviour {
                 StartCoroutine(StartFinalParticles());
                 isWalking = false;
                 isFading = true;
+                StartCoroutine(ShowMenu(4f));
             } else
             {
                 transform.Translate(new Vector3(0, 0, hareSpeed));
@@ -91,12 +93,20 @@ public class FinalPlayer : MonoBehaviour {
         isWalking = true;
         currentTime = 0;
     }
-
+    
     IEnumerator StartFinalParticles()
     {
         yield return new WaitForSeconds(1);
         finalParticle.Play();
         armature.SetActive(false);
         particle.SetActive(false);
+    }
+
+    IEnumerator ShowMenu(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        endMenu.SetActive(true);
+        ScoreManager.instance.StopCount();
     }
 }

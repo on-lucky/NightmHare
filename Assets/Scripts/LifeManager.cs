@@ -91,6 +91,12 @@ public class LifeManager : MonoBehaviour {
             death.Play();
         }
 
+        // Delete all the traps currently active
+        foreach (GameObject trap in GameObject.FindGameObjectsWithTag("trap"))
+        {
+            Destroy(trap);
+        }
+
         // New code with event handling instead
         HareDied?.Invoke(this, new EventArgs());
 

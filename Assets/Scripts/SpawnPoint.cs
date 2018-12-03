@@ -17,11 +17,11 @@ public class SpawnPoint : MonoBehaviour {
         {
             if (isHazard)
             {
-                SpawnManager.instance.SetSpikeSpawnPoint(spawnPosition);
+                SpawnManager.instance.SetSpikeSpawnPoint(this.transform.position);
             }
             else
             {
-                SpawnManager.instance.SetSpawnPoint(spawnPosition);
+                SpawnManager.instance.SetSpawnPoint(this.transform.position);
             }
         }
     }
