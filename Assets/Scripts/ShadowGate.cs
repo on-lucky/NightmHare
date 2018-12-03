@@ -7,6 +7,7 @@ public class ShadowGate : MonoBehaviour {
     public GameObject shadow;
     public float deathTime = 5f;
     public ParticleSystem ps;
+    public float shadowSpeedRatio = 1.05f;
 
     private bool gateUsed = false;
     private bool dying = false;
@@ -60,6 +61,7 @@ public class ShadowGate : MonoBehaviour {
 
                 shadowObject.GetComponent<ShadowController>().setObjToFollow(hare);
                 shadowObject.GetComponent<ShadowController>().StartFollowing(initialDelay);
+                shadowObject.GetComponent<ShadowController>().speedRatio = shadowSpeedRatio;
                 DestroyGate();
                 gateUsed = true;
             }
