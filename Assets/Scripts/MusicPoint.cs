@@ -11,16 +11,18 @@ public class MusicPoint : MonoBehaviour {
     public float transitionTime = 3f;
     public float volume = 1f;
 
-    private bool used = false;
-
     void OnTriggerEnter(Collider other)
     {
         GameObject obj = other.gameObject;
 
-        if (obj.tag == layerToCheck && !used)
+        if (obj.tag == layerToCheck && !IsPlaying())
         {
             SoundStateManager.instance.ChangeMusic(musicName, volume, transitionTime, startingTime);
-            used = true;
         }
+    }
+
+    bool IsPlaying()
+    {
+        return SoundStateManager.instance.GetCurrentSound() == musicName;
     }
 }
