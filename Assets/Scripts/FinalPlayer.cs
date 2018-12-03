@@ -11,8 +11,8 @@ public class FinalPlayer : MonoBehaviour {
 
     bool isPlaying = false;
 
-    [SerializeField] float hareSpeed = 0.05f;
-    [SerializeField] float runDuration = 1;
+    [SerializeField] float hareSpeed = 0.025f;
+    [SerializeField] float runDuration = 3;
     [SerializeField] GameObject endMenu;
     float currentTime = 0;
 
@@ -38,8 +38,8 @@ public class FinalPlayer : MonoBehaviour {
             } else
             {
                 transform.Translate(new Vector3(0, 0, hareSpeed));
-                float ratio = Mathf.Abs(hareSpeed) / 0.18f;
-                animator.SetFloat("Speed", ratio * 4);
+                float ratio = Mathf.Abs(hareSpeed) / 0.18f; // Magic numbers ???
+                animator.SetFloat("Speed", ratio * 4); // L'animation est trop lente donc speed it up a bit (x4)
             }
         }
     }
@@ -55,6 +55,10 @@ public class FinalPlayer : MonoBehaviour {
         // Disable camera effects
         CameraFollower.instance.enabled = false;
         Camera.main.GetComponent<CameraSlider>().enabled = false;
+
+        // Look to the left
+        if (GetComponent<OrientationManager>().IsLookingRight)
+            GetComponent<OrientationManager>().LookTo(false);
 
         Camera.main.GetComponent<CameraPathFollower>().Follow();
         StartCoroutine(StartAnimation(delay));

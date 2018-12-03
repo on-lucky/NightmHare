@@ -34,7 +34,7 @@ public class ShadowController : MonoBehaviour {
        
     }
 
-        public void setObjToFollow(GameObject value)
+    public void setObjToFollow(GameObject value)
     {
         objToFollow = value;
         timeBetweenReading = objToFollow.GetComponent<StateRecorder>().TimeBetweenRecording;
@@ -114,6 +114,7 @@ public class ShadowController : MonoBehaviour {
     {
         GetComponent<Rigidbody>().isKinematic = true;
         StopFollowing();
+        objToFollow.GetComponent<StateRecorder>().ResetMomentStates();
 
         foreach (Transform child in transform)
         {

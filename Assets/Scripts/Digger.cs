@@ -52,7 +52,7 @@ public class Digger : MonoBehaviour {
         return animator.GetCurrentAnimatorStateInfo(0).IsName(name);
     }
 
-    public void Dig(Burrow origin, Burrow destination)
+    public void Dig(Burrow origin, Burrow destination, bool doCameraSlide = true)
     {
         if (!diggingIn && !diggingOut)
         {
@@ -69,7 +69,10 @@ public class Digger : MonoBehaviour {
             Vector3 originPos = origin.transform.position;
             transform.position = new Vector3(originPos.x, pos.y, originPos.z);
 
-            SlideCamera();
+            if (doCameraSlide)
+            {
+                SlideCamera();
+            }
 
             AudioManager.instance.PlaySound("Digging", 1f, 0f, false);
 

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,7 +16,9 @@ public class LifeManager : MonoBehaviour {
     private float timeLossRatioOnSpike = 0.9f;
 
     [SerializeField]
-    private GameObject armature;    
+    private GameObject armature;
+
+    public event EventHandler HareDied;
 
     private SkinnedMeshRenderer hareRenderer;
 
@@ -70,12 +73,12 @@ public class LifeManager : MonoBehaviour {
 
     private void Die()
     {
+        // Classic code
         dead = true;
         rb.isKinematic = true;
         GetComponent<PlayerController>().SetCurrentSpeed(0);
         GetComponent<PlayerController>().enabled = false;
         GetComponent<StateRecorder>().StopRecording();
-        
 
         foreach (Transform child in transform)
         {
@@ -87,6 +90,16 @@ public class LifeManager : MonoBehaviour {
             ParticleSystem death = Instantiate(deathParticles, this.transform);
             death.Play();
         }
+
+        // Delete all the traps currently active
+        foreach (GameObject trap in GameObject.FindGameObjectsWithTag("trap"))
+        {
+            Destroy(trap);
+        }
+
+        // New code with event handling instead
+        HareDied?.Invoke(this, new EventArgs());
+
         StartCoroutine(waitAndRespawn(3f)); 
     }
 
@@ -120,6 +133,7 @@ public class LifeManager : MonoBehaviour {
         }
         
         armature.SetActive(false);
+        GetComponent<PlayerController>().SetZPos(transform.position.z);
         GetComponent<PlayerController>().enabled = false;
         hareRenderer.enabled = false;
         spawnParticles.Play();
