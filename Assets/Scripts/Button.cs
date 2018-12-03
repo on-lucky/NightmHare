@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayButton : MonoBehaviour {
+public class Button : MonoBehaviour {
 
     public MeshRenderer overLayLight;
-    public string goalScene = "Main";
+    public string goalScene = "";
 
     // Use this for initialization
     void Start () {

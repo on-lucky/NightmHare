@@ -8,6 +8,8 @@ public class SpawnPoint : MonoBehaviour {
     private Vector3 spawnPosition;
     [SerializeField]
     private bool isHazard = false;
+    [SerializeField]
+    private float spawnDepth = -10;
 
     void OnTriggerEnter(Collider other)
     {
@@ -15,6 +17,7 @@ public class SpawnPoint : MonoBehaviour {
 
         if (obj.tag == "Player" && spawnPosition != null)
         {
+            CameraFollower.instance.SetZPos(spawnDepth);
             if (isHazard)
             {
                 SpawnManager.instance.SetSpikeSpawnPoint(this.transform.position);

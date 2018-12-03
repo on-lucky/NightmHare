@@ -34,4 +34,9 @@ public class Ability : MonoBehaviour {
     {
         imageCooldown.fillAmount = 1;
     }
+
+    public void Empty()
+    {
+        imageCooldown.fillAmount = 0;
+    }
 }
