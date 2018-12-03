@@ -32,4 +32,9 @@ public class SoundStateManager : MonoBehaviour {
         AudioManager.instance.TransitionSound(clipName, volume, transitionTime, time);
         currentMusic = clipName;
     }
+
+    public string GetCurrentSound()
+    {
+        return currentMusic;
+    }
 }
