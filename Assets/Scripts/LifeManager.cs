@@ -27,6 +27,7 @@ public class LifeManager : MonoBehaviour {
     private bool isSpike = false;
     private bool shadowExists = false;
     private Vector3 spawnPos;
+    private float spawnDepth;
     private float spawnDelay;
     private bool dead = false;
 
@@ -49,7 +50,8 @@ public class LifeManager : MonoBehaviour {
                 ShadowController.instance.StopFollowing();
                 ShadowController.instance.Die();
                 isSpike = false;
-                spawnPos = SpawnManager.instance.GetSpawnPoint();
+                spawnPos = SpawnManager.instance.GetSpawnPoint().transform.position;
+                spawnDepth = SpawnManager.instance.GetSpawnPoint().spawnDepth;
                 Die();
             }
             else if (obj.tag == "hazard")
@@ -67,7 +69,8 @@ public class LifeManager : MonoBehaviour {
                 }
 
                 isSpike = true;
-                spawnPos = SpawnManager.instance.GetSpikeSpawnPoint();
+                spawnPos = SpawnManager.instance.GetSpikeSpawnPoint().transform.position;
+                spawnDepth = SpawnManager.instance.GetSpikeSpawnPoint().spawnDepth;
                 Die();
             }
         }
@@ -137,6 +140,7 @@ public class LifeManager : MonoBehaviour {
         if (shouldTeleport)
         {
             transform.position = spawnPos;
+            CameraFollower.instance.SetZPos(spawnDepth);
         }
         foreach (Transform child in transform)
         {
@@ -152,7 +156,7 @@ public class LifeManager : MonoBehaviour {
         GetComponent<PlayerController>().enabled = false;
         GetComponent<Climber>().ForceLeaveWall();
         hareRenderer.enabled = false;
-        spawnParticles.Play();
+        spawnParticles.Play();        
         StartCoroutine(waitAndEnable(1f));
     }
 

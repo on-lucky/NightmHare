@@ -7,9 +7,9 @@ public class SpawnManager : MonoBehaviour {
     public static SpawnManager instance;
 
     [SerializeField]
-    private Vector3 spawnPos;
+    private SpawnPoint spawnPoint;    
     [SerializeField]
-    private Vector3 spikeSpawnPos;
+    private SpawnPoint spikeSpawnPoint;
 
     private List<ShadowGate> shadowGates;
     private List<LightGate> lightGates;
@@ -28,24 +28,24 @@ public class SpawnManager : MonoBehaviour {
         lightGates = new List<LightGate>();
     }
 
-    public void SetSpawnPoint(Vector3 spawnPoint)
-    {
-        spawnPos = spawnPoint;
+    public void SetSpawnPoint(SpawnPoint spawnPoint_)
+    {        
+        spawnPoint = spawnPoint_;
     }
 
-    public Vector3 GetSpawnPoint()
+    public SpawnPoint GetSpawnPoint()
     {
-        return spawnPos;
+        return spawnPoint;
     }
 
-    public void SetSpikeSpawnPoint(Vector3 spawnPoint)
+    public void SetSpikeSpawnPoint(SpawnPoint spawnPoint_)
     {
-        spikeSpawnPos = spawnPoint;
+        spikeSpawnPoint = spawnPoint_;
     }
 
-    public Vector3 GetSpikeSpawnPoint()
+    public SpawnPoint GetSpikeSpawnPoint()
     {
-        return spikeSpawnPos;
+        return spikeSpawnPoint;
     }
 
     public void RegisterShadowGate(ShadowGate gate)

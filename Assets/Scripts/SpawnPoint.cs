@@ -9,22 +9,21 @@ public class SpawnPoint : MonoBehaviour {
     [SerializeField]
     private bool isHazard = false;
     [SerializeField]
-    private float spawnDepth = -10;
+    public float spawnDepth = -10;
 
     void OnTriggerEnter(Collider other)
     {
         GameObject obj = other.gameObject;
 
         if (obj.tag == "Player" && spawnPosition != null)
-        {
-            CameraFollower.instance.SetZPos(spawnDepth);
+        {            
             if (isHazard)
             {
-                SpawnManager.instance.SetSpikeSpawnPoint(this.transform.position);
+                SpawnManager.instance.SetSpikeSpawnPoint(this);
             }
             else
             {
-                SpawnManager.instance.SetSpawnPoint(this.transform.position);
+                SpawnManager.instance.SetSpawnPoint(this);
             }
         }
     }
