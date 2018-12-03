@@ -109,6 +109,11 @@ public class LifeManager : MonoBehaviour {
         GetComponent<StateRecorder>().ResetMomentStates();
         yield return new WaitForSeconds(timeToWait);
         Spawn(true);
+        // FIXME hardcoded magic
+        if (!isSpike)
+        {
+            SoundStateManager.instance.ChangeMusic("NightDreams", 1, 3, 0);
+        }
     }
 
     IEnumerator waitAndLoad(float timeToWait)
