@@ -377,6 +377,11 @@ Prefab:
       propertyPath: lockManager
       value: 
       objectReference: {fileID: 816516938}
+    - target: {fileID: 114477972183388270, guid: 0d2da98f2e73ab548881a117524dcfab,
+        type: 2}
+      propertyPath: speed
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d2da98f2e73ab548881a117524dcfab, type: 2}
   m_IsPrefabAsset: 0
@@ -1624,6 +1629,11 @@ Prefab:
       propertyPath: veilFactor
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 114070329123321310, guid: a6e0f285588f285438e0ee2b4fd0a175,
+        type: 2}
+      propertyPath: endMenu
+      value: 
+      objectReference: {fileID: 256238977}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6e0f285588f285438e0ee2b4fd0a175, type: 2}
   m_IsPrefabAsset: 0
@@ -19969,21 +19979,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carrotCount: 0
   carrotCountText: {fileID: 766647100}
---- !u!114 &461118193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 461118178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 008ed317ee5037e4ea2f0dc07b0a56ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finalParticle: {fileID: 0}
-  hareSpeed: 0.025
-  runDuration: 3
-  endMenu: {fileID: 256238977}
 --- !u!1001 &469995351
 Prefab:
   m_ObjectHideFlags: 0
