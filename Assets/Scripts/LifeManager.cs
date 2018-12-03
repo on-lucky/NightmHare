@@ -29,6 +29,7 @@ public class LifeManager : MonoBehaviour {
     private Vector3 spawnPos;
     private float spawnDelay;
     private bool dead = false;
+    private bool invincible = false;
 
     private void Start()
     {
@@ -41,7 +42,7 @@ public class LifeManager : MonoBehaviour {
     {
         GameObject obj = other.gameObject;          
 
-        if (!dead)
+        if (!dead && !invincible)
         {
             if (obj.tag == "Shadow")
             {
@@ -171,5 +172,8 @@ public class LifeManager : MonoBehaviour {
         }
     }
 
-    
+    public void SetInvinsible(bool shoulBe)
+    {
+        invincible = shoulBe;
+    }
 }
