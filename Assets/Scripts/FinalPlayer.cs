@@ -13,6 +13,7 @@ public class FinalPlayer : MonoBehaviour {
 
     [SerializeField] float hareSpeed = 0.05f;
     [SerializeField] float runDuration = 1;
+    [SerializeField] GameObject endMenu;
     float currentTime = 0;
 
     private void Start()
@@ -33,6 +34,7 @@ public class FinalPlayer : MonoBehaviour {
             {
                 animator.SetFloat("Speed", 0);
                 animator.SetTrigger("Final");
+                StartCoroutine(ShowMenu(4f));
             } else
             {
                 transform.Translate(new Vector3(0, 0, hareSpeed));
@@ -64,6 +66,13 @@ public class FinalPlayer : MonoBehaviour {
         CameraFollower.instance.enabled = true;
         isPlaying = true;
         currentTime = 0;
+    }
+
+    IEnumerator ShowMenu(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        endMenu.SetActive(true);
     }
 
 }
