@@ -178,9 +178,9 @@ public class Jumper : MonoBehaviour {
     IEnumerator WaitForWallJump()
     {
         playerController.EnableInput(false);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         playerController.EnableInput(true);
         playerController.SetCurrentSpeed(0.14f);
-        rb.velocity = new Vector3(0, 0, 0);
+        rb.velocity = new Vector3(0, rb.velocity.y, 0);
     }
 }
