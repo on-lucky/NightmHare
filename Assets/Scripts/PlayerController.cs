@@ -15,8 +15,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float maxSprintDuration = 3;
     [SerializeField] private float hareSprint = 0.05f;
     public float shadowSpeedRatio = 0f;
-    [SerializeField] private Ability sprintUI;
-    private bool canSprint = true;
+    [SerializeField] private Ability sprintUI;    
+    public bool canSprint = true;
 
     [SerializeField] private GameObject lightTrap;
     [SerializeField] private float trapCooldown;
@@ -217,28 +217,47 @@ public class PlayerController : MonoBehaviour {
             hareSpeed += hareSprint;
             ShadowController.instance.speedRatio /= shadowSpeedRatio;
             canSprint = false;
-            animator.speed = 2;
+            animator.speed = 2;            
             StartCoroutine(StopSprinting());
         }
     } 
+    public void StopSprinting_()
+    {
+        if (!canSprint)
+        {
+            ShadowController.instance.speedRatio *= shadowSpeedRatio;
+            hareSpeed -= hareSprint;
+            animator.speed = 1;            
+        }        
+    }
 
     IEnumerator StopSprinting()
     {
         yield return new WaitForSeconds(maxSprintDuration);
-        ShadowController.instance.speedRatio *= shadowSpeedRatio;
-        hareSpeed -= hareSprint;        
-        animator.speed = 1;
+        StopSprinting_();    
         StartCoroutine(RefreshSprintCooldown());
+    }
+
+    public void ResetSprintCooldown()
+    {
+        if (sprintUI)
+        {
+            sprintUI.Empty();
+        }
+        canSprint = true;
     }
 
     IEnumerator RefreshSprintCooldown()
     {
-        if (sprintUI)
+        if (!canSprint)
         {
-            sprintUI.StartCooldown(sprintCooldown);
-        }
-        yield return new WaitForSeconds(sprintCooldown);
-        canSprint = true;
+            if (sprintUI)
+            {
+                sprintUI.StartCooldown(sprintCooldown);
+            }
+            yield return new WaitForSeconds(sprintCooldown);
+            canSprint = true;
+        }        
     }
 
     public void SetLightTrap()
@@ -256,6 +275,15 @@ public class PlayerController : MonoBehaviour {
             canSetTrap = false;
             StartCoroutine(RefreshTrapCooldown());
         }
+    }
+
+    public void ResetTrapCooldown()
+    {
+        if (trapUI)
+        {
+            trapUI.Empty();
+        }
+        canSetTrap = true;
     }
 
     IEnumerator RefreshTrapCooldown()

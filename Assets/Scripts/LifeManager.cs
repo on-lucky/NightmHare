@@ -39,12 +39,13 @@ public class LifeManager : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        GameObject obj = other.gameObject;
+        GameObject obj = other.gameObject;          
 
         if (!dead)
         {
             if (obj.tag == "Shadow")
             {
+                RefreshAbilities();
                 ShadowController.instance.StopFollowing();
                 ShadowController.instance.Die();
                 isSpike = false;
@@ -55,6 +56,7 @@ public class LifeManager : MonoBehaviour {
             {
                 if (ShadowController.instance != null)
                 {
+                    RefreshAbilities();
                     ShadowController.instance.StopFollowing();
                     ShadowController.instance.Die();
                     shadowExists = true;
@@ -76,9 +78,10 @@ public class LifeManager : MonoBehaviour {
         // Classic code
         dead = true;
         rb.isKinematic = true;
-        GetComponent<PlayerController>().SetCurrentSpeed(0);
-        GetComponent<PlayerController>().enabled = false;
-        GetComponent<StateRecorder>().StopRecording();
+        PlayerController pc = GetComponent<PlayerController>();
+        pc.SetCurrentSpeed(0);
+        pc.enabled = false;
+        GetComponent<StateRecorder>().StopRecording();        
 
         foreach (Transform child in transform)
         {
@@ -89,7 +92,21 @@ public class LifeManager : MonoBehaviour {
         {
             ParticleSystem death = Instantiate(deathParticles, this.transform);
             death.Play();
-        }
+        }        
+
+        // New code with event handling instead
+        HareDied?.Invoke(this, new EventArgs());
+
+        StartCoroutine(waitAndRespawn(3f)); 
+    }
+
+    private void RefreshAbilities()
+    {
+        PlayerController pc = GetComponent<PlayerController>();
+
+        // Stop sprinting and make sprint available again                
+        pc.StopSprinting_();
+        pc.ResetSprintCooldown();
 
         // Delete all the traps currently active
         foreach (GameObject trap in GameObject.FindGameObjectsWithTag("trap"))
@@ -97,10 +114,8 @@ public class LifeManager : MonoBehaviour {
             Destroy(trap);
         }
 
-        // New code with event handling instead
-        HareDied?.Invoke(this, new EventArgs());
-
-        StartCoroutine(waitAndRespawn(3f)); 
+        // Make trap available again
+        pc.ResetTrapCooldown();
     }
 
     IEnumerator waitAndRespawn(float timeToWait)
