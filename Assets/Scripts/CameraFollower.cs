@@ -61,7 +61,7 @@ public class CameraFollower : MonoBehaviour {
             {
                 UpdatePosY(true);
             }
-            UpdatePosZ();
+            //UpdatePosZ();
         }
     }
 
@@ -109,6 +109,13 @@ public class CameraFollower : MonoBehaviour {
     public void SetYOffset(float offset)
     {
         yOffset = offset;
+    }
+
+    public void SetZPos(float z)
+    {
+        Vector3 camPos = transform.position;
+        camPos.z = z;
+        transform.position = camPos;
     }
 
     public float GetYOffset()

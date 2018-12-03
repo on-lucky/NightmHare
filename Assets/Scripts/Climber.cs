@@ -108,4 +108,11 @@ public class Climber : MonoBehaviour {
             GetComponent<Rigidbody>().isKinematic = false;
         }
     }
+
+    public void ForceLeaveWall()
+    {
+        wallNearby = false;
+        wallToFront = false;
+        WallToBack = false;
+    }
 }
