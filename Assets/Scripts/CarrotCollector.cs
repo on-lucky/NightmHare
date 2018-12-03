@@ -13,12 +13,13 @@ public class CarrotCollector : MonoBehaviour
 
     public void Collect(Carrot carrot)
     {
-        carrotCount++;
+        ScoreManager.instance.IncrementScore();
+
         UpdateHUD();
     }
 
     private void UpdateHUD()
     {
-        if (carrotCountText) carrotCountText.text = carrotCount.ToString();
+        if (carrotCountText) carrotCountText.text = ScoreManager.instance.GetScore().ToString();
     }
 }

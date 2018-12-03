@@ -3798,6 +3798,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f92a7253521caad488dccc1b191e0f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerText: {fileID: 209667047}
+  scoreText: {fileID: 371216568}
 --- !u!1001 &837502469
 Prefab:
   m_ObjectHideFlags: 0
@@ -4563,6 +4565,9 @@ MonoBehaviour:
   xRange: 1
   yRange: 1
   yOffset: 2
+  zMidPlane: 10
+  zFrontPlane: -10
+  zBackPlane: -5
 --- !u!114 &948122194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5374,6 +5379,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1391939303221050, guid: a6e0f285588f285438e0ee2b4fd0a175,
     type: 2}
   m_PrefabInternal: {fileID: 1738825591}
+--- !u!114 &1095067730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1095067729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecc024b1a953c9e4bb8305c6b3e8926b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carrotCount: 0
+  carrotCountText: {fileID: 0}
 --- !u!114 &1095067743
 MonoBehaviour:
   m_ObjectHideFlags: 0

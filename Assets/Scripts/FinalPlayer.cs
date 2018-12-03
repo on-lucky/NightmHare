@@ -77,6 +77,7 @@ public class FinalPlayer : MonoBehaviour {
         yield return new WaitForSeconds(delay);
 
         endMenu.SetActive(true);
+        ScoreManager.instance.StopCount();
     }
 
 }
