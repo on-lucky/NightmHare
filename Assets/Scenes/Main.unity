@@ -1509,11 +1509,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4943848548365518, guid: a6e0f285588f285438e0ee2b4fd0a175, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 550.94
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4943848548365518, guid: a6e0f285588f285438e0ee2b4fd0a175, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 39.83
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4943848548365518, guid: a6e0f285588f285438e0ee2b4fd0a175, type: 2}
       propertyPath: m_LocalPosition.z
@@ -36502,6 +36502,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: a8c56a9a492ba85448c53584920911e1,
     type: 3}
   m_PrefabInternal: {fileID: 893281128}
+--- !u!23 &895268093 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 23023915903695906, guid: 554aae0c9b53e6141a2f6c9e30575062,
+    type: 2}
+  m_PrefabInternal: {fileID: 2043026499}
 --- !u!1 &895346962
 GameObject:
   m_ObjectHideFlags: 0
@@ -84949,11 +84954,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4012366629688312, guid: 554aae0c9b53e6141a2f6c9e30575062, type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 4012366629688312, guid: 554aae0c9b53e6141a2f6c9e30575062, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.2
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 4590573638734822, guid: 554aae0c9b53e6141a2f6c9e30575062, type: 2}
       propertyPath: m_LocalPosition.z
@@ -85072,7 +85077,8 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: -0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114378876585108840, guid: 554aae0c9b53e6141a2f6c9e30575062, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 554aae0c9b53e6141a2f6c9e30575062, type: 2}
   m_IsPrefabAsset: 0
 --- !u!4 &2043026500 stripped
@@ -85519,6 +85525,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4000012373117156, guid: a721d85d0458a524e99c7e3cce944fc0,
     type: 2}
   m_PrefabInternal: {fileID: 2048692302}
+--- !u!1 &2052415247 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1272580724986830, guid: 554aae0c9b53e6141a2f6c9e30575062,
+    type: 2}
+  m_PrefabInternal: {fileID: 2043026499}
+--- !u!114 &2052415249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2052415247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017c9429b8f064dccafa59826e8a4731, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overLayLight: {fileID: 895268093}
+  goalScene: Home_Menu
 --- !u!1 &2056484185
 GameObject:
   m_ObjectHideFlags: 0
