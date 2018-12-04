@@ -31,11 +31,13 @@ public class LifeManager : MonoBehaviour {
     private float spawnDelay;
     private bool dead = false;
     private bool invincible = false;
+    private MusicPoint[] musicPoints;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         hareRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        musicPoints = FindObjectsOfType<MusicPoint>();
         Spawn();        
     }
 
@@ -131,8 +133,9 @@ public class LifeManager : MonoBehaviour {
         // FIXME hardcoded magic
         if (!isSpike)
         {
-            SoundStateManager.instance.ChangeMusic("NightDreams", 1, 3, 0);
+            SoundStateManager.instance.ChangeMusic("Gate", 1, 3, 0);
         }
+        ResetMusicPoints();
     }
 
     IEnumerator waitAndLoad(float timeToWait)
@@ -184,5 +187,12 @@ public class LifeManager : MonoBehaviour {
     public void SetInvinsible(bool shoulBe)
     {
         invincible = shoulBe;
+    }
+
+    private void ResetMusicPoints()
+    {
+        foreach (MusicPoint point in musicPoints) {
+            point.ResetUsed();
+        }
     }
 }

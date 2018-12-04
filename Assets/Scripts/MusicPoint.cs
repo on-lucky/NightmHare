@@ -11,18 +11,22 @@ public class MusicPoint : MonoBehaviour {
     public float transitionTime = 3f;
     public float volume = 1f;
 
+    private bool used = false;
+
     void OnTriggerEnter(Collider other)
     {
         GameObject obj = other.gameObject;
 
-        if (obj.tag == layerToCheck && !IsPlaying())
+        if (obj.tag == layerToCheck && !used)
         {
+            Debug.Log("Music Point {" + musicName + "} reached!");
             SoundStateManager.instance.ChangeMusic(musicName, volume, transitionTime, startingTime);
+            used = true;
         }
     }
 
-    bool IsPlaying()
+    public void ResetUsed()
     {
-        return SoundStateManager.instance.GetCurrentSound() == musicName;
+        used = false;
     }
 }
