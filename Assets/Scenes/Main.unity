@@ -1509,15 +1509,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4943848548365518, guid: a6e0f285588f285438e0ee2b4fd0a175, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 600.5
+      value: 158.55
       objectReference: {fileID: 0}
     - target: {fileID: 4943848548365518, guid: a6e0f285588f285438e0ee2b4fd0a175, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 47.8
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 4943848548365518, guid: a6e0f285588f285438e0ee2b4fd0a175, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4943848548365518, guid: a6e0f285588f285438e0ee2b4fd0a175, type: 2}
       propertyPath: m_LocalRotation.x
@@ -40133,6 +40133,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedMaterials: []
+--- !u!1 &988409235
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 988409236}
+  m_Layer: 0
+  m_Name: music points
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &988409236
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 988409235}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1057358660}
+  - {fileID: 1849585109}
+  m_Father: {fileID: 1963508994}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &994003729
 GameObject:
   m_ObjectHideFlags: 0
@@ -42233,6 +42263,64 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: cc815fd4bc66b764b8a86a1922e740ac,
     type: 3}
   m_PrefabInternal: {fileID: 1056405567}
+--- !u!1 &1057358659
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1057358660}
+  - component: {fileID: 1057358662}
+  - component: {fileID: 1057358661}
+  m_Layer: 0
+  m_Name: MusicPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1057358660
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1057358659}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.82, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 988409236}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1057358661
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1057358659}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 5.1684456, z: 5}
+  m_Center: {x: 0, y: 2.0842228, z: 0}
+--- !u!114 &1057358662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1057358659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffcced54a7050d5498c16411333a83f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicName: Chase
+  startingTime: 13
+  layerToCheck: Player
+  transitionTime: 2
+  volume: 1
 --- !u!1001 &1058151596
 Prefab:
   m_ObjectHideFlags: 0
@@ -52878,8 +52966,8 @@ Transform:
   - {fileID: 1120306498}
   - {fileID: 1883767758}
   - {fileID: 1966282839}
-  - {fileID: 897665804}
   - {fileID: 882807705}
+  - {fileID: 897665804}
   - {fileID: 505571401}
   - {fileID: 1194888055}
   - {fileID: 598371804}
@@ -75497,6 +75585,64 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.5, z: 1}
   m_Center: {x: 0, y: 0.25, z: 0}
+--- !u!1 &1849585108
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1849585109}
+  - component: {fileID: 1849585111}
+  - component: {fileID: 1849585110}
+  m_Layer: 0
+  m_Name: MusicPoint (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1849585109
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1849585108}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 60.01, y: 0.5, z: 20.28}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 988409236}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1849585110
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1849585108}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 5.1684456, z: 5}
+  m_Center: {x: 0, y: 2.0842228, z: 0}
+--- !u!114 &1849585111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1849585108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffcced54a7050d5498c16411333a83f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicName: NightDreams
+  startingTime: 35
+  layerToCheck: Shadow
+  transitionTime: 1.5
+  volume: 1
 --- !u!1 &1851316347
 GameObject:
   m_ObjectHideFlags: 0
@@ -80487,6 +80633,7 @@ Transform:
   - {fileID: 317450760}
   - {fileID: 1452326401}
   - {fileID: 1816998015}
+  - {fileID: 988409236}
   m_Father: {fileID: 646336823}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
