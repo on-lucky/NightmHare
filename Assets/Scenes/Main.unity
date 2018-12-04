@@ -13843,7 +13843,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81ed1b1eec375a54894b275674e724af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockedMaterials: []
+  lockedMaterials:
+  - {fileID: 2100000, guid: d22d72fcc0c498a40b85354476cb0779, type: 2}
+  - {fileID: 2100000, guid: 1f08011c5f6394741aa1f4b7bd9801d0, type: 2}
+  - {fileID: 2100000, guid: 4a4ebeb3ffd1163479b27ea84b6afa54, type: 2}
 --- !u!1 &317450759
 GameObject:
   m_ObjectHideFlags: 0
