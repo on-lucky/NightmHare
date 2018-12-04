@@ -57927,6 +57927,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 1830741807071170, guid: f8b09da9c7babbf43bd9d8531e6652b3, type: 2}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8b09da9c7babbf43bd9d8531e6652b3, type: 2}
   m_IsPrefabAsset: 0
@@ -61578,7 +61582,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4919216060196012, guid: f8b09da9c7babbf43bd9d8531e6652b3, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 22.14
+      value: 22.22
       objectReference: {fileID: 0}
     - target: {fileID: 4919216060196012, guid: f8b09da9c7babbf43bd9d8531e6652b3, type: 2}
       propertyPath: m_LocalPosition.y
@@ -63145,6 +63149,10 @@ Prefab:
     - target: {fileID: 1830741807071170, guid: f8b09da9c7babbf43bd9d8531e6652b3, type: 2}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1830741807071170, guid: f8b09da9c7babbf43bd9d8531e6652b3, type: 2}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8b09da9c7babbf43bd9d8531e6652b3, type: 2}
