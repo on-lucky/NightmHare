@@ -17,7 +17,25 @@ public class CollisionChecker : MonoBehaviour {
     public GameObject messageReceiver;
 
     private int groundIndex = 0;
-    
+
+    private void Start()
+    {
+        GameObject hare = transform.parent.parent.gameObject;
+        if (hare)
+        {
+            hare.GetComponent<LifeManager>().HareDied += OnHareDied;
+        }
+        else
+        {
+            Debug.LogError("Hare GameObject cannot be found!");
+        }
+    }
+
+    private void OnHareDied(object sender, System.EventArgs e)
+    {
+        // Quick fix for bug B33
+        groundIndex = 0;
+    }
 
     void OnTriggerEnter(Collider other)
     {
