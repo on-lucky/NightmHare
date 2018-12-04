@@ -31,6 +31,7 @@ public class sound
     public void play(bool loop = true)
     {
         source.volume = volume * (1 + Random.Range(-RandomVolume / 2f, RandomVolume / 2f));
+        Debug.Log("playing sound: " + name + " with volume: " + source.volume);
         source.pitch = pitch * (1 + Random.Range(-RandomPitch / 2f, RandomPitch / 2f));
         source.Play();
         source.loop = loop;
@@ -135,8 +136,8 @@ public class AudioManager : MonoBehaviour
             {
                 sounds[i].SetGoalVolume(volume);
                 sounds[i].SetTime(time);
-                sounds[i].play(loop);
                 sounds[i].setVolume(volume);
+                sounds[i].play(loop);
                 return;
             }
         }

@@ -4913,6 +4913,107 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4940053334806402, guid: 0d2da98f2e73ab548881a117524dcfab,
     type: 2}
   m_PrefabInternal: {fileID: 110334810}
+--- !u!1 &111849775
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 111849776}
+  - component: {fileID: 111849778}
+  - component: {fileID: 111849777}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &111849776
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 111849775}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1168626426}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &111849777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 111849775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d92a4d25929ae4445acd653905905d55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &111849778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 111849775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3698fb73d72d6964a82a61f8d12f93d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: NightDreams
+    clip: {fileID: 8300000, guid: 157db9b3ff83db543aee388b3b2082cd, type: 3}
+    volume: 1
+    pitch: 1
+    RandomVolume: 0
+    RandomPitch: 0
+  - name: Chase
+    clip: {fileID: 8300000, guid: 600e1390a66a15f4586ad5cb3ea9efb6, type: 3}
+    volume: 1
+    pitch: 1
+    RandomVolume: 0
+    RandomPitch: 0
+  - name: CoinGrab
+    clip: {fileID: 8300000, guid: 65aba3691f70b784187c112a50ffa40c, type: 3}
+    volume: 1
+    pitch: 1.5
+    RandomVolume: 0
+    RandomPitch: 0.046
+  - name: Gate
+    clip: {fileID: 8300000, guid: 4137d860155a99f4f8baf196a3d72d22, type: 3}
+    volume: 1
+    pitch: 1
+    RandomVolume: 0
+    RandomPitch: 0
+  - name: Laugh
+    clip: {fileID: 8300000, guid: a5a44f925cb651f488694224bbe3d765, type: 3}
+    volume: 0.401
+    pitch: 1.5
+    RandomVolume: 0
+    RandomPitch: 0
+  - name: Woosh
+    clip: {fileID: 8300000, guid: 4d108a3039ca0844fbe881a462517e67, type: 3}
+    volume: 1
+    pitch: 1.5
+    RandomVolume: 0
+    RandomPitch: 0
+  - name: Digging
+    clip: {fileID: 8300000, guid: 18aef70b47a05624dbe73dd83ea93404, type: 3}
+    volume: 1
+    pitch: 1.5
+    RandomVolume: 0
+    RandomPitch: 0
+  - name: Bounce
+    clip: {fileID: 8300000, guid: fa3d62d8ab2980f459e87da92101c227, type: 3}
+    volume: 0
+    pitch: 0.91
+    RandomVolume: 0
+    RandomPitch: 0.191
 --- !u!1001 &111872391
 Prefab:
   m_ObjectHideFlags: 0
@@ -29091,65 +29192,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4450221086583394, guid: 5cc51af29c02d624a99bea3e0ec23cda,
     type: 2}
   m_PrefabInternal: {fileID: 1278726544}
---- !u!1 &713314704
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 713314705}
-  - component: {fileID: 713314707}
-  - component: {fileID: 713314706}
-  m_Layer: 0
-  m_Name: Camera Change
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &713314705
+--- !u!4 &713314705 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 713314704}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 25.8, y: -15.54, z: 0}
-  m_LocalScale: {x: 29.4, y: 54.41, z: 5}
-  m_Children: []
-  m_Father: {fileID: 982869087}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &713314706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 713314704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58e5539d210d1f34399205085272d301, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  duration: 0.5
-  doTranslation: 1
-  doRotation: 1
-  offsetY: 1
-  z: -20
-  rotation: 20
---- !u!65 &713314707
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 713314704}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.62945294, y: 0.82607555, z: 1}
-  m_Center: {x: 0.18527383, y: 0.08696269, z: 0}
+  m_CorrespondingSourceObject: {fileID: 4914034693120294, guid: b0a90f59e17bdf442b703b9936f6c855,
+    type: 2}
+  m_PrefabInternal: {fileID: 1809463467}
 --- !u!1001 &718716288
 Prefab:
   m_ObjectHideFlags: 0
@@ -47485,9 +47532,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1278871697}
-  - {fileID: 1826979562}
   - {fileID: 1633095284}
   - {fileID: 1783987380}
+  - {fileID: 111849776}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -67382,7 +67429,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1168626426}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1634313037 stripped
 Transform:
@@ -73417,7 +73464,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1168626426}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1783987381
 MonoBehaviour:
@@ -74560,6 +74607,48 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4450221086583394, guid: 5cc51af29c02d624a99bea3e0ec23cda,
     type: 2}
   m_PrefabInternal: {fileID: 1980274019}
+--- !u!1001 &1809463467
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 982869087}
+    m_Modifications:
+    - target: {fileID: 4914034693120294, guid: b0a90f59e17bdf442b703b9936f6c855, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 25.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914034693120294, guid: b0a90f59e17bdf442b703b9936f6c855, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -15.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914034693120294, guid: b0a90f59e17bdf442b703b9936f6c855, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914034693120294, guid: b0a90f59e17bdf442b703b9936f6c855, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914034693120294, guid: b0a90f59e17bdf442b703b9936f6c855, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914034693120294, guid: b0a90f59e17bdf442b703b9936f6c855, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914034693120294, guid: b0a90f59e17bdf442b703b9936f6c855, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914034693120294, guid: b0a90f59e17bdf442b703b9936f6c855, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b0a90f59e17bdf442b703b9936f6c855, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1809922935
 GameObject:
   m_ObjectHideFlags: 0
@@ -75377,101 +75466,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4000011695518034, guid: 465c505844950da499dcf096a6da4409,
     type: 2}
   m_PrefabInternal: {fileID: 1824847383}
---- !u!1 &1826979561
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1826979562}
-  - component: {fileID: 1826979563}
-  - component: {fileID: 1826979564}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1826979562
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1826979561}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1168626426}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1826979563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1826979561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3698fb73d72d6964a82a61f8d12f93d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: NightDreams
-    clip: {fileID: 8300000, guid: 157db9b3ff83db543aee388b3b2082cd, type: 3}
-    volume: 1
-    pitch: 1
-    RandomVolume: 0
-    RandomPitch: 0
-  - name: Chase
-    clip: {fileID: 8300000, guid: 600e1390a66a15f4586ad5cb3ea9efb6, type: 3}
-    volume: 1
-    pitch: 1
-    RandomVolume: 0
-    RandomPitch: 0
-  - name: CoinGrab
-    clip: {fileID: 8300000, guid: 65aba3691f70b784187c112a50ffa40c, type: 3}
-    volume: 1
-    pitch: 1
-    RandomVolume: 0
-    RandomPitch: 0.152
-  - name: Gate
-    clip: {fileID: 8300000, guid: 4137d860155a99f4f8baf196a3d72d22, type: 3}
-    volume: 1
-    pitch: 1
-    RandomVolume: 0
-    RandomPitch: 0
-  - name: Laugh
-    clip: {fileID: 8300000, guid: a5a44f925cb651f488694224bbe3d765, type: 3}
-    volume: 0.401
-    pitch: 1.5
-    RandomVolume: 0
-    RandomPitch: 0
-  - name: Woosh
-    clip: {fileID: 8300000, guid: 4d108a3039ca0844fbe881a462517e67, type: 3}
-    volume: 1
-    pitch: 1.5
-    RandomVolume: 0
-    RandomPitch: 0
-  - name: Digging
-    clip: {fileID: 8300000, guid: 18aef70b47a05624dbe73dd83ea93404, type: 3}
-    volume: 1
-    pitch: 1.5
-    RandomVolume: 0
-    RandomPitch: 0
---- !u!114 &1826979564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1826979561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d92a4d25929ae4445acd653905905d55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1832550975
 GameObject:
   m_ObjectHideFlags: 0

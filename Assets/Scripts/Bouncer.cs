@@ -66,6 +66,9 @@ public class Bouncer : MonoBehaviour {
             spores.Play();
             bouncing = true;
             currentTime = 0;
+
+            AudioManager.instance.PlaySound("Bounce", 0.1f, 0, false);
+
             if (this.transform.up.x > 0)
             {
                 c.gameObject.GetComponent<OrientationManager>().LookTo(true);                
