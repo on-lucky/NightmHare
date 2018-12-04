@@ -1564,6 +1564,11 @@ Prefab:
       propertyPath: carrotCountText
       value: 
       objectReference: {fileID: 766647100}
+    - target: {fileID: 114565302483138174, guid: a6e0f285588f285438e0ee2b4fd0a175,
+        type: 2}
+      propertyPath: DashCoolDown
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6e0f285588f285438e0ee2b4fd0a175, type: 2}
   m_IsPrefabAsset: 0
